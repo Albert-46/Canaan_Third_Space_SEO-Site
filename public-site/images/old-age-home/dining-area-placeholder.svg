@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="900" height="900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5ede0"/>
+      <stop offset="100%" stop-color="#f0e5d0"/>
+    </linearGradient>
+    <linearGradient id="table" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ddd9d2"/>
+      <stop offset="100%" stop-color="#c8c2b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <!-- Ceiling line -->
+  <rect x="0" y="80" width="900" height="2" fill="#c5a059" opacity="0.25"/>
+  <!-- Walls -->
+  <rect x="0" y="0" width="900" height="460" fill="#f9f5ee"/>
+  <!-- Table -->
+  <ellipse cx="450" cy="540" rx="320" ry="120" fill="url(#table)"/>
+  <ellipse cx="450" cy="535" rx="316" ry="116" fill="transparent" stroke="#c5a059" stroke-width="1.5" opacity="0.3"/>
+  <!-- Tablecloth -->
+  <ellipse cx="450" cy="530" rx="290" ry="105" fill="#f9f8f6" opacity="0.6"/>
+  <!-- Place settings -->
+  <ellipse cx="280" cy="520" rx="50" ry="30" fill="#e8ece9" opacity="0.7"/>
+  <ellipse cx="450" cy="430" rx="50" ry="30" fill="#e8ece9" opacity="0.7"/>
+  <ellipse cx="620" cy="520" rx="50" ry="30" fill="#e8ece9" opacity="0.7"/>
+  <ellipse cx="450" cy="610" rx="50" ry="30" fill="#e8ece9" opacity="0.7"/>
+  <!-- Glasses -->
+  <ellipse cx="280" cy="490" rx="12" ry="12" fill="transparent" stroke="#c5a059" stroke-width="1.5" opacity="0.45"/>
+  <ellipse cx="450" cy="400" rx="12" ry="12" fill="transparent" stroke="#c5a059" stroke-width="1.5" opacity="0.45"/>
+  <ellipse cx="620" cy="490" rx="12" ry="12" fill="transparent" stroke="#c5a059" stroke-width="1.5" opacity="0.45"/>
+  <!-- Centrepiece flower -->
+  <ellipse cx="450" cy="490" rx="25" ry="25" fill="#b96a53" opacity="0.3"/>
+  <ellipse cx="450" cy="490" rx="15" ry="15" fill="#b96a53" opacity="0.4"/>
+  <!-- Chairs suggestion -->
+  <ellipse cx="218" cy="620" rx="55" ry="30" fill="#ddcab6" opacity="0.45"/>
+  <ellipse cx="450" cy="700" rx="55" ry="30" fill="#ddcab6" opacity="0.45"/>
+  <ellipse cx="682" cy="620" rx="55" ry="30" fill="#ddcab6" opacity="0.45"/>
+  <ellipse cx="450" cy="380" rx="55" ry="30" fill="#ddcab6" opacity="0.45"/>
+  <!-- Label -->
+  <rect x="0" y="830" width="900" height="70" fill="rgba(245,237,224,0.92)"/>
+  <rect x="0" y="830" width="900" height="1" fill="#ddd9d2"/>
+  <text x="50" y="872" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#3e5c56" opacity="0.7">Dining Area</text>
+  <text x="850" y="872" font-family="Georgia, serif" font-size="14" fill="#7a9084" opacity="0.45" text-anchor="end">Placeholder</text>
+</svg>

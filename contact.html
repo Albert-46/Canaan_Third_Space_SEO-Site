@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Location | Premium Care</title>
+  <meta name="description" content="Contact our Home Care centre or old-age home. Find our location, phone numbers, and enquiry forms for admissions and medical services.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/jpeg" href="images/brand/logo.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact &amp; Location | Canaan Third Space Senior Care Home">
+  <meta property="og:description" content="Contact our Home Care centre or old-age home. Find our location, phone numbers, and enquiry forms for admissions and medical services.">
+  <meta property="og:image" content="images/brand/logo.jpg">
+  <meta property="og:image:alt" content="Canaan Third Space Senior Care Home logo">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a
+        class="site-brand"
+        href="index.html"
+        aria-label="Canaan Third Space Senior Care Home home page"
+      >
+        <img
+          src="images/brand/logo.jpg"
+          alt="Canaan Third Space Senior Care Home logo"
+          class="site-brand-logo"
+        />
+      </a>
+      <nav class="site-nav">
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Home Care Services</a>
+        <a href="old-age-home.html" class="nav-link">Old-Age Home</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="patient-info.html" class="nav-link">Patient Information</a>
+        <a href="contact.html" class="nav-link" style="border-bottom: 1px solid var(--deep-ink);">Contact</a>
+        <a href="contact.html" class="btn btn-primary" style="background-color: var(--deep-ink);">Contact Us</a>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="mobile-menu-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding-top: var(--spacing-2xl);">
+    <section class="section">
+      <div class="container grid-12">
+        <div style="grid-column: span 12;" class="reveal text-center mb-lg">
+          <h1 class="mb-sm">Contact Us</h1>
+          <p class="editorial-text">We are here to assist with medical enquiries, admission details, and general support.</p>
+        </div>
+        
+        <div style="grid-column: span 5;" class="reveal">
+          <div style="background-color: var(--mineral-white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray); height: 100%;">
+            <h3 class="mb-md" style="font-size: var(--text-xl);">Get in Touch</h3>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <p style="font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--eucalyptus);">Phone</p>
+              <a href="#" data-config="contact.phone" style="font-size: var(--text-xl); font-family: var(--font-display);"></a>
+              
+              <div style="margin-top: 10px;">
+                <a href="#" data-config="contact.whatsapp" class="btn btn-secondary" style="font-size: var(--text-xs); padding: 0.5rem 1rem;">WhatsApp</a>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <p style="font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--eucalyptus);">Email</p>
+              <a href="#" data-config="contact.email" style="font-size: var(--text-base);"></a>
+            </div>
+            
+            <div style="margin-bottom: var(--spacing-md);">
+              <p style="font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--eucalyptus);">Address</p>
+              <p style="font-size: var(--text-base); line-height: 1.5;" data-config="contact.address">
+                <span data-config="organization.name"></span><br>
+                Address Placeholder
+              </p>
+            </div>
+
+            <div style="margin-bottom: var(--spacing-lg);">
+              <p style="font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em; color: var(--eucalyptus);">Hours</p>
+              <p style="font-size: var(--text-base); line-height: 1.5;" data-config="contact.hours">Hours Placeholder</p>
+            </div>
+            
+            <div>
+              <a href="#" data-config="contact.mapUrl" data-replace-text="false" class="thin-rule" style="font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
+            </div>
+          </div>
+        </div>
+        
+        <div style="grid-column: 7 / span 6;" class="reveal">
+          <h3 class="mb-sm" style="font-size: var(--text-xl);">Send an Enquiry</h3>
+          <p class="mb-md">Please fill out the form below and our care team will contact you shortly.</p>
+          
+          <form id="contactForm" style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="enquiry-type" class="form-label">Enquiry Type</label>
+              <select id="enquiry-type" class="form-input" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Home Care Services">Home Care Services</option>
+                <option value="Old-Age Home Admission">Old-Age Home Admission</option>
+                <option value="General Enquiry">General Enquiry</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" rows="5" class="form-input" style="resize: vertical;" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 10px;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div style="grid-column: span 2;">
+          <a
+            class="footer-brand"
+            href="index.html"
+            aria-label="Canaan Third Space Senior Care Home home page"
+          >
+            <img
+              src="images/brand/logo.jpg"
+              alt="Canaan Third Space Senior Care Home logo"
+              class="footer-brand-logo"
+            />
+          </a>
+          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Care, dignity, and continuity of life.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Home Care Services</a></li>
+            <li><a href="old-age-home.html">Old-Age Home</a></li>
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="patient-info.html">Patient Information</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-config="contact.phone">Phone</a></li>
+            <li><a href="#" data-config="contact.email">Email</a></li>
+            <li><a href="contact.html">Contact Form</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> <span data-config="organization.name"></span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

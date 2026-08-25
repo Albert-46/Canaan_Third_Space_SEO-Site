@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Premium Home Care & Old-Age Home</title>
+  <meta name="description" content="Learn about our mission to provide compassionate healthcare and dignified living. Our history, values, and dedication to care.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/jpeg" href="images/brand/logo.jpg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Us | Canaan Third Space Senior Care Home">
+  <meta property="og:description" content="Learn about our mission to provide compassionate healthcare and dignified senior living.">
+  <meta property="og:image" content="images/brand/logo.jpg">
+  <meta property="og:image:alt" content="Canaan Third Space Senior Care Home logo">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a
+        class="site-brand"
+        href="index.html"
+        aria-label="Canaan Third Space Senior Care Home home page"
+      >
+        <img
+          src="images/brand/logo.jpg"
+          alt="Canaan Third Space Senior Care Home logo"
+          class="site-brand-logo"
+        />
+      </a>
+      <nav class="site-nav">
+        <a href="about.html" class="nav-link" style="border-bottom: 1px solid var(--deep-ink);">About</a>
+        <a href="services.html" class="nav-link">Home Care Services</a>
+        <a href="old-age-home.html" class="nav-link">Old-Age Home</a>
+        <a href="facilities.html" class="nav-link">Facilities</a>
+        <a href="patient-info.html" class="nav-link">Patient Information</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="mobile-menu-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding-top: var(--spacing-2xl);">
+    <section class="section">
+      <div class="container text-center reveal" style="max-width: 800px;">
+        <h1 class="mb-sm">Our Story</h1>
+        <p class="mb-lg" style="font-size: var(--text-lg); color: var(--muted-teal);">A commitment to continuity of life.</p>
+      </div>
+      
+      <div class="container">
+        <img src="images/hospital/hero.svg" data-config="images.hospitalExterior" alt="Our campus exterior" width="1280" height="720" loading="eager" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: var(--spacing-xl); border-radius: 2px;">
+      </div>
+      
+      <div class="container grid-12">
+        <div style="grid-column: 2 / span 10;" class="reveal text-center">
+          <p class="editorial-text mb-lg" data-config="organization.description">
+            "We envisioned a place where medical excellence meets human compassion. A campus where healing and living coexist with dignity."
+          </p>
+        </div>
+        
+        <div style="grid-column: 2 / span 4;" class="reveal">
+          <h3 class="mb-sm" style="font-size: var(--text-xl);">Our Mission</h3>
+          <p>To deliver professional healthcare services and supportive senior living under one roof. We strive to create an environment where every patient and resident feels seen, heard, and respected.</p>
+          <p>By integrating a fully equipped Home Care centre with a dedicated old-age home, we remove the anxiety of transitioning between care facilities, ensuring a seamless experience for families.</p>
+        </div>
+        
+        <div style="grid-column: 7 / span 5;" class="reveal">
+          <h3 class="mb-sm" style="font-size: var(--text-xl);">Our Approach</h3>
+          <p>We reject the sterile, impersonal atmosphere often associated with healthcare. Instead, we have cultivated a space that feels calm, orderly, and deeply human.</p>
+          <p>Our team comprises dedicated medical professionals, attentive caregivers, and support staff who share a single philosophy: care must always preserve dignity.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div style="grid-column: span 2;">
+          <a
+            class="footer-brand"
+            href="index.html"
+            aria-label="Canaan Third Space Senior Care Home home page"
+          >
+            <img
+              src="images/brand/logo.jpg"
+              alt="Canaan Third Space Senior Care Home logo"
+              class="footer-brand-logo"
+            />
+          </a>
+          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Care, dignity, and continuity of life.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Home Care Services</a></li>
+            <li><a href="old-age-home.html">Old-Age Home</a></li>
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="patient-info.html">Patient Information</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-config="contact.phone">Phone</a></li>
+            <li><a href="#" data-config="contact.email">Email</a></li>
+            <li><a href="contact.html">Contact Form</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> <span data-config="organization.name"></span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

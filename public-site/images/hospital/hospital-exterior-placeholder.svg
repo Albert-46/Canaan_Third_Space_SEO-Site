@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <rect width="1600" height="900" fill="#1a2421"/>
+  <!-- Sky gradient -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d4540"/>
+      <stop offset="100%" stop-color="#1a2421"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c5a059" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c5a059" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <!-- Building mass -->
+  <rect x="160" y="280" width="1280" height="560" fill="#1e2e2a"/>
+  <!-- Ground floor windows -->
+  <rect x="220" y="640" width="120" height="160" fill="#2a4038" opacity="0.8"/>
+  <rect x="380" y="640" width="120" height="160" fill="#2a4038" opacity="0.8"/>
+  <rect x="660" y="600" width="280" height="200" fill="#3e5c56" opacity="0.6"/>
+  <rect x="980" y="640" width="120" height="160" fill="#2a4038" opacity="0.8"/>
+  <rect x="1140" y="640" width="120" height="160" fill="#2a4038" opacity="0.8"/>
+  <!-- Upper windows -->
+  <rect x="220" y="360" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <rect x="340" y="360" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <rect x="460" y="360" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="580" y="360" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="700" y="360" width="80" height="100" fill="#c5a059" opacity="0.18"/>
+  <rect x="820" y="360" width="80" height="100" fill="#c5a059" opacity="0.18"/>
+  <rect x="940" y="360" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="1060" y="360" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="1180" y="360" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <rect x="1300" y="360" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <!-- Row 2 windows -->
+  <rect x="220" y="490" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="340" y="490" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="700" y="490" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <rect x="820" y="490" width="80" height="100" fill="#c5a059" opacity="0.12"/>
+  <rect x="1180" y="490" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <rect x="1300" y="490" width="80" height="100" fill="#c5a059" opacity="0.08"/>
+  <!-- Roofline detail -->
+  <rect x="160" y="270" width="1280" height="12" fill="#7a9084" opacity="0.5"/>
+  <rect x="160" y="270" width="1280" height="2" fill="#c5a059" opacity="0.4"/>
+  <!-- Ground line -->
+  <rect x="0" y="840" width="1600" height="60" fill="#0e1a17"/>
+  <!-- Path/driveway -->
+  <rect x="720" y="800" width="160" height="100" fill="#1e2e2a"/>
+  <!-- Light glow over entrance -->
+  <rect x="640" y="560" width="320" height="280" fill="url(#light)"/>
+  <!-- Label -->
+  <rect x="0" y="840" width="1600" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="60" y="880" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#ddcab6" opacity="0.75">Home Care Facility — Building Exterior</text>
+  <text x="1540" y="880" font-family="Georgia, serif" font-size="14" fill="#7a9084" opacity="0.5" text-anchor="end">Placeholder Image</text>
+</svg>

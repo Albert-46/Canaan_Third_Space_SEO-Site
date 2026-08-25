@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" width="1600" height="800">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8cfc4"/>
+      <stop offset="100%" stop-color="#8fad9f"/>
+    </linearGradient>
+    <linearGradient id="building" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9f8f6"/>
+      <stop offset="100%" stop-color="#ede8e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="800" fill="url(#sky)"/>
+  <!-- Ground -->
+  <rect x="0" y="660" width="1600" height="140" fill="#3e5c56" opacity="0.5"/>
+  <rect x="0" y="660" width="1600" height="140" fill="#2d4540" opacity="0.3"/>
+  <!-- Lawn -->
+  <ellipse cx="800" cy="660" rx="900" ry="50" fill="#5c7a6a" opacity="0.6"/>
+  <!-- Building body -->
+  <rect x="200" y="200" width="1200" height="480" fill="url(#building)"/>
+  <rect x="200" y="200" width="1200" height="6" fill="#ddcab6" opacity="0.6"/>
+  <rect x="200" y="200" width="1200" height="2" fill="#c5a059" opacity="0.35"/>
+  <!-- Veranda/porch columns -->
+  <rect x="380" y="380" width="24" height="300" fill="#f0ede8"/>
+  <rect x="560" y="380" width="24" height="300" fill="#f0ede8"/>
+  <rect x="740" y="380" width="24" height="300" fill="#f0ede8"/>
+  <rect x="920" y="380" width="24" height="300" fill="#f0ede8"/>
+  <rect x="1100" y="380" width="24" height="300" fill="#f0ede8"/>
+  <rect x="380" y="380" width="744" height="6" fill="#ddd9d2"/>
+  <rect x="380" y="380" width="744" height="2" fill="#c5a059" opacity="0.25"/>
+  <!-- Windows upper floor -->
+  <rect x="300" y="240" width="140" height="110" fill="#e8f0ed" opacity="0.6"/>
+  <rect x="300" y="240" width="140" height="3" fill="#c5a059" opacity="0.2"/>
+  <rect x="520" y="240" width="140" height="110" fill="#e8f0ed" opacity="0.6"/>
+  <rect x="740" y="240" width="140" height="110" fill="#e8f0ed" opacity="0.7"/>
+  <rect x="960" y="240" width="140" height="110" fill="#e8f0ed" opacity="0.6"/>
+  <rect x="1160" y="240" width="140" height="110" fill="#e8f0ed" opacity="0.6"/>
+  <!-- Entrance door -->
+  <rect x="700" y="540" width="200" height="140" rx="2" fill="#3e5c56" opacity="0.3"/>
+  <rect x="700" y="540" width="200" height="3" fill="#c5a059" opacity="0.4"/>
+  <!-- Garden path -->
+  <rect x="760" y="680" width="80" height="120" fill="#e8e0d4" opacity="0.6"/>
+  <!-- Trees -->
+  <ellipse cx="140" cy="520" rx="80" ry="120" fill="#5c7a6a" opacity="0.7"/>
+  <rect x="130" y="640" width="20" height="60" fill="#3e5c56" opacity="0.5"/>
+  <ellipse cx="1460" cy="500" rx="90" ry="130" fill="#5c7a6a" opacity="0.6"/>
+  <rect x="1450" y="630" width="20" height="70" fill="#3e5c56" opacity="0.5"/>
+  <!-- Label -->
+  <rect x="0" y="740" width="1600" height="60" fill="rgba(249,248,246,0.85)"/>
+  <rect x="0" y="740" width="1600" height="1" fill="#e8ece9"/>
+  <text x="60" y="778" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#3e5c56" opacity="0.7">Senior Living Home — Exterior</text>
+  <text x="1540" y="778" font-family="Georgia, serif" font-size="14" fill="#7a9084" opacity="0.45" text-anchor="end">Placeholder Image</text>
+</svg>
