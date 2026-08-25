@@ -1,87 +1,128 @@
-# Premium Home Care & Old-Age Home Website
+# Canaan Third Space Senior Care Home — Public Website
 
-This is a custom-coded, vanilla HTML5, CSS3, and JavaScript website designed for a combined Home Care centre and old-age home. The design is intended to be calm, editorial, and highly optimized for SEO and performance without relying on heavy frameworks. It keeps public marketing content completely separate from the private care-management application.
+This is a custom-coded, vanilla HTML5, CSS3, and JavaScript public marketing website for **Canaan Third Space Senior Care Home**. The design is calm, editorial, and optimised for SEO and performance without relying on heavy frameworks. This site is completely separate from any private care-management application.
+
+---
+
+## ⚠️ Outstanding Configuration Required Before Launch
+
+The following items **must be confirmed by the organisation** and entered into `script.js` before the website is published. Until then, the relevant UI elements are safely hidden.
+
+| Field | Location in script.js | Status |
+|---|---|---|
+| Phone number (display) | `contact.phoneDisplay` | ❌ Required |
+| Phone number (E.164 for tel: link) | `contact.phoneHref` | ❌ Required |
+| Email address | `contact.email` | ❌ Required |
+| Full address | `contact.address` | ❌ Required |
+| Opening hours | `contact.openingHours` | ❌ Required |
+| WhatsApp number | `contact.whatsappHref` | Optional — leave `""` to hide button |
+| Google Maps URL | `contact.mapUrl` | Optional — leave `""` to disable link |
+| Production domain | All `REPLACE-WITH-DOMAIN.com` occurrences | ❌ Required |
+| Approved public descriptor | `organization.publicDescriptor` | ❌ Requires owner sign-off |
+| Organisation description | `organization.description` | ❌ Required |
+| City / district | `organization.city` / `organization.district` | ❌ Required |
+| Form destination email | `contactForm.destinationEmail` | ❌ Required |
+
+**To update the domain**, search the project for `REPLACE-WITH-DOMAIN.com` and replace every occurrence with the real domain. It appears in: `robots.txt`, `sitemap.xml`, and every HTML `<head>` (canonical and OG URLs, LD+JSON, og:image).
+
+---
 
 ## Project Structure
 
-- `index.html` - Homepage
-- `about.html` - About Us
-- `services.html` - Home Care Services
-- `old-age-home.html` - Senior Living Info
-- `facilities.html` - Image Gallery
-- `patient-info.html` - Information for Patients & Families
-- `contact.html` - Contact Form and Location Details
-- `privacy.html` - Privacy Policy
-- `styles.css` - Custom design system utilizing CSS Custom Properties and `clamp()` for fluid typography
-- `script.js` - Configuration, interactive logic, and simple animations
-- `robots.txt` & `sitemap.xml` - SEO configuration files
-- `images/` - Directory for images, organized by category (`hospital/` for Home Care facility images, `old-age-home/`, `brand/`)
+| File | Purpose |
+|---|---|
+| `index.html` | Homepage |
+| `about.html` | About Us |
+| `services.html` | Medical Services (OPD, lab, IPD) |
+| `old-age-home.html` | Senior Care Home information |
+| `facilities.html` | Facility gallery |
+| `patient-info.html` | Information for patients and families |
+| `contact.html` | Contact form and location |
+| `privacy.html` | Privacy Policy |
+| `styles.css` | Design system (CSS custom properties, fluid typography) |
+| `script.js` | Configuration, data injection, animations, form handling |
+| `robots.txt` | Search engine crawl directives |
+| `sitemap.xml` | Page index for search engines |
+| `images/brand/` | Logo and brand assets |
+| `images/hospital/` | Medical centre facility images (SVG placeholders) |
+| `images/old-age-home/` | Senior care home facility images (SVG placeholders) |
 
-## Running Locally
+> **Note on naming:** The internal JS key `services.hospital` and the image folder `images/hospital/` are private code identifiers. They are not public labels. These map to the medical centre / care facility content.
 
-To view the site correctly and test features like form submission logic, run it on a local web server.
+---
 
-**Using VS Code:**
-1. Install the "Live Server" extension.
-2. Right-click on `index.html` and select "Open with Live Server".
+## Configuration
 
-**Using Python (if installed):**
-```bash
-python -m http.server 8000
-```
-Then visit `http://localhost:8000` in your browser.
-
-## Configuration & Content Updates
-
-To update core organization details, edit the `SITE_CONFIG` object in `script.js`:
+All configurable values live in the `SITE_CONFIG` object at the top of `script.js`. The data-injection engine reads `[data-config="key.path"]` attributes in every HTML page and injects values automatically. **Placeholder strings (empty values `""`) are silently skipped** — no raw placeholder text is ever rendered to users.
 
 ```javascript
 const SITE_CONFIG = {
-  form: {
-    mode: "mailto"
-  },
   organization: {
-    name: "REPLACE WITH ORGANIZATION NAME",
-    shortName: "REPLACE WITH SHORT NAME",
-    // ...
+    officialName:     "Canaan Third Space Senior Care Home",
+    publicDescriptor: "",   // ← REPLACE WITH APPROVED DESCRIPTOR
+    city:             "",   // ← REPLACE WITH CITY
+    ...
   },
   contact: {
-    phone: "REPLACE WITH PHONE",
-    email: "REPLACE WITH EMAIL",
-    // ...
+    phoneDisplay:   "",   // ← REPLACE WITH PHONE (display format)
+    phoneHref:      "",   // ← REPLACE WITH PHONE (E.164, e.g. +919876543210)
+    email:          "",   // ← REPLACE WITH EMAIL
+    ...
   },
-  services: {
-    hospital: [ /* Home Care services — key name retained as internal identifier */ ],
-    oldAgeHome: [ /* ... */ ]
-  },
-  images: {
-    // ...
-  }
+  ...
 };
 ```
-These values automatically populate across all pages wherever a `data-config` attribute is present (e.g., `<span data-config="organization.name"></span>`).
 
-> **Note on naming:** The internal JS key `services.hospital` and the image folder `images/hospital/` intentionally retain the legacy identifier name. These are private code identifiers that users never see — they are not brand labels. Renaming them would require updating every `data-config` attribute and every `src` path across all HTML files simultaneously with no public benefit. The folder holds Home Care facility imagery; the key maps to Home Care services data.
+---
+
+## Running Locally
+
+**VS Code Live Server:**
+1. Install the "Live Server" extension.
+2. Right-click `index.html` → **Open with Live Server**.
+
+**Python:**
+```bash
+python -m http.server 8000
+```
+Then visit `http://localhost:8000`.
+
+---
 
 ## Updating Images
 
-Currently, placeholder `.svg` files are used. To add real photography:
+Placeholder `.svg` files are used until real photography is available. To replace them:
 
-1. Replace the `.svg` files in the `images/hospital/` and `images/old-age-home/` folders with appropriately optimized `.webp` or `.avif` images, keeping the same base filenames (e.g., `hero.svg` → `hero.webp`).
-2. Update the `images` section in `SITE_CONFIG` inside `script.js` to point to your new file paths.
-3. Replace `images/brand/logo.svg` with your actual logo.
-4. Update `images/brand/og-image.svg` (or `.webp`) for social sharing.
+1. Add real photos to `images/hospital/` and `images/old-age-home/` in `.webp` or `.avif` format.
+2. Update the `images` section of `SITE_CONFIG` in `script.js` to point to the new file paths.
+3. The logo is already at `images/brand/Logo.png`. No change needed unless a new logo file is provided.
 
-## SEO Updates
+---
 
-- **Meta Tags:** Each page has a unique `<title>` and `<meta name="description">`. Update these manually in the `<head>` of each file when final copy is ready.
-- **Structured Data:** Open `index.html` and update the JSON-LD `<script>` tag in the `<head>` with accurate coordinates, verified social profiles, and precise address data.
-- **Sitemap/Robots:** Update `sitemap.xml` with the final production domain replacing `https://REPLACE-WITH-DOMAIN.com`.
+## Navigation Structure
+
+| Label | Page |
+|---|---|
+| About | `about.html` |
+| Medical Services | `services.html` |
+| Senior Care Home | `old-age-home.html` |
+| Facilities | `facilities.html` |
+| Patient Information | `patient-info.html` |
+| Contact | `contact.html` |
+
+---
 
 ## Contact Form
 
-The contact form is configured to use a `mailto` action in the first version. When a user submits the form, it will open their local email application pre-filled with their enquiry details. This can be updated to a backend API later without changing the HTML markup, by modifying the form logic in `script.js`.
+The form is configured to use `mailto` (opens the user's email application). It includes:
+- Full name, phone, email, enquiry type, preferred contact, and message fields
+- A consent checkbox linked to the Privacy Policy
+- A disclaimer that clearly states the email app will open
 
-## Privacy & Security
+---
+
+## Privacy &amp; Security
 
 This public website strictly avoids linking to any internal care management portals. No patient data or credentials should ever be stored or displayed on this site.
+
+The `privacy.html` policy has not been reviewed by a legal professional. Professional legal review is recommended before publishing.

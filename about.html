@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Premium Home Care & Old-Age Home</title>
-  <meta name="description" content="Learn about our mission to provide compassionate healthcare and dignified living. Our history, values, and dedication to care.">
+  <title>About Us | Canaan Third Space Senior Care Home</title>
+  <meta name="description" content="Learn about Canaan Third Space Senior Care Home — our mission, approach to care, and commitment to dignity for every patient and resident in Kerala.">
+  <link rel="canonical" href="https://www.canaan-thirdspace-placeholder.com/about.html">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/jpeg" href="images/brand/logo.jpg">
+  <link rel="icon" type="image/png" href="images/brand/Logo.png">
   <!-- Open Graph -->
   <meta property="og:title" content="About Us | Canaan Third Space Senior Care Home">
-  <meta property="og:description" content="Learn about our mission to provide compassionate healthcare and dignified senior living.">
-  <meta property="og:image" content="images/brand/logo.jpg">
+  <meta property="og:description" content="Our mission, approach to care, and commitment to dignity for every patient and resident.">
+  <meta property="og:image" content="https://www.canaan-thirdspace-placeholder.com/images/brand/Logo.png">
   <meta property="og:image:alt" content="Canaan Third Space Senior Care Home logo">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.canaan-thirdspace-placeholder.com/about.html">
 </head>
 <body>
   <header class="site-header">
@@ -23,21 +25,23 @@
         aria-label="Canaan Third Space Senior Care Home home page"
       >
         <img
-          src="images/brand/logo.jpg"
+          src="images/brand/Logo.png"
           alt="Canaan Third Space Senior Care Home logo"
           class="site-brand-logo"
+          width="210"
+          height="96"
         />
       </a>
-      <nav class="site-nav">
-        <a href="about.html" class="nav-link" style="border-bottom: 1px solid var(--deep-ink);">About</a>
-        <a href="services.html" class="nav-link">Home Care Services</a>
-        <a href="old-age-home.html" class="nav-link">Old-Age Home</a>
+      <nav class="site-nav" id="mobile-nav" aria-label="Main navigation">
+        <a href="about.html" class="nav-link" aria-current="page" style="border-bottom: 1px solid var(--deep-ink);">About</a>
+        <a href="services.html" class="nav-link">Medical Services</a>
+        <a href="old-age-home.html" class="nav-link">Senior Care Home</a>
         <a href="facilities.html" class="nav-link">Facilities</a>
         <a href="patient-info.html" class="nav-link">Patient Information</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="contact.html#enquiry" class="btn btn-primary">Enquire Now</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <span class="mobile-menu-icon"></span>
       </button>
     </div>
@@ -46,31 +50,76 @@
   <main style="padding-top: var(--spacing-2xl);">
     <section class="section">
       <div class="container text-center reveal" style="max-width: 800px;">
-        <h1 class="mb-sm">Our Story</h1>
+        <h1 class="mb-sm">About Canaan Third Space</h1>
         <p class="mb-lg" style="font-size: var(--text-lg); color: var(--muted-teal);">A commitment to continuity of life.</p>
       </div>
-      
+
       <div class="container">
-        <img src="images/hospital/hero.svg" data-config="images.hospitalExterior" alt="Our campus exterior" width="1280" height="720" loading="eager" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: var(--spacing-xl); border-radius: 2px;">
+        <img src="images/hospital/hero.svg" alt="Exterior of Canaan Third Space Senior Care Home campus"
+          width="1280" height="720" loading="eager"
+          style="width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: var(--spacing-xl); border-radius: 2px;">
       </div>
-      
+
       <div class="container grid-12">
         <div style="grid-column: 2 / span 10;" class="reveal text-center">
-          <p class="editorial-text mb-lg" data-config="organization.description">
-            "We envisioned a place where medical excellence meets human compassion. A campus where healing and living coexist with dignity."
+          <p class="editorial-text mb-lg">
+            We envisioned a place where medical care meets human compassion — where healing and dignified living exist side by side.
           </p>
         </div>
-        
+
         <div style="grid-column: 2 / span 4;" class="reveal">
-          <h3 class="mb-sm" style="font-size: var(--text-xl);">Our Mission</h3>
-          <p>To deliver professional healthcare services and supportive senior living under one roof. We strive to create an environment where every patient and resident feels seen, heard, and respected.</p>
-          <p>By integrating a fully equipped Home Care centre with a dedicated old-age home, we remove the anxiety of transitioning between care facilities, ensuring a seamless experience for families.</p>
+          <h2 class="mb-sm" style="font-size: var(--text-xl);">Our Mission</h2>
+          <p>To provide professional medical services and supportive senior residential care under one roof. We strive to create an environment where every patient and resident feels seen, heard, and respected.</p>
+          <p>By combining a medical centre with a dedicated senior care home, we remove the anxiety of transitioning between facilities, ensuring continuity for residents and their families.</p>
         </div>
-        
+
         <div style="grid-column: 7 / span 5;" class="reveal">
-          <h3 class="mb-sm" style="font-size: var(--text-xl);">Our Approach</h3>
-          <p>We reject the sterile, impersonal atmosphere often associated with healthcare. Instead, we have cultivated a space that feels calm, orderly, and deeply human.</p>
+          <h2 class="mb-sm" style="font-size: var(--text-xl);">Our Approach</h2>
+          <p>We reject the impersonal atmosphere often associated with institutional care. Instead, we have cultivated a space that feels calm, orderly, and deeply human.</p>
           <p>Our team comprises dedicated medical professionals, attentive caregivers, and support staff who share a single philosophy: care must always preserve dignity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="section section-bg-dim">
+      <div class="container">
+        <div class="reveal text-center mb-lg">
+          <h2 style="font-size: var(--text-2xl);">What Guides Us</h2>
+        </div>
+        <div class="grid-12">
+          <div style="grid-column: span 3;" class="reveal text-center">
+            <p style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--brass); margin-bottom: var(--spacing-xs);">01</p>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--spacing-xs);">Dignity</h3>
+            <p style="font-size: var(--text-sm);">Every interaction respects the individual's autonomy and personal history.</p>
+          </div>
+          <div style="grid-column: span 3;" class="reveal text-center">
+            <p style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--brass); margin-bottom: var(--spacing-xs);">02</p>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--spacing-xs);">Safety</h3>
+            <p style="font-size: var(--text-sm);">Strict hygiene standards and careful protocols protect everyone on campus.</p>
+          </div>
+          <div style="grid-column: span 3;" class="reveal text-center">
+            <p style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--brass); margin-bottom: var(--spacing-xs);">03</p>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--spacing-xs);">Communication</h3>
+            <p style="font-size: var(--text-sm);">We keep families informed and involved at every stage of care.</p>
+          </div>
+          <div style="grid-column: span 3;" class="reveal text-center">
+            <p style="font-family: var(--font-display); font-size: var(--text-3xl); color: var(--brass); margin-bottom: var(--spacing-xs);">04</p>
+            <h3 style="font-size: var(--text-base); margin-bottom: var(--spacing-xs);">Continuity</h3>
+            <p style="font-size: var(--text-sm);">Medical care and residential support under one roof means no unnecessary transitions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container text-center reveal">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Ready to learn more?</h2>
+        <p class="mb-lg">Our team is ready to answer your questions and guide your family through the process.</p>
+        <div style="display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html#enquiry" class="btn btn-primary">Send an Enquiry</a>
+          <a href="services.html" class="btn btn-secondary">View Medical Services</a>
         </div>
       </div>
     </section>
@@ -86,19 +135,19 @@
             aria-label="Canaan Third Space Senior Care Home home page"
           >
             <img
-              src="images/brand/logo.jpg"
+              src="images/brand/Logo.png"
               alt="Canaan Third Space Senior Care Home logo"
               class="footer-brand-logo"
             />
           </a>
-          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Care, dignity, and continuity of life.</p>
+          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Canaan Third Space Senior Care Home — care, dignity, and continuity of life.</p>
         </div>
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Home Care Services</a></li>
-            <li><a href="old-age-home.html">Old-Age Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Medical Services</a></li>
+            <li><a href="old-age-home.html">Senior Care Home</a></li>
             <li><a href="facilities.html">Facilities</a></li>
             <li><a href="patient-info.html">Patient Information</a></li>
           </ul>
@@ -106,20 +155,19 @@
         <div>
           <h4 class="footer-heading">Contact</h4>
           <ul class="footer-links">
-            <li><a href="#" data-config="contact.phone">Phone</a></li>
-            <li><a href="#" data-config="contact.email">Email</a></li>
-            <li><a href="contact.html">Contact Form</a></li>
+            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.phoneDisplay" data-hide-parent="li">Phone</a></li>
+            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.email" data-hide-parent="li">Email</a></li>
+            <li><a href="contact.html">Contact &amp; Enquiry Form</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> <span data-config="organization.name"></span>. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Canaan Third Space Senior Care Home. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

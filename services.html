@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Care Services | Premium Care</title>
-  <meta name="description" content="Comprehensive home care services including OPD consultations, inpatient admissions, and diagnostic laboratory facilities.">
+  <title>Medical Services | Canaan Third Space Senior Care Home</title>
+  <meta name="description" content="Canaan Third Space offers outpatient consultations, in-house laboratory diagnostics, and inpatient admission. Professional medical care in Kerala.">
+  <link rel="canonical" href="https://www.canaan-thirdspace-placeholder.com/services.html">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/jpeg" href="images/brand/logo.jpg">
+  <link rel="icon" type="image/png" href="images/brand/Logo.png">
   <!-- Open Graph -->
-  <meta property="og:title" content="Home Care Services | Canaan Third Space Senior Care Home">
-  <meta property="og:description" content="Comprehensive home care services including OPD consultations, inpatient admissions, and diagnostic laboratory facilities.">
-  <meta property="og:image" content="images/brand/logo.jpg">
+  <meta property="og:title" content="Medical Services | Canaan Third Space Senior Care Home">
+  <meta property="og:description" content="OPD consultations, laboratory diagnostics, and inpatient care at Canaan Third Space Senior Care Home, Kerala.">
+  <meta property="og:image" content="https://www.canaan-thirdspace-placeholder.com/images/brand/Logo.png">
   <meta property="og:image:alt" content="Canaan Third Space Senior Care Home logo">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.canaan-thirdspace-placeholder.com/services.html">
 </head>
 <body>
   <header class="site-header">
@@ -23,21 +25,23 @@
         aria-label="Canaan Third Space Senior Care Home home page"
       >
         <img
-          src="images/brand/logo.jpg"
+          src="images/brand/Logo.png"
           alt="Canaan Third Space Senior Care Home logo"
           class="site-brand-logo"
+          width="210"
+          height="96"
         />
       </a>
-      <nav class="site-nav">
+      <nav class="site-nav" id="mobile-nav" aria-label="Main navigation">
         <a href="about.html" class="nav-link">About</a>
-        <a href="services.html" class="nav-link" style="border-bottom: 1px solid var(--deep-ink);">Home Care Services</a>
-        <a href="old-age-home.html" class="nav-link">Old-Age Home</a>
+        <a href="services.html" class="nav-link" aria-current="page" style="border-bottom: 1px solid var(--deep-ink);">Medical Services</a>
+        <a href="old-age-home.html" class="nav-link">Senior Care Home</a>
         <a href="facilities.html" class="nav-link">Facilities</a>
         <a href="patient-info.html" class="nav-link">Patient Information</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="contact.html#enquiry" class="btn btn-primary">Enquire Now</a>
       </nav>
-      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <span class="mobile-menu-icon"></span>
       </button>
     </div>
@@ -47,56 +51,91 @@
     <section class="section">
       <div class="container grid-12">
         <div style="grid-column: span 5; display: flex; flex-direction: column; justify-content: center;" class="reveal">
-          <h1 class="mb-sm">Home Care Services</h1>
-          <p class="mb-lg" style="font-size: var(--text-lg);">Expert medical care delivered in a calm, modern environment focused on dignity and safety.</p>
-          <a href="contact.html" class="thin-rule" style="align-self: flex-start; font-weight: 500;">Enquire about our medical services &rarr;</a>
+          <h1 class="mb-sm">Medical Services</h1>
+          <p class="mb-lg" style="font-size: var(--text-lg);">Professional medical care in a calm, modern environment focused on patient dignity and safety.</p>
+          <a href="contact.html#enquiry" class="thin-rule" style="align-self: flex-start; font-weight: 500;">Enquire about our services &rarr;</a>
         </div>
         <div style="grid-column: 7 / span 6;" class="reveal">
-          <img src="images/hospital/reception.svg" data-config="images.hospitalReception" alt="Home Care Reception" width="800" height="600" loading="eager" style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">
+          <img src="images/hospital/reception.svg" alt="Reception area of Canaan Third Space Senior Care Home"
+            width="800" height="600" loading="eager"
+            style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">
         </div>
       </div>
     </section>
 
     <section class="section section-bg-dim">
       <div class="container">
-        
-        <!-- OPD & Labs -->
-        <div class="grid-12" style="margin-bottom: var(--spacing-xl);">
+
+        <!-- OPD & Lab -->
+        <div class="grid-12" style="margin-bottom: var(--spacing-xl);" id="opd">
           <div style="grid-column: span 5;" class="reveal">
-            <h2 class="mb-sm" style="font-size: var(--text-2xl);">Consultation & Diagnostics</h2>
-            <p>Our outpatient department provides professional medical consultations. Coupled with our in-house laboratory, we ensure timely and accurate diagnostics for effective treatment planning without unnecessary stress.</p>
-            <p>Our approach emphasizes clear communication with patients and families at every step.</p>
+            <h2 class="mb-sm" style="font-size: var(--text-2xl);">Consultation &amp; Diagnostics</h2>
+            <p>Our outpatient department provides professional medical consultations. Coupled with our in-house laboratory, we ensure timely and accurate diagnostics for effective treatment planning.</p>
+            <p>Our approach emphasises clear communication with patients and families at every step.</p>
+            <h3 style="font-size: var(--text-base); margin-top: var(--spacing-md); margin-bottom: var(--spacing-xs);">What to bring</h3>
+            <ul style="display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--spacing-md);">
+              <li style="display: flex; gap: 8px; align-items: baseline;"><span style="color: var(--brass);">&bull;</span> Any previous medical records or investigation reports</li>
+              <li style="display: flex; gap: 8px; align-items: baseline;"><span style="color: var(--brass);">&bull;</span> A list of current medications</li>
+              <li style="display: flex; gap: 8px; align-items: baseline;"><span style="color: var(--brass);">&bull;</span> Valid identification</li>
+            </ul>
+            <a href="contact.html#enquiry" class="btn btn-secondary" style="align-self: flex-start;">Book a Consultation</a>
           </div>
           <div style="grid-column: 7 / span 6;" class="reveal">
-            <img src="images/hospital/consultation-room.svg" data-config="images.consultationRoom" alt="Consultation Room" width="800" height="450" loading="lazy" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: var(--spacing-sm);">
+            <img src="images/hospital/consultation-room.svg" alt="Private consultation room at Canaan Third Space"
+              width="800" height="450" loading="lazy"
+              style="width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: var(--spacing-sm);">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-top: var(--spacing-md);">
-              <div>
-                <h4 style="font-size: var(--text-base); border-bottom: 1px solid var(--eucalyptus); padding-bottom: 5px;" data-config="services.hospital.0.name">OPD Services</h4>
-                <p style="font-size: var(--text-sm); margin-top: 5px;" data-config="services.hospital.0.description">Dedicated consultation rooms ensuring patient privacy and comfort.</p>
+              <div id="lab">
+                <h3 style="font-size: var(--text-base); border-bottom: 1px solid var(--eucalyptus); padding-bottom: 5px;">OPD Services</h3>
+                <p style="font-size: var(--text-sm); margin-top: 5px;">Dedicated consultation rooms ensuring patient privacy and comfort. Please contact us for appointment arrangements and availability.</p>
               </div>
               <div>
-                <h4 style="font-size: var(--text-base); border-bottom: 1px solid var(--eucalyptus); padding-bottom: 5px;" data-config="services.hospital.2.name">Laboratory</h4>
-                <p style="font-size: var(--text-sm); margin-top: 5px;" data-config="services.hospital.2.description">Equipped for reliable diagnostic testing.</p>
+                <h3 style="font-size: var(--text-base); border-bottom: 1px solid var(--eucalyptus); padding-bottom: 5px;">Laboratory</h3>
+                <p style="font-size: var(--text-sm); margin-top: 5px;">In-house diagnostic laboratory for blood tests and routine investigations. Results are communicated through the treating doctor.</p>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- IPD -->
-        <div class="grid-12">
+        <div class="grid-12" id="ipd">
           <div style="grid-column: span 6;" class="reveal">
-            <img src="images/hospital/care-space.svg" data-config="images.careSpace" alt="Inpatient Care Space" width="800" height="600" loading="lazy" style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">
+            <img src="images/hospital/care-space.svg" alt="Inpatient care space at Canaan Third Space"
+              width="800" height="600" loading="lazy"
+              style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">
           </div>
           <div style="grid-column: 8 / span 5; display: flex; flex-direction: column; justify-content: center;" class="reveal">
-            <h2 class="mb-sm" style="font-size: var(--text-2xl);" data-config="services.hospital.1.name">Inpatient Care</h2>
-            <p data-config="services.hospital.1.description">For patients requiring observation or extended treatment, our inpatient admission facilities provide a clean, safe, and restorative environment with supportive nursing care.</p>
+            <h2 class="mb-sm" style="font-size: var(--text-2xl);">Inpatient Admission</h2>
+            <p>For patients requiring observation or extended treatment, our inpatient care provides a clean, safe, and restorative environment with attentive nursing care.</p>
             <ul style="margin-top: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-xs);">
               <li style="display: flex; gap: 10px; align-items: center;"><span style="color: var(--muted-teal);">&bull;</span> Comfortable patient rooms</li>
               <li style="display: flex; gap: 10px; align-items: center;"><span style="color: var(--muted-teal);">&bull;</span> Continuous nursing support</li>
               <li style="display: flex; gap: 10px; align-items: center;"><span style="color: var(--muted-teal);">&bull;</span> Strict hygiene protocols</li>
               <li style="display: flex; gap: 10px; align-items: center;"><span style="color: var(--muted-teal);">&bull;</span> Clear communication with family</li>
             </ul>
+            <a href="patient-info.html" class="thin-rule" style="margin-top: var(--spacing-md); font-weight: 500; display: inline-block;">Admission information &rarr;</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Notice -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="emergency-notice" role="note" aria-label="Emergency guidance">
+          <p><strong>Emergency guidance:</strong> This facility does not operate as an emergency service. For urgent medical help, contact 112 or proceed to the nearest emergency department immediately.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enquiry CTA -->
+    <section class="section section-bg-dim">
+      <div class="container text-center reveal">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Have questions about our services?</h2>
+        <p class="mb-lg">Our team is ready to answer your questions about appointments, availability, and what to expect.</p>
+        <div style="display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html#enquiry" class="btn btn-primary">Send an Enquiry</a>
+          <a href="patient-info.html" class="btn btn-secondary">Patient Information</a>
         </div>
       </div>
     </section>
@@ -112,19 +151,19 @@
             aria-label="Canaan Third Space Senior Care Home home page"
           >
             <img
-              src="images/brand/logo.jpg"
+              src="images/brand/Logo.png"
               alt="Canaan Third Space Senior Care Home logo"
               class="footer-brand-logo"
             />
           </a>
-          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Care, dignity, and continuity of life.</p>
+          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Canaan Third Space Senior Care Home — care, dignity, and continuity of life.</p>
         </div>
         <div>
           <h4 class="footer-heading">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Home Care Services</a></li>
-            <li><a href="old-age-home.html">Old-Age Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Medical Services</a></li>
+            <li><a href="old-age-home.html">Senior Care Home</a></li>
             <li><a href="facilities.html">Facilities</a></li>
             <li><a href="patient-info.html">Patient Information</a></li>
           </ul>
@@ -132,20 +171,19 @@
         <div>
           <h4 class="footer-heading">Contact</h4>
           <ul class="footer-links">
-            <li><a href="#" data-config="contact.phone">Phone</a></li>
-            <li><a href="#" data-config="contact.email">Email</a></li>
-            <li><a href="contact.html">Contact Form</a></li>
+            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.phoneDisplay" data-hide-parent="li">Phone</a></li>
+            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.email" data-hide-parent="li">Email</a></li>
+            <li><a href="contact.html">Contact &amp; Enquiry Form</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> <span data-config="organization.name"></span>. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Canaan Third Space Senior Care Home. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
