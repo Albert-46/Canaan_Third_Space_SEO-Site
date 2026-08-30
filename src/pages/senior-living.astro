@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { SITE_CONFIG } from '../config';
+import { seniorCareServices } from '../content/services';
+
+const activeServices = seniorCareServices.filter(s => s.enabled);
+---
+
+<BaseLayout title="Senior Care Home" description={`Dignified residential senior care at ${SITE_CONFIG.organization.name}. Comfortable living with daily assistance and medical support.`}>
+  <div class="page-header section-bg-dark" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+    <div class="container text-center reveal">
+      <h1>Senior Care Home</h1>
+      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        A supportive residential community offering comfortable living, daily assistance, and companionship in a medically secure environment.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container grid-12">
+      <div style="grid-column: span 5;" class="reveal">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Living with Dignity</h2>
+        <p>Our senior care home is designed to feel like a residence, not a hospital. However, because it is integrated with our medical centre, residents have immediate access to healthcare whenever required.</p>
+        <p>We provide long-term residential care, respite care, and assisted living support. Every aspect of our daily routine is designed to respect the autonomy and preferences of our residents.</p>
+      </div>
+      <div style="grid-column: 7 / span 6;" class="reveal">
+        <img src="/images/old-age-home/home-exterior.svg" alt="Senior care home exterior" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg-dim">
+    <div class="container text-center reveal mb-lg">
+      <h2 style="font-size: var(--text-3xl);">Care &amp; Support</h2>
+      <p style="margin-top: var(--spacing-sm); max-width: 600px; margin-inline: auto;">Our residential model provides daily living assistance, engaging companionship, and regular family updates, ensuring residents remain active and connected.</p>
+    </div>
+    <div class="container grid-12">
+      {activeServices.map(service => (
+        <div style="grid-column: span 4;" class="reveal">
+          <div style="background: var(--white); padding: var(--spacing-md); border: 1px solid var(--soft-gray); border-radius: var(--radius-sm); height: 100%;">
+            <h3 style="font-size: var(--text-xl); margin-bottom: var(--spacing-sm);">{service.name}</h3>
+            <p style="font-size: var(--text-base); opacity: 0.9;">{service.shortDescription}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container text-center reveal">
+      <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-md);">Admission Process</h2>
+      <p style="max-width: 700px; margin-inline: auto; margin-bottom: var(--spacing-md);">Families should first contact us to arrange a facility visit. During your visit, our care team will discuss medical needs, daily routines, and room availability to ensure we are the right fit for your loved one.</p>
+    </div>
+  </section>
+
+  <CTABanner title="Arrange a facility visit." subtitle="We welcome families to tour our senior care home and meet our dedicated staff." primaryText="Contact Admissions" />
+</BaseLayout>

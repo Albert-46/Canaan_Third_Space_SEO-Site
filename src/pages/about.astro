@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="About Us & Care Philosophy" description={`Learn about ${SITE_CONFIG.organization.name}'s mission, history, and philosophy of care.`}>
+  <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+    <div class="container text-center reveal">
+      <h1>About Us</h1>
+      <p class="editorial-text" style="margin-top: var(--spacing-md);">
+        {SITE_CONFIG.organization.name} is dedicated to providing exceptional medical care and dignified senior living in a unified, compassionate environment.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container grid-12 align-center">
+      <div style="grid-column: span 5;" class="reveal">
+        <img src="/images/hospital/hospital-exterior.svg" alt={`Exterior of ${SITE_CONFIG.organization.shortName}`} style="width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius-sm);" />
+      </div>
+      <div style="grid-column: 7 / span 6;" class="reveal">
+        <h2 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-md);">Our Story</h2>
+        <p>Founded on the belief that healthcare should be both clinical and compassionate, {SITE_CONFIG.organization.name} was established to serve the community of {SITE_CONFIG.organization.city}.</p>
+        <p>We recognised a significant gap in continuity of care for seniors—where medical needs and daily living support were often disjointed. By uniting a fully equipped medical centre with a residential senior care home, we created a seamless environment where residents have immediate access to healthcare, and patients recover in a warm, home-like setting.</p>
+        <p>Today, our facility stands as a trusted institution for families seeking reliable medical intervention and respectful long-term care.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg-dark">
+    <div class="container text-center reveal">
+      <h2 style="font-size: var(--text-3xl); color: var(--sand); margin-bottom: var(--spacing-lg);">Our Core Values</h2>
+      <div class="grid-12 text-left">
+        <div style="grid-column: span 4;" class="reveal">
+          <h3 style="font-size: var(--text-xl); color: var(--white); margin-bottom: 10px;">Dignity</h3>
+          <p style="color: var(--mineral-white); opacity: 0.9;">We treat every patient and resident with profound respect, preserving their autonomy, privacy, and personal preferences at all times.</p>
+        </div>
+        <div style="grid-column: span 4;" class="reveal">
+          <h3 style="font-size: var(--text-xl); color: var(--white); margin-bottom: 10px;">Excellence</h3>
+          <p style="color: var(--mineral-white); opacity: 0.9;">Our medical protocols, hygiene standards, and care practices are rigorously maintained to ensure the highest quality of health outcomes.</p>
+        </div>
+        <div style="grid-column: span 4;" class="reveal">
+          <h3 style="font-size: var(--text-xl); color: var(--white); margin-bottom: 10px;">Transparency</h3>
+          <p style="color: var(--mineral-white); opacity: 0.9;">We believe families should be fully informed partners in the care process, fostering trust through clear, honest communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Experience our care." subtitle="Arrange a visit to meet our team and tour our facilities." primaryText="Schedule a Visit" align="center" />
+</BaseLayout>

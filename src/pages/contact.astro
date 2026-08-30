@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="Contact & Enquiries" description={`Contact ${SITE_CONFIG.organization.name} for medical services, senior care, and general enquiries.`}>
+  <div class="page-header section-bg-dark" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+    <div class="container text-center reveal">
+      <h1>Contact Us</h1>
+      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        We are here to help. Reach out to schedule a visit, enquire about our care services, or ask any questions you may have.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container grid-12">
+      <!-- Contact Information -->
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: var(--spacing-lg);" class="reveal">
+        <div>
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Get in Touch</h2>
+          <p>Our admissions and care team are available to discuss your needs confidentially.</p>
+        </div>
+
+        {(() => {
+          const hasPlaceholder = 
+            SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') || 
+            SITE_CONFIG.contact.email.includes('REPLACE_WITH') || 
+            SITE_CONFIG.contact.addressLine1.includes('REPLACE_WITH');
+
+          if (hasPlaceholder) {
+            return (
+              <div>
+                <p style="font-size: var(--text-lg); font-weight: 500; color: var(--deep-ink); margin-bottom: var(--spacing-sm);">
+                  We are currently updating our contact details.
+                </p>
+                <p style="font-size: var(--text-base); margin-bottom: var(--spacing-sm);">
+                  For now, please use the enquiry form below to send your message.
+                </p>
+                <p style="font-size: var(--text-base);">
+                  Our team will respond to your enquiry using the contact information you provide.
+                </p>
+              </div>
+            );
+          }
+
+          return (
+            <>
+              {SITE_CONFIG.contact.phoneDisplay && (
+                <div>
+                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Direct Line</h3>
+                  <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink); font-weight: 500;">
+                    {SITE_CONFIG.contact.phoneDisplay}
+                  </a>
+                </div>
+              )}
+
+              {SITE_CONFIG.contact.whatsappDisplay && SITE_CONFIG.features.enableWhatsAppAction && (
+                <div>
+                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">WhatsApp</h3>
+                  <a href={`https://wa.me/${SITE_CONFIG.contact.whatsappHref}`} style="font-size: var(--text-lg); color: var(--deep-ink); font-weight: 500;" target="_blank" rel="noopener noreferrer">
+                    Message us on WhatsApp
+                  </a>
+                </div>
+              )}
+
+              {SITE_CONFIG.contact.email && (
+                <div>
+                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Email</h3>
+                  <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-base); color: var(--deep-ink);">
+                    {SITE_CONFIG.contact.email}
+                  </a>
+                </div>
+              )}
+
+              <div>
+                <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Location</h3>
+                <p style="font-size: var(--text-base); line-height: 1.6;">
+                  {SITE_CONFIG.contact.addressLine1}<br />
+                  {SITE_CONFIG.contact.addressLine2}
+                </p>
+                {SITE_CONFIG.contact.mapUrl && (
+                  <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: 10px; display: inline-block; font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
+                )}
+              </div>
+            </>
+          );
+        })()}
+      </div>
+
+      <!-- Contact Form Area -->
+      <div style="grid-column: 7 / span 6;" class="reveal" id="enquiry">
+        <div style="background-color: var(--white); padding: var(--spacing-xl); border: 1px solid var(--soft-gray); border-radius: var(--radius-sm); box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+          <h2 style="font-size: var(--text-xl); margin-bottom: var(--spacing-md);">Send an Enquiry</h2>
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

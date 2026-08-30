@@ -1,508 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canaan Third Space Senior Care Home | Medical Services &amp; Senior Living in Kerala</title>
-  <meta name="description"
-    content="Canaan Third Space Senior Care Home offers outpatient consultations, laboratory services, inpatient care, and dignified senior residential living in Kerala.">
-  <link rel="canonical" href="https://www.canaan-thirdspace-placeholder.com/">
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/12.18.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/12.18.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/12.18.0/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="images/brand/Logo.png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Canaan Third Space Senior Care Home">
-  <meta property="og:description" content="Medical services and dignified senior residential care in Kerala.">
-  <meta property="og:image" content="https://www.canaan-thirdspace-placeholder.com/images/brand/Logo.png">
-  <meta property="og:image:alt" content="Canaan Third Space Senior Care Home logo">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.canaan-thirdspace-placeholder.com/">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalOrganization",
-    "name": "Canaan Third Space Senior Care Home",
-    "url": "https://www.canaan-thirdspace-placeholder.com",
-    "logo": "https://www.canaan-thirdspace-placeholder.com/images/brand/Logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "Kerala",
-      "addressCountry": "IN"
-    }
-  }
-  </script>
-</head>
-
-<body>
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="site-brand" href="index.html" aria-label="Canaan Third Space Senior Care Home home page">
-        <img src="images/brand/Logo.png" alt="Canaan Third Space Senior Care Home logo" class="site-brand-logo"
-          width="210" height="96" />
-      </a>
-
-      <nav class="site-nav" id="mobile-nav" aria-label="Main navigation">
-        <a href="about.html" class="nav-link">About</a>
-        <a href="services.html" class="nav-link">Medical Services</a>
-        <a href="old-age-home.html" class="nav-link">Senior Care Home</a>
-        <a href="facilities.html" class="nav-link">Facilities</a>
-        <a href="patient-info.html" class="nav-link">Patient Information</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="contact.html#enquiry" class="btn btn-primary">Enquire Now</a>
-      </nav>
-
-      <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false"
-        aria-controls="mobile-nav">
-        <span class="mobile-menu-icon"></span>
-      </button>
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
-  </header>
+    <p id="load">Firebase SDK Loading&hellip;</p>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="section-bg-dark"
-      style="position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5;">
-        <img src="images/hospital/hero.svg" alt="Exterior of Canaan Third Space Senior Care Home"
-          style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-      </div>
-      <div class="container" style="position: relative; z-index: 10;">
-        <div style="max-width: 700px;">
-          <h1 class="reveal">Compassionate care.<br>Dignified living.</h1>
-          <p class="reveal" style="font-size: var(--text-lg); margin-bottom: var(--spacing-lg); max-width: 500px;">
-            Canaan Third Space Senior Care Home brings together medical services and supportive senior residential
-            living in a calm, professionally managed environment.
-          </p>
-          <div class="reveal" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
-            <a href="services.html" class="btn btn-primary">Medical Services</a>
-            <a href="contact.html#enquiry" class="btn btn-light">Send an Enquiry</a>
-          </div>
-          <p class="reveal"
-            style="margin-top: var(--spacing-lg); font-size: var(--text-xs); opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;">
-            Kerala, India</p>
-        </div>
-      </div>
-    </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-    <!-- Introduction -->
-    <section class="section section-bg-dim">
-      <div class="container text-center reveal">
-        <p class="editorial-text">We believe that true care requires both medical expertise and profound respect for the
-          individual. Canaan Third Space unites a medical centre with a dedicated senior care home, ensuring residents
-          and patients receive continuous, dignified support.</p>
-      </div>
-    </section>
-
-    <!-- Medical Services and Senior Care Introduction -->
-    <section class="section">
-      <div class="container">
-        <div class="grid-12">
-          <!-- Medical Services Area -->
-          <div style="grid-column: span 6; display: flex; flex-direction: column;" class="reveal">
-            <img src="images/hospital/reception.svg" alt="Reception area of Canaan Third Space medical centre"
-              width="600" height="450" loading="lazy"
-              style="width: 100%; aspect-ratio: 4/3; object-fit: cover; margin-bottom: var(--spacing-md);">
-            <div style="padding-right: var(--spacing-md);">
-              <h2 style="font-size: var(--text-2xl);">Medical Services</h2>
-              <p>Outpatient consultations, in-house laboratory diagnostics, and inpatient admission in a clean, modern
-                environment designed for patient comfort and family confidence.</p>
-              <ul style="margin: var(--spacing-sm) 0 var(--spacing-md); display: grid; gap: var(--spacing-xs);">
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
-                  OPD consultations
-                </li>
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
-                  Laboratory services
-                </li>
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
-                  Inpatient care
-                </li>
-              </ul>
-              <a href="services.html" class="thin-rule" style="font-weight: 500; display: inline-block;">View medical
-                services &rarr;</a>
-            </div>
-          </div>
-
-          <!-- Senior Care Home Area -->
-          <div style="grid-column: span 6; display: flex; flex-direction: column; margin-top: var(--spacing-lg);"
-            class="reveal">
-            <div style="padding-left: var(--spacing-md); margin-bottom: var(--spacing-md);">
-              <h2 style="font-size: var(--text-2xl);">Senior Care Home</h2>
-              <p>A supportive residential community offering comfortable living, daily assistance, and companionship. An
-                environment where seniors live with dignity and personal respect.</p>
-              <ul style="margin: var(--spacing-sm) 0 var(--spacing-md); display: grid; gap: var(--spacing-xs);">
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
-                  Residential accommodation
-                </li>
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
-                  Daily support &amp; activities
-                </li>
-                <li style="display: flex; align-items: center; gap: 8px;">
-                  <span
-                    style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
-                  Family communication
-                </li>
-              </ul>
-              <a href="old-age-home.html" class="thin-rule" style="font-weight: 500; display: inline-block;">Explore
-                senior care &rarr;</a>
-            </div>
-            <img src="images/old-age-home/home-exterior.svg" alt="Exterior of the Canaan Third Space senior care home"
-              width="600" height="450" loading="lazy" style="width: 100%; aspect-ratio: 4/3; object-fit: cover;">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Care Philosophy -->
-    <section class="section section-bg-dark">
-      <div class="container grid-12 align-center">
-        <div style="grid-column: 2 / span 5;" class="reveal">
-          <h2 style="color: var(--sand); font-size: var(--text-2xl);">Our Philosophy of Care</h2>
-          <p style="color: var(--mineral-white); opacity: 0.9;">We focus on the individual, not just the condition. Our
-            approach is grounded in core principles that prioritise the human experience:</p>
-          <ul
-            style="margin-top: var(--spacing-md); color: var(--mineral-white); display: flex; flex-direction: column; gap: var(--spacing-sm);">
-            <li style="display: flex; gap: 15px; align-items: baseline;"><span
-                style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">01</span>
-              <span style="font-weight: 500;">Dignity in all interactions</span>
-            </li>
-            <li style="display: flex; gap: 15px; align-items: baseline;"><span
-                style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">02</span>
-              <span style="font-weight: 500;">Safety and respect</span>
-            </li>
-            <li style="display: flex; gap: 15px; align-items: baseline;"><span
-                style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">03</span>
-              <span style="font-weight: 500;">Listening to patients and families</span>
-            </li>
-            <li style="display: flex; gap: 15px; align-items: baseline;"><span
-                style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">04</span>
-              <span style="font-weight: 500;">Continuity of care</span>
-            </li>
-          </ul>
-        </div>
-        <div style="grid-column: 8 / span 4;" class="reveal">
-          <img src="images/hospital/care-space.svg" alt="Comfortable care space at Canaan Third Space" width="400"
-            height="600" loading="lazy"
-            style="width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-sm);">
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Preview -->
-    <section class="section section-bg-dim">
-      <div class="container grid-12">
-        <div style="grid-column: span 12;" class="reveal mb-lg">
-          <h2 style="font-size: var(--text-3xl);">Our Services</h2>
-        </div>
-
-        <div style="grid-column: span 5;" class="reveal">
-          <h3 class="mb-sm" style="font-size: var(--text-xl);">Medical Care</h3>
-          <div
-            style="display: flex; flex-direction: column; gap: var(--spacing-sm); border-top: 1px solid var(--eucalyptus); padding-top: var(--spacing-sm);">
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">OPD Consultation</h4>
-              <a href="services.html#opd"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">Laboratory Services</h4>
-              <a href="services.html#lab"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">Inpatient Admission</h4>
-              <a href="services.html#ipd"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-          </div>
-        </div>
-
-        <div style="grid-column: 7 / span 5;" class="reveal">
-          <h3 class="mb-sm" style="font-size: var(--text-xl);">Senior Care</h3>
-          <div
-            style="display: flex; flex-direction: column; gap: var(--spacing-sm); border-top: 1px solid var(--eucalyptus); padding-top: var(--spacing-sm);">
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">Residential Care</h4>
-              <a href="old-age-home.html"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">Daily Assistance</h4>
-              <a href="old-age-home.html"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h4 style="margin: 0; font-size: var(--text-base);">Family Support</h4>
-              <a href="patient-info.html"
-                style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn
-                More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Information for Families -->
-    <section class="section">
-      <div class="container grid-12">
-        <div style="grid-column: span 12;" class="reveal text-center mb-lg">
-          <h2 style="font-size: var(--text-2xl);">Information for Families</h2>
-        </div>
-        <div style="grid-column: span 4;" class="reveal text-center">
-          <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-xs);">Enquire About Care</h3>
-          <p style="font-size: var(--text-sm);">Contact us to ask about specific services, senior accommodation
-            availability, and admission processes.</p>
-          <a href="contact.html#enquiry" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Send
-            Enquiry</a>
-        </div>
-        <div style="grid-column: span 4;" class="reveal text-center">
-          <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-xs);">Request a Facility Visit</h3>
-          <p style="font-size: var(--text-sm);">We welcome families to schedule a visit, see our facilities in person,
-            and speak directly with our care team.</p>
-          <a href="contact.html#enquiry" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Arrange a
-            Visit</a>
-        </div>
-        <div style="grid-column: span 4;" class="reveal text-center">
-          <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-xs);">Patient Information</h3>
-          <p style="font-size: var(--text-sm);">Guidance on inpatient stays, senior care admission, visiting
-            arrangements,
-            and how to communicate with our team.</p>
-          <a href="patient-info.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Read the
-            Guide</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Emergency Notice -->
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <div class="emergency-notice" role="note" aria-label="Emergency guidance">
-          <p><strong>Emergency guidance:</strong> This website is not an emergency service. For urgent medical help,
-            contact your local emergency number (112) or proceed to the nearest emergency department.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section section-bg-dim" id="faq">
-      <div class="container">
-        <div class="reveal mb-lg" style="max-width: 700px;">
-          <h2 style="font-size: var(--text-3xl);">Frequently Asked Questions</h2>
-          <p>Can't find your answer? <a href="contact.html#enquiry" class="thin-rule" style="font-weight: 500;">Send us
-              an enquiry &rarr;</a></p>
-        </div>
-        <div class="faq-list reveal" style="max-width: 700px;">
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              How can I enquire about senior accommodation?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Please use our <a href="contact.html#enquiry">online enquiry form</a> or call us directly. Our team
-                will explain the admission process, discuss your requirements, and arrange a facility visit if
-                appropriate.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Can families visit before making a decision?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Yes. We actively encourage families to visit before admission. Please contact us to arrange a
-                convenient appointment.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              What medical services are available?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>We offer outpatient consultations (OPD), in-house laboratory diagnostics, and inpatient admission.
-                Please see our <a href="services.html">Medical Services</a> page for full details.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Is an appointment required for OPD?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Please <a href="contact.html#enquiry">contact us</a> to confirm appointment requirements and current
-                availability.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Are laboratory services available?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Yes. We have an in-house diagnostic laboratory. Results are communicated through the treating doctor.
-                Contact us for specific test availability.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Can families visit residents in the senior care home?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Family visits are welcomed and encouraged. Please <a href="contact.html">contact us</a> to confirm
-                visiting arrangements and hours.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Is this an emergency care service?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>No. This facility does not operate as an emergency service. For urgent medical situations, contact 112
-                or proceed to the nearest emergency department immediately.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              How do I contact Canaan Third Space?
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Visit our <a href="contact.html">Contact page</a> for all contact options including phone, email, and
-                our online enquiry form.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA & Location -->
-    <section class="section">
-      <div class="container grid-12">
-        <div
-          style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center; padding-right: var(--spacing-md);"
-          class="reveal">
-          <h2 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-sm);">Speak with our team about care.</h2>
-          <p style="margin-bottom: var(--spacing-lg);">Whether you need to schedule a medical consultation or arrange an
-            admission visit to our senior care home, we are here to help.</p>
-          <div style="margin-bottom: var(--spacing-md);">
-            <p
-              style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">
-              Direct Line</p>
-            <a href="#" data-config="contact.phoneDisplay"
-              style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink);"></a>
-          </div>
-          <div style="display: flex; gap: var(--spacing-sm);">
-            <a href="contact.html#enquiry" class="btn btn-primary">Enquire Online</a>
-          </div>
-        </div>
-        <div style="grid-column: span 6;" class="reveal">
-          <div style="background-color: var(--white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray);">
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-md);">Location &amp; Hours</h3>
-
-            <div style="margin-bottom: var(--spacing-md);">
-              <p
-                style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">
-                Address</p>
-              <p style="font-size: var(--text-sm); line-height: 1.5;">
-                <span data-config="contact.addressLine1">Please contact us for our address.</span><br>
-                <span data-config="contact.addressLine2"></span>
-              </p>
-            </div>
-
-            <div style="margin-bottom: var(--spacing-md);" data-hide-parent-if-empty="div">
-              <p
-                style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">
-                Email</p>
-              <a href="#" data-config="contact.email" data-hide-parent="div" style="font-size: var(--text-sm);"></a>
-            </div>
-
-            <div style="margin-bottom: var(--spacing-lg);" data-hide-parent-if-empty="div">
-              <p
-                style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">
-                Hours</p>
-              <p style="font-size: var(--text-sm);" data-config="contact.openingHours">Please contact us for opening
-                hours.</p>
-            </div>
-
-            <a href="#" data-config="contact.mapUrl" data-hide-parent="a" data-replace-text="false" class="thin-rule"
-              style="font-size: var(--text-sm); font-weight: 500;" target="_blank" rel="noopener noreferrer">Get
-              Directions &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div style="grid-column: span 2;">
-          <a class="footer-brand" href="index.html" aria-label="Canaan Third Space Senior Care Home home page">
-            <img src="images/brand/Logo.png" alt="Canaan Third Space Senior Care Home logo" class="footer-brand-logo" />
-          </a>
-          <p style="font-size: var(--text-sm); opacity: 0.8; max-width: 300px; margin-bottom: var(--spacing-md);">Canaan
-            Third Space Senior Care Home — care, dignity, and continuity of life.</p>
-        </div>
-        <div>
-          <h4 class="footer-heading">Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Medical Services</a></li>
-            <li><a href="old-age-home.html">Senior Care Home</a></li>
-            <li><a href="facilities.html">Facilities</a></li>
-            <li><a href="patient-info.html">Patient Information</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-heading">Contact</h4>
-          <ul class="footer-links">
-            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.phoneDisplay"
-                data-hide-parent="li">Phone</a></li>
-            <li data-hide-parent-if-empty="li"><a href="#" data-config="contact.email" data-hide-parent="li">Email</a>
-            </li>
-            <li><a href="contact.html">Contact &amp; Enquiry Form</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> Canaan Third Space Senior Care Home. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
 </html>

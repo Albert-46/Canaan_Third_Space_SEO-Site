@@ -1,0 +1,134 @@
+---
+import { SITE_CONFIG } from '../config';
+
+const { provider, endpoint } = SITE_CONFIG.form;
+const isDemo = provider === 'demo' || !endpoint;
+---
+
+<form 
+  id="contactForm" 
+  class="contact-form" 
+  action={isDemo ? undefined : endpoint} 
+  method={isDemo ? undefined : "POST"}
+  data-demo={isDemo.toString()}
+>
+  <div class="form-group">
+    <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
+    <input type="text" id="name" name="name" class="form-input" required aria-required="true">
+  </div>
+
+  <div class="grid-12" style="gap: var(--spacing-sm);">
+    <div class="form-group" style="grid-column: span 6;">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="tel" id="phone" name="phone" class="form-input">
+    </div>
+    <div class="form-group" style="grid-column: span 6;">
+      <label for="email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
+      <input type="email" id="email" name="email" class="form-input" required aria-required="true">
+    </div>
+  </div>
+
+  <div class="grid-12" style="gap: var(--spacing-sm);">
+    <div class="form-group" style="grid-column: span 6;">
+      <label for="enquiry-type" class="form-label">Enquiry Type <span aria-hidden="true">*</span></label>
+      <select id="enquiry-type" name="enquiryType" class="form-input" required aria-required="true">
+        <option value="" disabled selected>Select an option</option>
+        <option value="medical">Medical Services &amp; OPD</option>
+        <option value="senior-care">Senior Residential Care</option>
+        <option value="careers">Careers &amp; Employment</option>
+        <option value="general">General Enquiry</option>
+      </select>
+    </div>
+    <div class="form-group" style="grid-column: span 6;">
+      <label for="preferred-contact" class="form-label">Preferred Contact Method</label>
+      <select id="preferred-contact" name="preferredContact" class="form-input">
+        <option value="phone">Phone Call</option>
+        <option value="email">Email</option>
+        <option value="whatsapp">WhatsApp</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="message" class="form-label">How can we help you? <span aria-hidden="true">*</span></label>
+    <textarea id="message" name="message" class="form-input" rows="5" required aria-required="true"></textarea>
+  </div>
+
+  <div class="form-consent">
+    <input type="checkbox" id="consent" name="consent" required aria-required="true">
+    <label for="consent">
+      I consent to having this website store my submitted information so they can respond to my enquiry. 
+      See our <a href="/privacy">Privacy Policy</a> to learn more about how we use data.
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="margin-top: var(--spacing-sm); width: 100%;">
+    Send Enquiry
+  </button>
+
+  <div id="form-message" class="form-message" aria-live="polite" style="display: none;"></div>
+</form>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const messageEl = document.getElementById('form-message');
+
+  if (form && messageEl) {
+    form.addEventListener('submit', async (e) => {
+      const isDemo = form.getAttribute('data-demo') === 'true';
+
+      if (isDemo) {
+        e.preventDefault();
+        
+        // Client-side validation check
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Simulate success for demo mode
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) btn.textContent = 'Sending...';
+        
+        setTimeout(() => {
+          form.reset();
+          if (btn) btn.textContent = 'Send Enquiry';
+          
+          messageEl.style.display = 'block';
+          messageEl.className = 'form-message success';
+          messageEl.innerHTML = '<strong>Demo Mode:</strong> Your message was not actually sent because this template is in Demo Mode. To receive emails, configure the form provider in <code>src/config.ts</code>.';
+          
+          setTimeout(() => {
+            messageEl.style.display = 'none';
+          }, 8000);
+        }, 800);
+      }
+      // If not demo mode, it will submit normally to the action endpoint (e.g., Formspree, Web3Forms)
+    });
+  }
+</script>
+
+<style>
+  .form-message {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+  }
+  .form-message.success {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #2e7d32;
+  }
+  .form-message.error {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #c62828;
+  }
+  @media (max-width: 640px) {
+    .grid-12 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>

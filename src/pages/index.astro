@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { SITE_CONFIG } from '../config';
+import { faqs } from '../content/faqs';
+
+const activeFaqs = faqs.filter(faq => faq.enabled);
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="section-bg-dark" style="position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5;">
+      <img src="/images/hospital/hero.svg" alt={`Exterior of ${SITE_CONFIG.organization.name}`} style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    </div>
+    <div class="container" style="position: relative; z-index: 10;">
+      <div style="max-width: 700px;">
+        <h1 class="reveal">Compassionate care.<br>Dignified living.</h1>
+        <p class="reveal" style="font-size: var(--text-lg); margin-bottom: var(--spacing-lg); max-width: 500px;">
+          {SITE_CONFIG.organization.name} brings together medical services and supportive senior residential living in a calm, professionally managed environment.
+        </p>
+        <div class="reveal" style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+          <a href="/services" class="btn btn-primary">Medical Services</a>
+          <a href="/contact#enquiry" class="btn btn-light">Request a Visit</a>
+        </div>
+        <p class="reveal" style="margin-top: var(--spacing-lg); font-size: var(--text-xs); opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500;">
+          {SITE_CONFIG.organization.state}, {SITE_CONFIG.organization.country}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="section section-bg-dim">
+    <div class="container text-center reveal">
+      <p class="editorial-text">We believe that true care requires both medical expertise and profound respect for the individual. {SITE_CONFIG.organization.shortName} unites a medical centre with a dedicated senior care home, ensuring residents and patients receive continuous, dignified support.</p>
+    </div>
+  </section>
+
+  <!-- Medical Services and Senior Care Introduction -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-12">
+        <!-- Medical Services Area -->
+        <div style="grid-column: span 6; display: flex; flex-direction: column;" class="reveal">
+          <img src="/images/hospital/reception.svg" alt="Reception area" width="600" height="450" loading="lazy" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; margin-bottom: var(--spacing-md); border-radius: var(--radius-sm);">
+          <div style="padding-right: var(--spacing-md);">
+            <h2 style="font-size: var(--text-2xl);">Medical Services</h2>
+            <p>Outpatient consultations, in-house laboratory diagnostics, and inpatient admission in a clean, modern environment designed for patient comfort and family confidence.</p>
+            <ul style="margin: var(--spacing-sm) 0 var(--spacing-md); display: grid; gap: var(--spacing-xs);">
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
+                OPD consultations
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
+                Laboratory services
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--brass); border-radius: 50%;"></span>
+                Inpatient care
+              </li>
+            </ul>
+            <a href="/services" class="thin-rule" style="font-weight: 500; display: inline-block;">View medical services &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Senior Care Home Area -->
+        <div style="grid-column: span 6; display: flex; flex-direction: column; margin-top: var(--spacing-lg);" class="reveal">
+          <div style="padding-left: var(--spacing-md); margin-bottom: var(--spacing-md);">
+            <h2 style="font-size: var(--text-2xl);">Senior Care Home</h2>
+            <p>A supportive residential community offering comfortable living, daily assistance, and companionship. An environment where seniors live with dignity and personal respect.</p>
+            <ul style="margin: var(--spacing-sm) 0 var(--spacing-md); display: grid; gap: var(--spacing-xs);">
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
+                Residential accommodation
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
+                Daily support &amp; activities
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px;">
+                <span style="display: block; width: 4px; height: 4px; background-color: var(--eucalyptus); border-radius: 50%;"></span>
+                Family communication
+              </li>
+            </ul>
+            <a href="/senior-living" class="thin-rule" style="font-weight: 500; display: inline-block;">Explore senior care &rarr;</a>
+          </div>
+          <img src="/images/old-age-home/home-exterior.svg" alt="Exterior of senior care home" width="600" height="450" loading="lazy" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Care Philosophy -->
+  <section class="section section-bg-dark">
+    <div class="container grid-12 align-center">
+      <div style="grid-column: 2 / span 5;" class="reveal">
+        <h2 style="color: var(--sand); font-size: var(--text-2xl);">Our Philosophy of Care</h2>
+        <p style="color: var(--mineral-white); opacity: 0.9;">We focus on the individual, not just the condition. Our approach is grounded in core principles that prioritise the human experience:</p>
+        <ul style="margin-top: var(--spacing-md); color: var(--mineral-white); display: flex; flex-direction: column; gap: var(--spacing-sm);">
+          <li style="display: flex; gap: 15px; align-items: baseline;">
+            <span style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">01</span>
+            <span style="font-weight: 500;">Dignity in all interactions</span>
+          </li>
+          <li style="display: flex; gap: 15px; align-items: baseline;">
+            <span style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">02</span>
+            <span style="font-weight: 500;">Safety and respect</span>
+          </li>
+          <li style="display: flex; gap: 15px; align-items: baseline;">
+            <span style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">03</span>
+            <span style="font-weight: 500;">Listening to patients and families</span>
+          </li>
+          <li style="display: flex; gap: 15px; align-items: baseline;">
+            <span style="color: var(--brass); font-family: var(--font-display); font-size: var(--text-lg);">04</span>
+            <span style="font-weight: 500;">Continuity of care</span>
+          </li>
+        </ul>
+        <div style="margin-top: var(--spacing-md);">
+          <a href="/about" class="btn btn-light">Read Our Story</a>
+        </div>
+      </div>
+      <div style="grid-column: 8 / span 4;" class="reveal">
+        <img src="/images/hospital/care-space.svg" alt="Comfortable care space" width="400" height="600" loading="lazy" style="width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-sm);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Notice -->
+  {SITE_CONFIG.features.enableEmergencyNotice && (
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="emergency-notice" role="note" aria-label="Emergency guidance">
+          <p><strong>Emergency guidance:</strong> This website is not an emergency service. For urgent medical help, contact your local emergency number or proceed to the nearest emergency department.</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ Section -->
+  <section class="section section-bg-dim" id="faq">
+    <div class="container">
+      <div class="reveal mb-lg" style="max-width: 700px;">
+        <h2 style="font-size: var(--text-3xl);">Frequently Asked Questions</h2>
+        <p>Can't find your answer? <a href="/contact#enquiry" class="thin-rule" style="font-weight: 500;">Send us an enquiry &rarr;</a></p>
+      </div>
+      <div class="faq-list reveal" style="max-width: 700px;">
+        {activeFaqs.slice(0, 5).map(faq => (
+          <FAQAccordion question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA & Location -->
+  <CTABanner align="left" />
+</BaseLayout>

@@ -1,0 +1,111 @@
+---
+import { SITE_CONFIG } from '../config';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryLink?: string;
+  primaryText?: string;
+  secondaryLink?: string;
+  secondaryText?: string;
+  align?: 'center' | 'left';
+}
+
+const {
+  title = "Speak with our team about care.",
+  subtitle = "Whether you need to schedule a medical consultation or arrange an admission visit to our senior care home, we are here to help.",
+  primaryLink = "/contact#enquiry",
+  primaryText = "Enquire Online",
+  secondaryLink,
+  secondaryText,
+  align = 'center'
+} = Astro.props;
+---
+
+<section class="section">
+  <div class={`container ${align === 'center' ? 'text-center' : 'grid-12'}`}>
+    <div class={`reveal ${align === 'center' ? 'mx-auto max-w-700' : 'span-6 pr-md'}`}>
+      <h2 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-sm);">{title}</h2>
+      <p style="margin-bottom: var(--spacing-lg);">{subtitle}</p>
+      
+      {align === 'left' && SITE_CONFIG.contact.phoneDisplay && !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') && (
+        <div style="margin-bottom: var(--spacing-md);">
+          <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Direct Line</p>
+          <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink);">{SITE_CONFIG.contact.phoneDisplay}</a>
+        </div>
+      )}
+
+      <div style={`display: flex; gap: var(--spacing-sm); ${align === 'center' ? 'justify-content: center;' : ''}`}>
+        <a href={primaryLink} class="btn btn-primary">{primaryText}</a>
+        {secondaryLink && secondaryText && (
+          <a href={secondaryLink} class="btn btn-secondary">{secondaryText}</a>
+        )}
+      </div>
+    </div>
+    
+    {(() => {
+      if (align !== 'left') return null;
+      
+      const hasPlaceholder = 
+        SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') || 
+        SITE_CONFIG.contact.email.includes('REPLACE_WITH') || 
+        SITE_CONFIG.contact.addressLine1.includes('REPLACE_WITH');
+
+      if (hasPlaceholder) {
+        return (
+          <div class="reveal" style="grid-column: span 6;">
+            <div style="background-color: var(--white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray);">
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-md);">Contact Us</h3>
+              <p style="font-size: var(--text-sm); line-height: 1.5; margin-bottom: 5px;">
+                Phone and address details will be updated shortly.
+              </p>
+              <p style="font-size: var(--text-sm); line-height: 1.5; margin-bottom: var(--spacing-md);">
+                For now, please use the enquiry form.
+              </p>
+              <a href="/contact#enquiry" class="btn btn-primary" style="display: inline-block;">Go to Enquiry Form</a>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div class="reveal" style="grid-column: span 6;">
+          <div style="background-color: var(--white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray);">
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-md);">Location &amp; Hours</h3>
+
+            <div style="margin-bottom: var(--spacing-md);">
+              <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Address</p>
+              <p style="font-size: var(--text-sm); line-height: 1.5;">
+                <span>{SITE_CONFIG.contact.addressLine1}</span><br />
+                <span>{SITE_CONFIG.contact.addressLine2}</span>
+              </p>
+            </div>
+
+            {SITE_CONFIG.contact.email && (
+              <div style="margin-bottom: var(--spacing-md);">
+                <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Email</p>
+                <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-sm);">{SITE_CONFIG.contact.email}</a>
+              </div>
+            )}
+
+            <div style="margin-bottom: var(--spacing-lg);">
+              <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Hours</p>
+              <p style="font-size: var(--text-sm);">{SITE_CONFIG.contact.openingHours}</p>
+            </div>
+
+            {SITE_CONFIG.contact.mapUrl && (
+              <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="font-size: var(--text-sm); font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
+            )}
+          </div>
+        </div>
+      );
+    })()}
+  </div>
+</section>
+
+<style>
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-700 { max-width: 700px; }
+  .span-6 { grid-column: span 6; display: flex; flex-direction: column; justify-content: center; }
+  .pr-md { padding-right: var(--spacing-md); }
+</style>

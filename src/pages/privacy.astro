@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="Privacy Policy" description={`Privacy Policy for ${SITE_CONFIG.organization.name}.`}>
+  <section class="section" style="padding-top: var(--spacing-2xl);">
+    <div class="container grid-12">
+      <div style="grid-column: span 8; grid-column-start: 3;" class="reveal">
+        <h1 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-lg);">Privacy Policy</h1>
+        
+        <p class="editorial-text mb-md" style="font-size: var(--text-base);">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+
+        <p>{SITE_CONFIG.organization.name} ("we", "us", or "our") respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+
+        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Information We Collect</h2>
+        <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
+        <ul style="margin-left: 20px; margin-bottom: var(--spacing-md); display: flex; flex-direction: column; gap: 10px;">
+          <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, and telephone number, that you voluntarily give to us when you submit an enquiry form.</li>
+          <li><strong>Derivative Data:</strong> Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages you have viewed directly before and after accessing the Site.</li>
+        </ul>
+
+        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Medical Disclaimer</h2>
+        <p><strong>This website is for informational and marketing purposes only.</strong> Any information submitted through our contact forms is treated as a general administrative enquiry. Please do not submit confidential medical records, sensitive patient health information, or emergency requests through this website. Our clinical patient management systems are strictly separate from this public website.</p>
+
+        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Contact Us</h2>
+        <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+        <p>
+          {SITE_CONFIG.organization.name}<br>
+          {SITE_CONFIG.contact.addressLine1}, {SITE_CONFIG.contact.addressLine2}<br>
+          Email: <a href={`mailto:${SITE_CONFIG.contact.email}`} class="thin-rule">{SITE_CONFIG.contact.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

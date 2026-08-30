@@ -1,0 +1,31 @@
+---
+import type { Service } from '../content/services';
+
+export interface Props {
+  service: Service;
+  linkTo: string;
+  color?: 'brass' | 'eucalyptus';
+}
+
+const { service, linkTo, color = 'brass' } = Astro.props;
+---
+
+<div class="service-card reveal">
+  <div style="display: flex; justify-content: space-between; align-items: baseline;">
+    <h4 style="margin: 0; font-size: var(--text-base); display: flex; align-items: center; gap: 8px;">
+      <span style={`display: block; width: 6px; height: 6px; background-color: var(--${color}); border-radius: 50%;`}></span>
+      {service.name}
+    </h4>
+    <a href={`${linkTo}#${service.id}`} style="font-size: var(--text-xs); color: var(--muted-teal); text-transform: uppercase; font-weight: 600;">Learn More</a>
+  </div>
+  <p style="margin-top: var(--spacing-xs); font-size: var(--text-sm); opacity: 0.9;">{service.shortDescription}</p>
+</div>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--soft-gray);
+  }
+</style>

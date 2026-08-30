@@ -1,0 +1,26 @@
+---
+import { SITE_CONFIG } from '../config';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-brand" href="/" aria-label={`${SITE_CONFIG.organization.name} home page`}>
+      <img src="/images/brand/Logo.png" alt={`${SITE_CONFIG.organization.name} logo`} class="site-brand-logo" width="210" height="96" />
+    </a>
+
+    <nav class="site-nav" id="mobile-nav" aria-label="Main navigation">
+      <a href="/about" class="nav-link">About</a>
+      <a href="/services" class="nav-link">Medical Services</a>
+      <a href="/senior-living" class="nav-link">Senior Care Home</a>
+      <a href="/facilities" class="nav-link">Facilities</a>
+      {SITE_CONFIG.features.enableTeamSection && <a href="/team" class="nav-link">Care Team</a>}
+      <a href="/patient-info" class="nav-link">Patient Information</a>
+      <a href="/contact" class="nav-link">Contact</a>
+      <a href="/contact#enquiry" class="btn btn-primary">Enquire Now</a>
+    </nav>
+
+    <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="mobile-menu-icon"></span>
+    </button>
+  </div>
+</header>

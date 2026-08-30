@@ -1,128 +1,122 @@
-# Canaan Third Space Senior Care Home — Public Website
+# Premium Healthcare & Senior Care Website Template
 
-This is a custom-coded, vanilla HTML5, CSS3, and JavaScript public marketing website for **Canaan Third Space Senior Care Home**. The design is calm, editorial, and optimised for SEO and performance without relying on heavy frameworks. This site is completely separate from any private care-management application.
+A premium, commercially sellable static website template built with [Astro](https://astro.build). Designed specifically for clinics, hospitals, assisted-living homes, senior-care facilities, and rehabilitation centres. 
 
----
+This template outputs fast, accessible, static HTML with minimal client-side JavaScript, ensuring excellent SEO and performance out of the box.
 
-## ⚠️ Outstanding Configuration Required Before Launch
+## 🚀 Quick Start
 
-The following items **must be confirmed by the organisation** and entered into `script.js` before the website is published. Until then, the relevant UI elements are safely hidden.
+### Requirements
+- [Node.js](https://nodejs.org/en/) (v18 or higher)
+- npm or yarn
 
-| Field | Location in script.js | Status |
-|---|---|---|
-| Phone number (display) | `contact.phoneDisplay` | ❌ Required |
-| Phone number (E.164 for tel: link) | `contact.phoneHref` | ❌ Required |
-| Email address | `contact.email` | ❌ Required |
-| Full address | `contact.address` | ❌ Required |
-| Opening hours | `contact.openingHours` | ❌ Required |
-| WhatsApp number | `contact.whatsappHref` | Optional — leave `""` to hide button |
-| Google Maps URL | `contact.mapUrl` | Optional — leave `""` to disable link |
-| Production domain | All `REPLACE-WITH-DOMAIN.com` occurrences | ❌ Required |
-| Approved public descriptor | `organization.publicDescriptor` | ❌ Requires owner sign-off |
-| Organisation description | `organization.description` | ❌ Required |
-| City / district | `organization.city` / `organization.district` | ❌ Required |
-| Form destination email | `contactForm.destinationEmail` | ❌ Required |
+### Installation
 
-**To update the domain**, search the project for `REPLACE-WITH-DOMAIN.com` and replace every occurrence with the real domain. It appears in: `robots.txt`, `sitemap.xml`, and every HTML `<head>` (canonical and OG URLs, LD+JSON, og:image).
+1. Clone or download this repository.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to `http://localhost:4321`.
 
 ---
 
-## Project Structure
+## 🛠 Customisation & Branding
 
-| File | Purpose |
-|---|---|
-| `index.html` | Homepage |
-| `about.html` | About Us |
-| `services.html` | Medical Services (OPD, lab, IPD) |
-| `old-age-home.html` | Senior Care Home information |
-| `facilities.html` | Facility gallery |
-| `patient-info.html` | Information for patients and families |
-| `contact.html` | Contact form and location |
-| `privacy.html` | Privacy Policy |
-| `styles.css` | Design system (CSS custom properties, fluid typography) |
-| `script.js` | Configuration, data injection, animations, form handling |
-| `robots.txt` | Search engine crawl directives |
-| `sitemap.xml` | Page index for search engines |
-| `images/brand/` | Logo and brand assets |
-| `images/hospital/` | Medical centre facility images (SVG placeholders) |
-| `images/old-age-home/` | Senior care home facility images (SVG placeholders) |
+This template is designed to be easily rebranded without touching the HTML/Astro markup.
 
-> **Note on naming:** The internal JS key `services.hospital` and the image folder `images/hospital/` are private code identifiers. They are not public labels. These map to the medical centre / care facility content.
+### 1. Global Configuration (`src/config.ts`)
+The `src/config.ts` file acts as the central brain of your website. Update this file to change:
+- **Organisation Details:** Name, short name, location, etc.
+- **Contact Info:** Phone, email, WhatsApp, and physical address.
+- **SEO Metadata:** Production URL, default descriptions, and social images.
+- **Feature Toggles:** Enable or disable the Emergency Notice, WhatsApp button, Testimonials, or the Care Team section.
+- **Form Provider:** Set up your enquiry form endpoint.
 
----
+### 2. Content Data (`src/content/`)
+The content for specific sections is separated into easy-to-edit TypeScript arrays in the `src/content/` directory:
+- `services.ts`: Medical and senior care services.
+- `team.ts`: Care team members, their qualifications, and bios.
+- `testimonials.ts`: Reviews and testimonials.
+- `faqs.ts`: Frequently asked questions for the accordion component.
 
-## Configuration
+> **Important Demo Notice:** The initial content provided in this template is fictional. Ensure you replace all demo text, testimonials, team members, and credentials with real information before launching your site. Do not make invented medical, legal, or accreditation claims.
 
-All configurable values live in the `SITE_CONFIG` object at the top of `script.js`. The data-injection engine reads `[data-config="key.path"]` attributes in every HTML page and injects values automatically. **Placeholder strings (empty values `""`) are silently skipped** — no raw placeholder text is ever rendered to users.
-
-```javascript
-const SITE_CONFIG = {
-  organization: {
-    officialName:     "Canaan Third Space Senior Care Home",
-    publicDescriptor: "",   // ← REPLACE WITH APPROVED DESCRIPTOR
-    city:             "",   // ← REPLACE WITH CITY
-    ...
-  },
-  contact: {
-    phoneDisplay:   "",   // ← REPLACE WITH PHONE (display format)
-    phoneHref:      "",   // ← REPLACE WITH PHONE (E.164, e.g. +919876543210)
-    email:          "",   // ← REPLACE WITH EMAIL
-    ...
-  },
-  ...
-};
-```
+### 3. Images and Branding (`public/images/`)
+Replace the demo images in the `public/images/` directory with your own photography. 
+- **Logo:** `public/images/brand/Logo.png` (Update your favicon and OG image here as well).
+- **Format Recommendation:** For the best performance, it is recommended to use modern image formats like **WebP** or **AVIF** and ensure images are compressed.
 
 ---
 
-## Running Locally
+## ✉️ Form Integration
 
-**VS Code Live Server:**
-1. Install the "Live Server" extension.
-2. Right-click `index.html` → **Open with Live Server**.
+The template includes an accessible enquiry form on the `/contact` page. 
 
-**Python:**
+By default, the form is set to `demo` mode in `src/config.ts`, which simulates a successful submission without actually sending an email.
+
+To receive emails from the form:
+1. Open `src/config.ts`.
+2. Change the `form.provider` to `'custom'` (or any specific string for your records).
+3. Set `form.endpoint` to your form handler URL.
+   
+**Recommended Free Form Providers:**
+- [Formspree](https://formspree.io/)
+- [Netlify Forms](https://docs.netlify.com/forms/setup/)
+- [Web3Forms](https://web3forms.com/)
+
+---
+
+## 📈 SEO & Production Setup
+
+This template includes everything needed for excellent SEO:
+- **Canonical URLs & Meta Tags:** Automatically generated in `src/layouts/BaseLayout.astro`.
+- **Schema.org JSON-LD:** LocalBusiness / MedicalOrganization schema is injected based on `src/config.ts`.
+- **Sitemap & Robots.txt:** A sitemap is automatically generated on build using `@astrojs/sitemap`.
+
+### Domain Setup
+Before building for production, ensure you update the `site` property in `astro.config.mjs` and the `seo.siteUrl` in `src/config.ts` to your actual production domain.
+
+---
+
+## 🚀 Deployment
+
+The site is built to generate static files in the `dist/` directory.
+
+### Build Command
 ```bash
-python -m http.server 8000
+npm run build
 ```
-Then visit `http://localhost:8000`.
+
+### Preview Production Build Locally
+```bash
+npm run preview
+```
+
+### Deploying to Firebase Hosting (Included)
+This repository includes a `firebase.json` pre-configured to serve the `dist/` folder.
+1. Install Firebase CLI: `npm install -g firebase-tools`
+2. Login: `firebase login`
+3. Deploy: `firebase deploy`
+
+### Deploying to Vercel / Netlify
+1. Connect your GitHub repository to Vercel or Netlify.
+2. The platform will automatically detect Astro.
+3. Build Command: `npm run build`
+4. Publish Directory: `dist`
 
 ---
 
-## Updating Images
+## ✅ Pre-Launch Checklist
 
-Placeholder `.svg` files are used until real photography is available. To replace them:
-
-1. Add real photos to `images/hospital/` and `images/old-age-home/` in `.webp` or `.avif` format.
-2. Update the `images` section of `SITE_CONFIG` in `script.js` to point to the new file paths.
-3. The logo is already at `images/brand/Logo.png`. No change needed unless a new logo file is provided.
-
----
-
-## Navigation Structure
-
-| Label | Page |
-|---|---|
-| About | `about.html` |
-| Medical Services | `services.html` |
-| Senior Care Home | `old-age-home.html` |
-| Facilities | `facilities.html` |
-| Patient Information | `patient-info.html` |
-| Contact | `contact.html` |
-
----
-
-## Contact Form
-
-The form is configured to use `mailto` (opens the user's email application). It includes:
-- Full name, phone, email, enquiry type, preferred contact, and message fields
-- A consent checkbox linked to the Privacy Policy
-- A disclaimer that clearly states the email app will open
-
----
-
-## Privacy &amp; Security
-
-This public website strictly avoids linking to any internal care management portals. No patient data or credentials should ever be stored or displayed on this site.
-
-The `privacy.html` policy has not been reviewed by a legal professional. Professional legal review is recommended before publishing.
+- [ ] Updated `src/config.ts` with real organisation details.
+- [ ] Replaced fictional content in `src/content/`.
+- [ ] Updated logo and images in `public/images/`.
+- [ ] Configured the contact form endpoint.
+- [ ] Updated `site` in `astro.config.mjs` for the sitemap.
+- [ ] Tested all links, mobile navigation, and forms.
+- [ ] Run `npm run build` and verified the output.

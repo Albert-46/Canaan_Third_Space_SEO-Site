@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="Patient & Family Information" description={`Information for patients and families regarding admission, visiting hours, and care at ${SITE_CONFIG.organization.name}.`}>
+  <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+    <div class="container text-center reveal">
+      <h1>Patient &amp; Family Information</h1>
+      <p class="editorial-text" style="margin-top: var(--spacing-md);">
+        Guidance on inpatient stays, senior care admission, visiting arrangements, and communication.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container grid-12">
+      <div style="grid-column: span 8; grid-column-start: 3;" class="reveal">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Admissions Process</h2>
+        <p>We aim to make the admission process for both our medical centre and senior care home as smooth and stress-free as possible.</p>
+        <ul style="margin: var(--spacing-md) 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <li><strong>Medical Admission:</strong> Usually directed by the treating physician after an OPD consultation. Emergency admissions are handled on a case-by-case basis depending on capacity.</li>
+          <li><strong>Senior Care Admission:</strong> Requires an initial consultation with our facility director and a medical assessment to ensure we can meet the resident's specific needs. We encourage a trial stay where applicable.</li>
+        </ul>
+
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Visiting Hours</h2>
+        <p>Family support is crucial for patient recovery and resident well-being. We have designated visiting hours to balance this need with the requirement for rest and medical rounds.</p>
+        <div style="background: var(--soft-gray); padding: var(--spacing-md); border-radius: var(--radius-sm); margin: var(--spacing-md) 0;">
+          {SITE_CONFIG.contact.openingHours.includes('REPLACE_WITH') ? (
+            <>
+              <p style="margin: 0;"><strong>Visiting hours and visitor guidelines will be confirmed during your facility visit.</strong></p>
+              <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Please use the enquiry form to request a visit or ask about visitor policies.</p>
+            </>
+          ) : (
+            <>
+              <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
+              <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions can be made in palliative or critical care situations. Please speak with the head nurse.</p>
+            </>
+          )}
+        </div>
+
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to Bring</h2>
+        <p>For inpatient stays or senior care admission, please bring:</p>
+        <ul style="margin: var(--spacing-md) 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <li>Relevant medical records and current prescriptions.</li>
+          <li>Comfortable clothing and non-slip footwear.</li>
+          <li>Personal toiletries (though basic items are provided).</li>
+          <li>Any mobility aids currently used (walking stick, hearing aids, etc.).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Have specific questions?" subtitle="Our administrative team is happy to clarify any doubts you may have regarding admissions or care." />
+</BaseLayout>

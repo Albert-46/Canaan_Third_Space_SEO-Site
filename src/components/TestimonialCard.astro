@@ -1,0 +1,66 @@
+---
+import type { Testimonial } from '../content/testimonials';
+
+export interface Props {
+  testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props;
+---
+
+<div class="testimonial-card reveal">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">{testimonial.quote}</p>
+  <div class="author-info">
+    <p class="author-name">{testimonial.author}</p>
+    <p class="author-relation">{testimonial.relation}</p>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    background: var(--white);
+    padding: var(--spacing-md);
+    border: 1px solid var(--soft-gray);
+    border-radius: var(--radius-sm);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--sand);
+    line-height: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: 0.5;
+  }
+  .quote-text {
+    position: relative;
+    z-index: 2;
+    font-size: var(--text-base);
+    font-style: italic;
+    flex-grow: 1;
+    margin-bottom: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+  }
+  .author-info {
+    border-top: 1px solid var(--soft-gray);
+    padding-top: var(--spacing-sm);
+  }
+  .author-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: var(--text-sm);
+  }
+  .author-relation {
+    margin: 0;
+    font-size: var(--text-xs);
+    color: var(--muted-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

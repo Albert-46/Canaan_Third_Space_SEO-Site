@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="Page Not Found" description="The page you are looking for does not exist.">
+  <section class="section section-bg-dim" style="height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container reveal">
+      <h1 style="font-family: var(--font-display); font-size: 6rem; color: var(--brass); margin-bottom: 0; line-height: 1;">404</h1>
+      <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Page Not Found</h2>
+      <p style="font-size: var(--text-lg); opacity: 0.8; max-width: 500px; margin: 0 auto var(--spacing-lg);">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+      </p>
+      <a href="/" class="btn btn-primary">Return to Homepage</a>
+    </div>
+  </section>
+</BaseLayout>

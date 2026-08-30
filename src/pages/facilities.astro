@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { SITE_CONFIG } from '../config';
+---
+
+<BaseLayout title="Our Facilities" description={`View the modern medical and residential facilities at ${SITE_CONFIG.organization.name}.`}>
+  <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+    <div class="container text-center reveal">
+      <h1>Our Facilities</h1>
+      <p class="editorial-text" style="margin-top: var(--spacing-md);">
+        Designed for safety, hygiene, and comfort. Take a look at the spaces where we provide care and support.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-12" style="row-gap: var(--spacing-xl);">
+        
+        <!-- Feature 1 -->
+        <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
+          <div style="padding-right: var(--spacing-md);">
+            <h2 style="font-size: var(--text-2xl);">Medical Centre</h2>
+            <p>Our clinical spaces are maintained to rigorous hygienic standards. Consultation rooms are private, and our in-house laboratory ensures quick diagnostic turnaround.</p>
+          </div>
+        </div>
+        <div style="grid-column: span 6;" class="reveal">
+          <img src="/images/hospital/reception.svg" alt="Medical Reception" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
+        </div>
+
+        <!-- Feature 2 -->
+        <div style="grid-column: span 6;" class="reveal">
+          <img src="/images/old-age-home/bedroom.svg" alt="Resident Bedroom" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
+        </div>
+        <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
+          <div style="padding-left: var(--spacing-md);">
+            <h2 style="font-size: var(--text-2xl);">Residential Rooms</h2>
+            <p>Senior care rooms are designed for comfort and accessibility, featuring anti-slip flooring, grab rails, emergency call bells, and ample natural light.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
+          <div style="padding-right: var(--spacing-md);">
+            <h2 style="font-size: var(--text-2xl);">Common Areas & Dining</h2>
+            <p>Social interaction is vital. Our spacious common areas and communal dining spaces encourage residents to connect, participate in activities, and share meals together.</p>
+          </div>
+        </div>
+        <div style="grid-column: span 6;" class="reveal">
+          <img src="/images/old-age-home/dining-area.svg" alt="Dining Area" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="See for yourself." subtitle="The best way to understand our environment is to visit in person." primaryText="Schedule a Tour" />
+</BaseLayout>
