@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
     postalCode: "686541",
     country: "India",
     openingHours: "Monday – Sunday, 9 AM – 7 PM",
-    mapUrl: "https://maps.google.com/?q=GP4J+PH9+Kadayanickadu,+Kerala",
+    mapUrl: "https://maps.app.goo.gl/jMJTqaeG5cKfHJCi8",
   },
 
   // Emergency Details
