@@ -2,7 +2,7 @@
 import { SITE_CONFIG } from '../config';
 
 const { provider, endpoint } = SITE_CONFIG.form;
-const isDemo = provider === 'demo' || !endpoint;
+const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YOUR');
 ---
 
 <form 
@@ -11,6 +11,7 @@ const isDemo = provider === 'demo' || !endpoint;
   action={isDemo ? undefined : endpoint} 
   method={isDemo ? undefined : "POST"}
   data-demo={isDemo.toString()}
+  data-provider={provider}
 >
   <div class="form-group">
     <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
@@ -62,58 +63,107 @@ const isDemo = provider === 'demo' || !endpoint;
     </label>
   </div>
 
-  <button type="submit" class="btn btn-primary" style="margin-top: var(--spacing-sm); width: 100%;">
+  <button type="submit" id="submit-btn" class="btn btn-primary" style="margin-top: var(--spacing-sm); width: 100%;">
     Send Enquiry
   </button>
+
+  <p class="response-time-note">We typically respond within 1–2 working days.</p>
 
   <div id="form-message" class="form-message" aria-live="polite" style="display: none;"></div>
 </form>
 
 <script>
   const form = document.getElementById('contactForm') as HTMLFormElement;
-  const messageEl = document.getElementById('form-message');
+  const messageEl = document.getElementById('form-message') as HTMLElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
 
-  if (form && messageEl) {
+  if (form && messageEl && submitBtn) {
     form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       const isDemo = form.getAttribute('data-demo') === 'true';
 
+      // ── DEMO MODE ──────────────────────────────────────────────────────────
       if (isDemo) {
-        e.preventDefault();
-        
-        // Client-side validation check
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
 
-        // Simulate success for demo mode
-        const btn = form.querySelector('button[type="submit"]');
-        if (btn) btn.textContent = 'Sending...';
-        
         setTimeout(() => {
           form.reset();
-          if (btn) btn.textContent = 'Send Enquiry';
-          
+          submitBtn.textContent = 'Send Enquiry';
+          submitBtn.disabled = false;
+
+          messageEl.style.display = 'block';
+          messageEl.className = 'form-message info';
+          messageEl.innerHTML =
+            '<strong>Demo mode:</strong> Enquiries are not delivered yet. ' +
+            'To enable real email delivery, paste your Formspree endpoint into ' +
+            '<code>src/config.ts → form.endpoint</code>.';
+
+          setTimeout(() => { messageEl.style.display = 'none'; }, 10000);
+        }, 800);
+        return;
+      }
+
+      // ── LIVE MODE (Formspree / custom endpoint) ─────────────────────────
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const data = new FormData(form);
+        const action = form.getAttribute('action') || '';
+
+        const res = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          form.reset();
           messageEl.style.display = 'block';
           messageEl.className = 'form-message success';
-          messageEl.innerHTML = '<strong>Demo Mode:</strong> Your message was not actually sent because this template is in Demo Mode. To receive emails, configure the form provider in <code>src/config.ts</code>.';
-          
-          setTimeout(() => {
-            messageEl.style.display = 'none';
-          }, 8000);
-        }, 800);
+          messageEl.textContent =
+            'Thank you — your enquiry has been received. We will be in touch within 1–2 working days.';
+          submitBtn.textContent = 'Send Enquiry';
+          submitBtn.disabled = false;
+          setTimeout(() => { messageEl.style.display = 'none'; }, 12000);
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        messageEl.style.display = 'block';
+        messageEl.className = 'form-message error';
+        messageEl.innerHTML =
+          'Sorry, something went wrong. Please call us directly at ' +
+          '<a href="tel:+918075053345">+91 80750 53345</a> or email ' +
+          '<a href="mailto:thirdspacecarehome@gmail.com">thirdspacecarehome@gmail.com</a>.';
+        submitBtn.textContent = 'Send Enquiry';
+        submitBtn.disabled = false;
       }
-      // If not demo mode, it will submit normally to the action endpoint (e.g., Formspree, Web3Forms)
     });
   }
 </script>
 
 <style>
+  .response-time-note {
+    font-size: var(--text-xs);
+    color: var(--eucalyptus);
+    margin-top: var(--spacing-sm);
+    text-align: center;
+    opacity: 0.9;
+  }
   .form-message {
     margin-top: var(--spacing-md);
     padding: var(--spacing-sm);
     border-radius: var(--radius-sm);
     font-size: var(--text-sm);
+    line-height: 1.6;
   }
   .form-message.success {
     background-color: #e8f5e9;
@@ -124,6 +174,11 @@ const isDemo = provider === 'demo' || !endpoint;
     background-color: #ffebee;
     border: 1px solid #ffcdd2;
     color: #c62828;
+  }
+  .form-message.info {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    color: #1565c0;
   }
   @media (max-width: 640px) {
     .grid-12 {

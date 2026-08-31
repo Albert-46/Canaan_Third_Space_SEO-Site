@@ -29,7 +29,7 @@ export const SITE_CONFIG = {
     state: "Kerala",
     postalCode: "686541",
     country: "India",
-    openingHours: "9 AM – 7 PM",
+    openingHours: "Monday – Sunday, 9 AM – 7 PM",
     mapUrl: "https://maps.google.com/?q=GP4J+PH9+Kadayanickadu,+Kerala",
   },
 
@@ -55,10 +55,15 @@ export const SITE_CONFIG = {
   },
 
   // Form Provider (For the Contact Form)
-  // Supported options: 'demo', 'formspree', 'netlify', 'custom'
+  // To enable real email delivery:
+  //   1. Go to https://formspree.io and create a free form.
+  //   2. Copy the form endpoint (e.g. https://formspree.io/f/xabcdefg).
+  //   3. Set provider to 'formspree' and paste your endpoint below.
+  //   4. The form will automatically switch from demo mode to live submissions.
+  // Alternative providers: 'netlify' (set endpoint to ''), 'custom' (set to your API URL).
   form: {
-    provider: 'demo',
-    endpoint: '',
+    provider: 'formspree',                             // Change to 'demo' to go back to demo mode
+    endpoint: 'PASTE_YOUR_FORMSPREE_ENDPOINT_HERE',   // e.g. https://formspree.io/f/xabcdefg
   },
 
   // Social Links

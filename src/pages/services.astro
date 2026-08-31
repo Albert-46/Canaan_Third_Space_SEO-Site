@@ -32,7 +32,7 @@ const activeServices = medicalServices.filter(s => s.enabled);
           </p>
           <div style="margin-top: var(--spacing-md); padding: var(--spacing-md); background: var(--soft-gray); border-radius: var(--radius-sm);">
             <p style="font-size: var(--text-sm); font-weight: 600; margin-bottom: 8px; color: var(--deep-ink);">Opening Hours</p>
-            <p style="font-size: var(--text-sm);">{SITE_CONFIG.contact.openingHours}, Monday – Sunday</p>
+            <p style="font-size: var(--text-sm);">{SITE_CONFIG.contact.openingHours}</p>
             <a
               href={SITE_CONFIG.contact.phoneHref}
               style="display: inline-block; margin-top: 10px; font-size: var(--text-sm); font-weight: 600; color: var(--muted-teal);"
@@ -81,8 +81,8 @@ const activeServices = medicalServices.filter(s => s.enabled);
                     <p style="font-size: var(--text-sm); line-height: 1.7;"><strong>Lab referrals:</strong> Tests are usually ordered by your treating doctor after an OPD consultation. Lab results are communicated directly to the doctor and not released independently to protect clinical accuracy.</p>
                     <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm);">
                       <li>&bull; Complete blood counts and haematology</li>
-                      <li>&bull; Biochemistry (blood sugar, lipid profile, liver and kidney function)</li>
-                      <li>&bull; Urine and stool analysis</li>
+                      <li>&bull; Routine biochemistry (blood sugar, liver and kidney function)</li>
+                      <li>&bull; Urine analysis</li>
                       <li>&bull; Rapid turnaround for inpatient and urgent cases</li>
                     </ul>
                   </div>
