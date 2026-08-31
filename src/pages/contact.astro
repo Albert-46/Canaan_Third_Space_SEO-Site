@@ -24,33 +24,12 @@ import { SITE_CONFIG } from '../config';
         </div>
 
         {(() => {
-          const hasPlaceholder = 
-            SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') || 
-            SITE_CONFIG.contact.email.includes('REPLACE_WITH') || 
-            SITE_CONFIG.contact.addressLine1.includes('REPLACE_WITH');
-
-          if (hasPlaceholder) {
-            return (
-              <div>
-                <p style="font-size: var(--text-lg); font-weight: 500; color: var(--deep-ink); margin-bottom: var(--spacing-sm);">
-                  We are currently updating our contact details.
-                </p>
-                <p style="font-size: var(--text-base); margin-bottom: var(--spacing-sm);">
-                  For now, please use the enquiry form below to send your message.
-                </p>
-                <p style="font-size: var(--text-base);">
-                  Our team will respond to your enquiry using the contact information you provide.
-                </p>
-              </div>
-            );
-          }
-
           return (
             <>
               {SITE_CONFIG.contact.phoneDisplay && (
                 <div>
                   <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Direct Line</h3>
-                  <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink); font-weight: 500;">
+                  <a href={SITE_CONFIG.contact.phoneHref} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink); font-weight: 500;">
                     {SITE_CONFIG.contact.phoneDisplay}
                   </a>
                 </div>
@@ -59,7 +38,7 @@ import { SITE_CONFIG } from '../config';
               {SITE_CONFIG.contact.whatsappDisplay && SITE_CONFIG.features.enableWhatsAppAction && (
                 <div>
                   <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">WhatsApp</h3>
-                  <a href={`https://wa.me/${SITE_CONFIG.contact.whatsappHref}`} style="font-size: var(--text-lg); color: var(--deep-ink); font-weight: 500;" target="_blank" rel="noopener noreferrer">
+                  <a href={SITE_CONFIG.contact.whatsappHref} style="font-size: var(--text-lg); color: var(--deep-ink); font-weight: 500;" target="_blank" rel="noopener noreferrer">
                     Message us on WhatsApp
                   </a>
                 </div>
@@ -77,12 +56,18 @@ import { SITE_CONFIG } from '../config';
               <div>
                 <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Location</h3>
                 <p style="font-size: var(--text-base); line-height: 1.6;">
-                  {SITE_CONFIG.contact.addressLine1}<br />
-                  {SITE_CONFIG.contact.addressLine2}
+                  {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1}<br />
+                  {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} &ndash; {SITE_CONFIG.contact.postalCode}<br />
+                  {SITE_CONFIG.contact.state}, {SITE_CONFIG.contact.country}
                 </p>
                 {SITE_CONFIG.contact.mapUrl && (
                   <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: 10px; display: inline-block; font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
                 )}
+              </div>
+
+              <div>
+                <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Opening Hours</h3>
+                <p style="font-size: var(--text-base);">{SITE_CONFIG.contact.openingHours}</p>
               </div>
             </>
           );

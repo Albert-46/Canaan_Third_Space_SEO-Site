@@ -1,6 +1,6 @@
 // config.ts
-// This is the central configuration file for the template.
-// Template buyers should update these values to match their organization.
+// Central configuration file for Canaan Third Space Senior Care Home.
+// All contact details, SEO metadata, and feature flags are managed here.
 
 export const SITE_CONFIG = {
   // Organization Details
@@ -8,8 +8,8 @@ export const SITE_CONFIG = {
     name: "Canaan Third Space Senior Care Home",
     shortName: "Canaan Third Space",
     descriptor: "Medical Services and Senior Living",
-    city: "Kochi",
-    district: "REPLACE_WITH_REAL_DISTRICT",
+    city: "Manimala",
+    district: "Kottayam",
     state: "Kerala",
     country: "India",
     description: "Compassionate medical services and dignified senior residential living in Kerala."
@@ -17,20 +17,20 @@ export const SITE_CONFIG = {
 
   // Contact Information
   contact: {
-    phoneDisplay: "REPLACE_WITH_REAL_PHONE", // Displayed on the site
-    phoneHref: "REPLACE_WITH_REAL_E164_PHONE", // Used for tel: links (no spaces)
-    email: "REPLACE_WITH_REAL_EMAIL",
-    whatsappDisplay: "REPLACE_WITH_REAL_WHATSAPP_OR_EMPTY",
-    whatsappHref: "REPLACE_WITH_REAL_WHATSAPP_LINK_OR_EMPTY", // Used for wa.me/ links (numbers only)
-    addressLine1: "REPLACE_WITH_REAL_ADDRESS_LINE_1",
-    addressLine2: "REPLACE_WITH_REAL_ADDRESS_LINE_2",
-    city: "Kochi",
-    district: "REPLACE_WITH_REAL_DISTRICT",
+    phoneDisplay: "+91 80750 53345",           // Displayed on the site
+    phoneHref: "tel:+918075053345",            // Used for tel: links
+    email: "thirdspacecarehome@gmail.com",
+    whatsappDisplay: "+91 80750 53345",
+    whatsappHref: "https://wa.me/918075053345", // Full wa.me URL
+    addressLine1: "Kadayanikadu PO",
+    addressLine2: "Kuttikkattu Valavu",
+    city: "Manimala",
+    district: "Kottayam",
     state: "Kerala",
-    postalCode: "REPLACE_WITH_REAL_POSTAL_CODE",
+    postalCode: "686541",
     country: "India",
-    openingHours: "REPLACE_WITH_REAL_OPENING_HOURS",
-    mapUrl: "REPLACE_WITH_REAL_GOOGLE_MAPS_URL", // Link to Google Maps
+    openingHours: "9 AM – 7 PM",
+    mapUrl: "https://maps.google.com/?q=GP4J+PH9+Kadayanickadu,+Kerala",
   },
 
   // Emergency Details
@@ -41,24 +41,24 @@ export const SITE_CONFIG = {
 
   // SEO & Metadata
   seo: {
-    siteUrl: "https://canaan-third-space.web.app", // The production URL
+    siteUrl: "https://canaan-third-space.web.app",
     defaultMetaDescription: "Compassionate medical services and dignified senior residential living in Kerala.",
-    ogImage: "/images/brand/Logo.png", // Must be in the public directory
+    ogImage: "https://canaan-third-space.web.app/images/brand/logo.jpg",
   },
 
   // Feature Toggles (Enable/Disable sections of the site)
   features: {
-    enableEmergencyNotice: true, // Shows the emergency notice banner
-    enableWhatsAppAction: false, // Set to true only when real WhatsApp number is provided
-    enableTestimonials: false, // Enables the testimonial section
-    enableTeamSection: true, // Enables the care team section
+    enableEmergencyNotice: true,   // Shows the emergency notice banner
+    enableWhatsAppAction: true,    // WhatsApp CTA enabled (real number provided)
+    enableTestimonials: false,     // Enables the testimonial section
+    enableTeamSection: true,       // Enables the care team section
   },
 
   // Form Provider (For the Contact Form)
   // Supported options: 'demo', 'formspree', 'netlify', 'custom'
   form: {
-    provider: 'demo', 
-    endpoint: '', // e.g., 'https://formspree.io/f/your-form-id'
+    provider: 'demo',
+    endpoint: '',
   },
 
   // Social Links

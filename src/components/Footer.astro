@@ -31,13 +31,29 @@ const currentYear = new Date().getFullYear();
       <div class="footer-contact-col">
         <h4 class="footer-heading">Contact</h4>
         <ul class="footer-links">
-          {SITE_CONFIG.contact.phoneDisplay && !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') && (
-            <li><a href={`tel:${SITE_CONFIG.contact.phoneHref}`}>{SITE_CONFIG.contact.phoneDisplay}</a></li>
+          <li>
+            <a href={SITE_CONFIG.contact.phoneHref}>{SITE_CONFIG.contact.phoneDisplay}</a>
+          </li>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <li>
+              <a href={SITE_CONFIG.contact.whatsappHref} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+            </li>
           )}
-          {SITE_CONFIG.contact.email && !SITE_CONFIG.contact.email.includes('REPLACE_WITH') && (
-            <li><a href={`mailto:${SITE_CONFIG.contact.email}`}>{SITE_CONFIG.contact.email}</a></li>
-          )}
-          <li style="margin-top: var(--spacing-sm);"><a href="/contact" class="thin-rule" style="color: var(--mineral-white); border-color: var(--mineral-white);">Enquiry Form &rarr;</a></li>
+          <li>
+            <a href={`mailto:${SITE_CONFIG.contact.email}`}>{SITE_CONFIG.contact.email}</a>
+          </li>
+          <li style="line-height: 1.5; opacity: 0.7; font-size: var(--text-xs);">
+            {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1},<br />
+            {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} – {SITE_CONFIG.contact.postalCode}
+          </li>
+          <li style="margin-top: var(--spacing-sm);">
+            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule" style="color: var(--mineral-white); border-color: var(--mineral-white);">Get Directions &rarr;</a>
+          </li>
+          <li style="margin-top: var(--spacing-sm);">
+            <a href="/contact" class="thin-rule" style="color: var(--mineral-white); border-color: var(--mineral-white);">Enquiry Form &rarr;</a>
+          </li>
         </ul>
       </div>
     </div>

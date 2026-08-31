@@ -27,17 +27,8 @@ import { SITE_CONFIG } from '../config';
         <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Visiting Hours</h2>
         <p>Family support is crucial for patient recovery and resident well-being. We have designated visiting hours to balance this need with the requirement for rest and medical rounds.</p>
         <div style="background: var(--soft-gray); padding: var(--spacing-md); border-radius: var(--radius-sm); margin: var(--spacing-md) 0;">
-          {SITE_CONFIG.contact.openingHours.includes('REPLACE_WITH') ? (
-            <>
-              <p style="margin: 0;"><strong>Visiting hours and visitor guidelines will be confirmed during your facility visit.</strong></p>
-              <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Please use the enquiry form to request a visit or ask about visitor policies.</p>
-            </>
-          ) : (
-            <>
-              <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
-              <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions can be made in palliative or critical care situations. Please speak with the head nurse.</p>
-            </>
-          )}
+          <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
+          <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions can be made in palliative or critical care situations. Please speak with the head nurse.</p>
         </div>
 
         <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to Bring</h2>

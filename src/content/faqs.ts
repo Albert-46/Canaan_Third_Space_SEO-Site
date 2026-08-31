@@ -6,21 +6,15 @@ export interface FAQ {
   enabled: boolean;
 }
 
-const hasPhone = !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH');
-
 export const faqs: FAQ[] = [
   {
     question: "How can I enquire about senior accommodation?",
-    answer: hasPhone 
-      ? "You can request an admission enquiry using our contact form or call us directly. Our care team will review your needs, explain the admission process, and arrange a facility visit so you can explore the residential environment firsthand."
-      : "You can request an admission enquiry using our contact form. Our care team will review your needs, explain the admission process, and arrange a facility visit so you can explore the residential environment firsthand.",
+    answer: "You can request an admission enquiry using our contact form or call us directly. Our care team will review your needs, explain the admission process, and arrange a facility visit so you can explore the residential environment firsthand.",
     enabled: true
   },
   {
     question: "How do I request a facility visit?",
-    answer: hasPhone
-      ? "To schedule a visit, simply fill out the contact form or call us with your preferred date and time. We will coordinate a guided tour of the facility and discuss the available medical and residential support."
-      : "To schedule a visit, simply fill out the contact form with your preferred date and time. We will coordinate a guided tour of the facility and discuss the available medical and residential support.",
+    answer: "To schedule a visit, simply fill out the contact form or call us with your preferred date and time. We will coordinate a guided tour of the facility and discuss the available medical and residential support.",
     enabled: true
   },
   {
@@ -40,9 +34,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "Is an appointment required for OPD?",
-    answer: hasPhone
-      ? "While we do accommodate walk-ins when possible, we highly recommend scheduling an appointment via our contact form or by calling us directly to minimize wait times and ensure availability of the required specialist."
-      : "While we do accommodate walk-ins when possible, we highly recommend scheduling an appointment via our contact form to minimize wait times and ensure availability of the required specialist.",
+    answer: "While we do accommodate walk-ins when possible, we highly recommend scheduling an appointment via our contact form or by calling us directly to minimize wait times and ensure availability of the required specialist.",
     enabled: true
   },
   {

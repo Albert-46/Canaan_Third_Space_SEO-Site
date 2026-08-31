@@ -11,35 +11,32 @@ export interface Props {
 
 const { 
   title = SITE_CONFIG.organization.name, 
-  description = SITE_CONFIG.seo.defaultMetaDescription 
+  description = SITE_CONFIG.seo.defaultMetaDescription
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.seo.siteUrl).toString();
 
-const hasRealContact = !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH');
-const hasRealAddress = !SITE_CONFIG.contact.addressLine1.includes('REPLACE_WITH');
-
 const schema: Record<string, any> = {
   "@context": "https://schema.org",
-  "@type": "MedicalOrganization",
+  "@type": ["MedicalOrganization", "LocalBusiness"],
   "name": SITE_CONFIG.organization.name,
   "url": SITE_CONFIG.seo.siteUrl,
-  "logo": new URL(SITE_CONFIG.seo.ogImage, SITE_CONFIG.seo.siteUrl).toString(),
-};
-
-if (hasRealAddress) {
-  schema.address = {
+  "logo": SITE_CONFIG.seo.ogImage,
+  "image": SITE_CONFIG.seo.ogImage,
+  "description": SITE_CONFIG.organization.description,
+  "telephone": SITE_CONFIG.contact.phoneDisplay,
+  "email": SITE_CONFIG.contact.email,
+  "openingHours": "Mo-Su 09:00-19:00",
+  "hasMap": SITE_CONFIG.contact.mapUrl,
+  "address": {
     "@type": "PostalAddress",
-    "streetAddress": SITE_CONFIG.contact.addressLine1,
+    "streetAddress": `${SITE_CONFIG.contact.addressLine2}, ${SITE_CONFIG.contact.addressLine1}`,
     "addressLocality": SITE_CONFIG.contact.city,
     "addressRegion": SITE_CONFIG.contact.state,
+    "postalCode": SITE_CONFIG.contact.postalCode,
     "addressCountry": SITE_CONFIG.contact.country
-  };
-}
-
-if (hasRealContact) {
-  schema.telephone = SITE_CONFIG.contact.phoneDisplay;
-}
+  }
+};
 ---
 
 <!DOCTYPE html>

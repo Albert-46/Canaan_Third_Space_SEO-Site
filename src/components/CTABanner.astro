@@ -29,15 +29,18 @@ const {
         <h2>{title}</h2>
         <p>{subtitle}</p>
         
-        {SITE_CONFIG.contact.phoneDisplay && !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') && (
+        {SITE_CONFIG.contact.phoneDisplay && (
           <div class="cta-contact-detail">
             <span class="eyebrow">Direct Line</span>
-            <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} class="cta-phone">{SITE_CONFIG.contact.phoneDisplay}</a>
+            <a href={SITE_CONFIG.contact.phoneHref} class="cta-phone">{SITE_CONFIG.contact.phoneDisplay}</a>
           </div>
         )}
 
         <div class="cta-actions">
           <a href={primaryLink} class="btn btn-primary cta-btn-primary">{primaryText}</a>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+          )}
           {secondaryLink && secondaryText && (
             <a href={secondaryLink} class="btn btn-secondary">{secondaryText}</a>
           )}
