@@ -6,6 +6,10 @@ dist/
 
 # dependencies
 node_modules/
+server/node_modules/
+
+# server build output
+server/dist/
 
 # logs
 npm-debug.log*
@@ -16,6 +20,9 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+
+# SQLite database (contains real enquiry data — never commit)
+data/
 
 # macOS-specific files
 .DS_Store

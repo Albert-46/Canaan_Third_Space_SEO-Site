@@ -120,3 +120,74 @@ This repository includes a `firebase.json` pre-configured to serve the `dist/` f
 - [ ] Updated `site` in `astro.config.mjs` for the sitemap.
 - [ ] Tested all links, mobile navigation, and forms.
 - [ ] Run `npm run build` and verified the output.
+- [ ] Set up the enquiry server (`server/`) with Gmail App Password in `.env`.
+- [ ] Verified a test enquiry is saved to `data/enquiries.db` and emailed to the inbox.
+
+---
+
+## 📬 Backend API Server (Enquiry Form)
+
+The `server/` directory contains a standalone Node.js/Express API that:
+1. **Saves** every form submission to a SQLite database at `data/enquiries.db`.
+2. **Emails** an SMTP notification to the configured inbox for every new enquiry.
+3. **Never loses data** — email failures are logged but do not block the API response.
+
+### Quick Start
+
+```bash
+# 1. Install server dependencies
+cd server
+npm install
+
+# 2. Configure SMTP credentials
+cp ../.env.example ../.env
+# Edit .env and fill in SMTP_PASS (see below)
+
+# 3. Start the server (hot-reload)
+npm run dev
+```
+
+The server listens on `http://localhost:3001` by default.
+
+### Gmail App Password Setup
+
+Using Gmail SMTP requires an **App Password** (not your regular login password):
+
+1. Enable 2-Step Verification: [myaccount.google.com/security](https://myaccount.google.com/security)
+2. Create an App Password: [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)  
+   (App = **Mail**, Device = **Other / Custom name**)
+3. Copy the 16-character password into `.env` as `SMTP_PASS`.
+
+### Required Environment Variables (`.env`)
+
+| Variable | Example | Description |
+|---|---|---|
+| `PORT` | `3001` | Server port |
+| `ALLOWED_ORIGIN` | `http://localhost:4321` | Astro dev URL for CORS |
+| `SMTP_HOST` | `smtp.gmail.com` | SMTP server hostname |
+| `SMTP_PORT` | `587` | 587 = STARTTLS, 465 = SSL |
+| `SMTP_SECURE` | `false` | `true` only for port 465 |
+| `SMTP_USER` | `thirdspacecarehome@gmail.com` | Gmail address |
+| `SMTP_PASS` | `abcd efgh ijkl mnop` | 16-char App Password |
+| `SMTP_FROM` | `"Canaan Website" <...>` | Sender display name |
+| `ENQUIRY_TO_EMAIL` | `thirdspacecarehome@gmail.com` | Notification destination |
+
+### API Endpoints
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/health` | Health check |
+| `POST` | `/api/enquiries` | Submit a new enquiry |
+
+### Database
+
+The SQLite database is created automatically at `data/enquiries.db` on first run.  
+It is excluded from git via `.gitignore` — **back it up regularly**.
+
+### Production Deployment
+
+To run the server in production alongside the static Astro site:
+1. Build: `cd server && npm run build`
+2. Start: `node server/dist/index.js`
+3. Use a process manager like **PM2**: `pm2 start server/dist/index.js --name canaan-api`
+4. Update `src/config.ts → form.endpoint` to your production server URL before deploying the Astro build.

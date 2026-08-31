@@ -55,15 +55,17 @@ export const SITE_CONFIG = {
   },
 
   // Form Provider (For the Contact Form)
-  // To enable real email delivery:
-  //   1. Go to https://formspree.io and create a free form.
-  //   2. Copy the form endpoint (e.g. https://formspree.io/f/xabcdefg).
-  //   3. Set provider to 'formspree' and paste your endpoint below.
-  //   4. The form will automatically switch from demo mode to live submissions.
-  // Alternative providers: 'netlify' (set endpoint to ''), 'custom' (set to your API URL).
+  // 'local'     — POST to the local Express API in server/ (SQLite + SMTP email)
+  // 'formspree' — POST to Formspree endpoint (no server required)
+  // 'demo'      — Simulates submission without sending anything
+  //
+  // To activate the local server:
+  //   cd server && npm install && npm run dev
+  //   The server listens on http://localhost:3001
+  //   SMTP credentials go in .env (see .env.example)
   form: {
-    provider: 'formspree',                             // Change to 'demo' to go back to demo mode
-    endpoint: 'PASTE_YOUR_FORMSPREE_ENDPOINT_HERE',   // e.g. https://formspree.io/f/xabcdefg
+    provider: 'local',
+    endpoint: 'http://localhost:3001/api/enquiries',
   },
 
   // Social Links

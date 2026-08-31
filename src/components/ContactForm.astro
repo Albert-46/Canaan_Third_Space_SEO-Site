@@ -2,6 +2,7 @@
 import { SITE_CONFIG } from '../config';
 
 const { provider, endpoint } = SITE_CONFIG.form;
+// demo mode: provider is explicitly 'demo', OR endpoint is missing / still a placeholder
 const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YOUR');
 ---
 
