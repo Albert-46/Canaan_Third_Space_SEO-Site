@@ -13,9 +13,10 @@
   --white: #ffffff;
   
   --color-background: var(--mineral-white);
-  --color-text: var(--deep-ink);
+  --color-text: #222b28; /* Deep charcoal / softer deep ink */
   --color-surface: var(--white);
   --color-surface-dim: var(--soft-gray);
+  --color-surface-2: rgba(42, 69, 63, 0.05); /* Soft teal accent tint */
   
   /* Typography */
   --font-display: 'Lora', serif;
@@ -40,6 +41,18 @@
   --spacing-lg: 4rem;
   --spacing-xl: 6rem;
   --spacing-2xl: 8rem;
+  
+  /* New Minimal Spacing Tokens */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
   
   --radius-sm: 2px;
   --radius-md: 4px;
@@ -89,15 +102,15 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 400;
   line-height: 1.15;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--space-4);
   color: var(--deep-ink);
 }
 
-h1 { font-size: var(--text-5xl); letter-spacing: -0.03em; }
-h2 { font-size: var(--text-4xl); letter-spacing: -0.02em; }
+h1 { font-size: var(--text-5xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--text-4xl); letter-spacing: -0.01em; }
 h3 { font-size: var(--text-3xl); letter-spacing: -0.01em; }
 h4 { font-family: var(--font-body); font-weight: 500; font-size: var(--text-xl); letter-spacing: -0.01em; } 
-p { margin-bottom: var(--spacing-md); line-height: 1.7; }
+p { margin-block-end: var(--space-6); line-height: 1.7; }
 
 /* Layout Utilities */
 .container {
@@ -109,11 +122,16 @@ p { margin-bottom: var(--spacing-md); line-height: 1.7; }
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: var(--spacing-md);
+  gap: var(--space-8);
 }
 
 .section {
-  padding: var(--spacing-xl) 0;
+  padding-block: var(--space-12);
+}
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-8);
+  }
 }
 
 .section-bg-dim {
@@ -140,40 +158,39 @@ p { margin-bottom: var(--spacing-md); line-height: 1.7; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1.75rem;
+  padding: var(--space-3) var(--space-5);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0.01em;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   cursor: pointer;
   border: 1px solid transparent;
-  transition: var(--transition-smooth);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .btn:focus-visible {
   outline: 2px solid var(--deep-ink);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .btn-primary {
-  background-color: var(--deep-ink);
+  background-color: var(--muted-teal);
   color: var(--mineral-white);
 }
 .btn-primary:hover {
-  background-color: var(--muted-teal);
+  background-color: var(--deep-ink);
   color: var(--mineral-white);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--deep-ink);
-  border-color: rgba(20, 28, 25, 0.2);
+  border-color: transparent;
 }
 .btn-secondary:hover {
-  border-color: var(--deep-ink);
-  background-color: var(--mineral-white);
+  background-color: rgba(20, 28, 25, 0.04);
 }
 
 .btn-light {
@@ -197,11 +214,11 @@ p { margin-bottom: var(--spacing-md); line-height: 1.7; }
   font-family: var(--font-body);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  color: var(--brass);
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: rgba(34, 43, 40, 0.6);
   display: block;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--space-4);
 }
 
 .thin-rule {
@@ -637,4 +654,36 @@ select.form-input {
   color: var(--muted-teal);
   margin-top: var(--spacing-sm);
 }
+
+/* ── Minimal Lists ─────────────────────────────────────────── */
+.bring-list, .question-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block-end: var(--space-8);
+}
+.bring-list li, .question-list li {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  max-width: 70ch;
+  position: relative;
+  padding-left: var(--space-4);
+}
+.bring-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--eucalyptus);
+}
+
+/* Question list dividers */
+.question-list li {
+  border-bottom: 1px solid oklch(from var(--color-text) l c h / 0.12);
+  padding-bottom: var(--space-3);
+  padding-left: 0;
+}
+.question-list li:last-child {
+  border-bottom: none;
+}
+
 

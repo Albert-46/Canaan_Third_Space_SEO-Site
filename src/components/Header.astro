@@ -16,7 +16,7 @@ import { SITE_CONFIG } from '../config';
       {SITE_CONFIG.features.enableTeamSection && <a href="/team" class="nav-link">Care Team</a>}
       <a href="/patient-info" class="nav-link">Patient Information</a>
       <a href="/contact" class="nav-link">Contact</a>
-      <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary header-call-btn" aria-label={`Call us: ${SITE_CONFIG.contact.phoneDisplay}`}>
+      <a href={SITE_CONFIG.contact.phoneHref} class="nav-link header-call-btn" aria-label={`Call us: ${SITE_CONFIG.contact.phoneDisplay}`}>
         Call Now
       </a>
       <a href="/contact#enquiry" class="btn btn-primary">Enquire Now</a>

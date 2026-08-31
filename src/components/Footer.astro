@@ -70,14 +70,13 @@ const currentYear = new Date().getFullYear();
 <style>
   .site-footer {
     background-color: var(--deep-ink);
-    color: var(--mineral-white);
-    padding: var(--spacing-2xl) 0 var(--spacing-md);
+    color: rgba(250, 249, 246, 0.7);
+    padding: var(--space-20) 0 var(--space-8);
     font-size: var(--text-sm);
   }
   .site-footer a {
-    color: var(--mineral-white);
-    opacity: 0.8;
-    transition: var(--transition-smooth);
+    color: rgba(250, 249, 246, 0.7);
+    transition: color 0.2s ease, opacity 0.2s ease;
   }
   .site-footer a:hover {
     color: var(--white);
@@ -87,14 +86,14 @@ const currentYear = new Date().getFullYear();
   .footer-top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-2xl);
+    gap: var(--space-12);
+    margin-bottom: var(--space-16);
   }
   
   .footer-brand {
     display: block;
     width: 180px;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-6);
   }
   .footer-brand-logo {
     width: 100%;
@@ -103,7 +102,7 @@ const currentYear = new Date().getFullYear();
   .footer-descriptor {
     font-family: var(--font-display);
     font-size: var(--text-lg);
-    opacity: 0.7;
+    opacity: 0.9;
     max-width: 320px;
     line-height: 1.4;
   }
@@ -112,32 +111,32 @@ const currentYear = new Date().getFullYear();
     font-family: var(--font-body);
     font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--brass);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-6);
     font-weight: 600;
   }
   
   .footer-links {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--space-3);
   }
   
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: var(--spacing-md);
+    padding-top: var(--space-6);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: var(--text-xs);
-    opacity: 0.6;
+    opacity: 0.8;
   }
   
   @media (max-width: 768px) {
     .footer-top {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--space-10);
     }
     .footer-bottom {
       flex-direction: column;

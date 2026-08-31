@@ -8,10 +8,10 @@ import { SITE_CONFIG } from '../config';
   title="Patient & Family Information"
   description={`Guidance for patients and families on admission, visiting hours, what to bring, and how care is managed at ${SITE_CONFIG.organization.name}, Manimala, Kottayam.`}
 >
-  <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
+  <div class="page-header" style="padding-block: var(--space-12);">
     <div class="container text-center reveal">
       <h1>Patient &amp; Family Information</h1>
-      <p class="editorial-text" style="margin-top: var(--spacing-md); max-width: 600px; margin-inline: auto;">
+      <p class="editorial-text" style="margin-top: var(--space-6); max-width: 600px; margin-inline: auto; font-weight: 400; letter-spacing: 0.01em; color: rgba(34, 43, 40, 0.75);">
         Clear, practical guidance on inpatient stays, senior care admission, visiting arrangements, and how to stay informed throughout your loved one's care.
       </p>
     </div>
@@ -22,14 +22,14 @@ import { SITE_CONFIG } from '../config';
       <div style="grid-column: span 8; grid-column-start: 3;" class="reveal">
 
         <!-- How to Proceed -->
-        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">How to begin — step by step</h2>
-        <p style="margin-bottom: var(--spacing-md); line-height: 1.7;">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">How to begin — step by step</h2>
+        <p style="margin-bottom: var(--space-8); line-height: 1.7;">
           Whether you need a medical consultation, laboratory tests, or are considering senior residential care, here is how to get started.
         </p>
 
         <div class="step-grid">
           <div class="step-block">
-            <span class="step-tag">Medical Services</span>
+            <span class="eyebrow">Medical Services</span>
             <ol class="step-list">
               <li><strong>Call or enquire online</strong> — describe your need and confirm doctor availability. Walk-ins are welcome but calling ahead reduces wait times significantly.</li>
               <li><strong>Visit the OPD</strong> — bring any existing medical records, prescriptions, and investigation reports.</li>
@@ -38,7 +38,7 @@ import { SITE_CONFIG } from '../config';
             </ol>
           </div>
           <div class="step-block">
-            <span class="step-tag">Senior Residential Care</span>
+            <span class="eyebrow">Senior Residential Care</span>
             <ol class="step-list">
               <li><strong>Initial enquiry</strong> — call or send an online enquiry to describe your loved one's needs and ask about availability.</li>
               <li><strong>Facility visit</strong> — tour the home, meet the care team, and see the residential rooms and common areas.</li>
@@ -57,17 +57,17 @@ import { SITE_CONFIG } from '../config';
         </div>
 
         <!-- Visiting Hours -->
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Visiting Hours</h2>
-        <p style="line-height: 1.7;">Family support is important for patient recovery and resident well-being. We have defined visiting hours to balance this with the need for rest and medical rounds.</p>
-        <div class="info-box">
-          <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
-          <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions are made for palliative or critical care situations. Please speak with the head nurse or call our team to make special arrangements.</p>
-          <a href={SITE_CONFIG.contact.phoneHref} style="display: inline-block; margin-top: 12px; font-size: var(--text-sm); font-weight: 600; color: var(--muted-teal);">Call to confirm visiting arrangements</a>
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-4);">Visiting Hours</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--space-4);">Family support is important for patient recovery and resident well-being. We have defined visiting hours to balance this with the need for rest and medical rounds.</p>
+        <div>
+          <p style="font-weight: 600; font-size: var(--text-lg); margin-bottom: var(--space-2);">General Visiting Hours: {SITE_CONFIG.contact.openingHours}</p>
+          <p style="margin-bottom: var(--space-4); font-size: var(--text-sm); opacity: 0.8;">Exceptions are made for palliative or critical care situations. Please speak with the head nurse or call our team to make special arrangements.</p>
+          <a href={SITE_CONFIG.contact.phoneHref} class="thin-rule">Call to confirm visiting arrangements &rarr;</a>
         </div>
 
         <!-- What to bring — Medical -->
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to bring — Medical Admission</h2>
-        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">If you or a family member is being admitted to our inpatient ward, please bring:</p>
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-4);">What to bring — Medical Admission</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--space-6);">If you or a family member is being admitted to our inpatient ward, please bring:</p>
         <ul class="bring-list">
           <li>Relevant medical records, discharge summaries, and current prescriptions</li>
           <li>Recent investigation reports (blood tests, scans, ECG, etc.)</li>
@@ -80,8 +80,8 @@ import { SITE_CONFIG } from '../config';
         </ul>
 
         <!-- What to bring — Senior Care -->
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to bring — Senior Care Admission</h2>
-        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">For senior care home admission, in addition to the medical documents above:</p>
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-4);">What to bring — Senior Care Admission</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--space-6);">For senior care home admission, in addition to the medical documents above:</p>
         <ul class="bring-list">
           <li>Comfortable, loose-fitting clothing for at least one week</li>
           <li>Preferred personal hygiene and grooming items</li>
@@ -91,8 +91,8 @@ import { SITE_CONFIG } from '../config';
         </ul>
 
         <!-- Questions to ask -->
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Questions to ask during your visit</h2>
-        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">We encourage families to ask questions openly. Here are things families commonly ask — and which our team is prepared to answer clearly:</p>
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-4);">Questions to ask during your visit</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--space-6);">We encourage families to ask questions openly. Here are things families commonly ask — and which our team is prepared to answer clearly:</p>
         <ul class="question-list">
           <li>What is the process if a resident's health deteriorates during the night?</li>
           <li>What is the ratio of nursing and care staff to patients or residents?</li>
@@ -105,7 +105,7 @@ import { SITE_CONFIG } from '../config';
         </ul>
 
         <!-- Emergency -->
-        <div class="emergency-notice" role="note" aria-label="Emergency guidance" style="margin-top: var(--spacing-lg);">
+        <div class="emergency-notice" role="note" aria-label="Emergency guidance" style="margin-top: var(--space-12);">
           <p><strong>Important:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
         </div>
 
@@ -115,98 +115,43 @@ import { SITE_CONFIG } from '../config';
 
   <CTABanner
     title="Have specific questions?"
-    subtitle="Our admissions and care team are happy to clarify any doubts about admission, visiting, or the care process."
-    primaryText="Call Now"
-    primaryLink={SITE_CONFIG.contact.phoneHref}
-    secondaryText="Send an Enquiry"
-    secondaryLink="/contact#enquiry"
+    subtitle="Our admissions and care team are happy to clarify any doubts about admission, visiting, or the care process. We typically respond to all enquiries within one business day."
+    primaryText="Send an Enquiry"
+    primaryLink="/contact#enquiry"
+    secondaryText={`Call ${SITE_CONFIG.contact.phoneDisplay}`}
+    secondaryLink={SITE_CONFIG.contact.phoneHref}
   />
 </BaseLayout>
 
 <style>
   .step-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    grid-template-columns: 55% 45%;
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
   }
   .step-block {
-    background: var(--white);
-    border: 1px solid var(--soft-gray);
-    border-radius: var(--radius-sm);
-    padding: var(--spacing-md);
-  }
-  .step-tag {
-    display: inline-block;
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    color: var(--eucalyptus);
-    margin-bottom: var(--spacing-sm);
+    background: var(--color-surface-2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
   }
   .step-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-left: 20px;
+    gap: var(--space-3);
+    padding-left: var(--space-4);
   }
   .step-list li {
     font-size: var(--text-sm);
     line-height: 1.7;
+    padding-left: var(--space-2);
   }
   .info-cta-block {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--space-6);
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-lg);
-  }
-  .info-box {
-    background: var(--soft-gray);
-    padding: var(--spacing-md);
-    border-radius: var(--radius-sm);
-    margin: var(--spacing-md) 0;
-  }
-  .bring-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: var(--spacing-md);
-  }
-  .bring-list li {
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-  }
-  .bring-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--eucalyptus);
-    font-weight: 600;
-  }
-  .question-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: var(--spacing-md);
-  }
-  .question-list li {
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-    border-bottom: 1px solid rgba(20, 28, 25, 0.07);
-    padding-bottom: 10px;
-  }
-  .question-list li::before {
-    content: '?';
-    position: absolute;
-    left: 0;
-    color: var(--brass);
-    font-weight: 700;
+    margin-bottom: var(--space-12);
   }
   @media (max-width: 640px) {
     .step-grid {
