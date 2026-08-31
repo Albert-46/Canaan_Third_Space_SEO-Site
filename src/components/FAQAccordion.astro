@@ -16,3 +16,41 @@ const { question, answer } = Astro.props;
     <p>{answer}</p>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-question');
+      if (!button) return;
+      
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close all others
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('open');
+            otherItem.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+            const icon = otherItem.querySelector('.faq-icon');
+            if (icon) icon.textContent = '+';
+          }
+        });
+        
+        // Toggle current
+        if (isExpanded) {
+          item.classList.remove('open');
+          button.setAttribute('aria-expanded', 'false');
+          const icon = item.querySelector('.faq-icon');
+          if (icon) icon.textContent = '+';
+        } else {
+          item.classList.add('open');
+          button.setAttribute('aria-expanded', 'true');
+          const icon = item.querySelector('.faq-icon');
+          if (icon) icon.textContent = '−';
+        }
+      });
+    });
+  });
+</script>

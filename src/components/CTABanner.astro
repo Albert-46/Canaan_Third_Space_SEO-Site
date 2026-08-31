@@ -22,90 +22,119 @@ const {
 } = Astro.props;
 ---
 
-<section class="section">
-  <div class={`container ${align === 'center' ? 'text-center' : 'grid-12'}`}>
-    <div class={`reveal ${align === 'center' ? 'mx-auto max-w-700' : 'span-6 pr-md'}`}>
-      <h2 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-sm);">{title}</h2>
-      <p style="margin-bottom: var(--spacing-lg);">{subtitle}</p>
-      
-      {align === 'left' && SITE_CONFIG.contact.phoneDisplay && !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') && (
-        <div style="margin-bottom: var(--spacing-md);">
-          <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Direct Line</p>
-          <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink);">{SITE_CONFIG.contact.phoneDisplay}</a>
-        </div>
-      )}
-
-      <div style={`display: flex; gap: var(--spacing-sm); ${align === 'center' ? 'justify-content: center;' : ''}`}>
-        <a href={primaryLink} class="btn btn-primary">{primaryText}</a>
-        {secondaryLink && secondaryText && (
-          <a href={secondaryLink} class="btn btn-secondary">{secondaryText}</a>
+<section class="section cta-banner">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-content">
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
+        
+        {SITE_CONFIG.contact.phoneDisplay && !SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') && (
+          <div class="cta-contact-detail">
+            <span class="eyebrow">Direct Line</span>
+            <a href={`tel:${SITE_CONFIG.contact.phoneHref}`} class="cta-phone">{SITE_CONFIG.contact.phoneDisplay}</a>
+          </div>
         )}
+
+        <div class="cta-actions">
+          <a href={primaryLink} class="btn btn-primary cta-btn-primary">{primaryText}</a>
+          {secondaryLink && secondaryText && (
+            <a href={secondaryLink} class="btn btn-secondary">{secondaryText}</a>
+          )}
+          {!secondaryLink && (
+             <a href="/contact" class="thin-rule cta-secondary-action">View all contact details &rarr;</a>
+          )}
+        </div>
+      </div>
+      <div class="cta-image-wrapper">
+         <img src="/images/hospital/hero.svg" alt="Hospital architecture" class="cta-image" loading="lazy" />
       </div>
     </div>
-    
-    {(() => {
-      if (align !== 'left') return null;
-      
-      const hasPlaceholder = 
-        SITE_CONFIG.contact.phoneDisplay.includes('REPLACE_WITH') || 
-        SITE_CONFIG.contact.email.includes('REPLACE_WITH') || 
-        SITE_CONFIG.contact.addressLine1.includes('REPLACE_WITH');
-
-      if (hasPlaceholder) {
-        return (
-          <div class="reveal" style="grid-column: span 6;">
-            <div style="background-color: var(--white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray);">
-              <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-md);">Contact Us</h3>
-              <p style="font-size: var(--text-sm); line-height: 1.5; margin-bottom: 5px;">
-                Phone and address details will be updated shortly.
-              </p>
-              <p style="font-size: var(--text-sm); line-height: 1.5; margin-bottom: var(--spacing-md);">
-                For now, please use the enquiry form.
-              </p>
-              <a href="/contact#enquiry" class="btn btn-primary" style="display: inline-block;">Go to Enquiry Form</a>
-            </div>
-          </div>
-        );
-      }
-
-      return (
-        <div class="reveal" style="grid-column: span 6;">
-          <div style="background-color: var(--white); padding: var(--spacing-lg); border: 1px solid var(--soft-gray);">
-            <h3 style="font-size: var(--text-lg); margin-bottom: var(--spacing-md);">Location &amp; Hours</h3>
-
-            <div style="margin-bottom: var(--spacing-md);">
-              <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Address</p>
-              <p style="font-size: var(--text-sm); line-height: 1.5;">
-                <span>{SITE_CONFIG.contact.addressLine1}</span><br />
-                <span>{SITE_CONFIG.contact.addressLine2}</span>
-              </p>
-            </div>
-
-            {SITE_CONFIG.contact.email && (
-              <div style="margin-bottom: var(--spacing-md);">
-                <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Email</p>
-                <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-sm);">{SITE_CONFIG.contact.email}</a>
-              </div>
-            )}
-
-            <div style="margin-bottom: var(--spacing-lg);">
-              <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); font-weight: 600; margin-bottom: 5px;">Hours</p>
-              <p style="font-size: var(--text-sm);">{SITE_CONFIG.contact.openingHours}</p>
-            </div>
-
-            {SITE_CONFIG.contact.mapUrl && (
-              <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="font-size: var(--text-sm); font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
-            )}
-          </div>
-        </div>
-      );
-    })()}
   </div>
 </section>
 
 <style>
-  .mx-auto { margin-left: auto; margin-right: auto; }
-  .max-w-700 { max-width: 700px; }
-  .span-6 { grid-column: span 6; display: flex; flex-direction: column; justify-content: center; }
-  .pr-md { padding-right: var(--spacing-md); }
+  .cta-banner {
+    padding-bottom: var(--spacing-2xl);
+  }
+  .cta-inner {
+    background-color: var(--sand);
+    display: flex;
+    overflow: hidden;
+  }
+  .cta-content {
+    flex: 1;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cta-content h2 {
+    font-size: var(--text-4xl);
+    color: var(--deep-ink);
+    margin-bottom: var(--spacing-md);
+  }
+  .cta-content p {
+    font-size: var(--text-lg);
+    color: var(--deep-ink);
+    opacity: 0.85;
+    max-width: 500px;
+    margin-bottom: var(--spacing-xl);
+  }
+  .cta-contact-detail {
+    margin-bottom: var(--spacing-lg);
+  }
+  .cta-contact-detail .eyebrow {
+    color: var(--deep-ink);
+    opacity: 0.7;
+  }
+  .cta-phone {
+    font-size: var(--text-2xl);
+    font-family: var(--font-display);
+    color: var(--deep-ink);
+  }
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+  .cta-btn-primary {
+    background-color: var(--deep-ink);
+    color: var(--mineral-white);
+  }
+  .cta-btn-primary:hover {
+    background-color: var(--muted-teal);
+  }
+  .cta-secondary-action {
+    color: var(--deep-ink);
+    border-bottom-color: rgba(20, 28, 25, 0.3);
+  }
+  
+  .cta-image-wrapper {
+    flex: 0.8;
+    position: relative;
+    min-height: 400px;
+  }
+  .cta-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .cta-inner {
+      flex-direction: column;
+    }
+    .cta-image-wrapper {
+      min-height: 300px;
+      order: -1;
+    }
+    .cta-content {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+  }
 </style>
