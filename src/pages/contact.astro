@@ -4,13 +4,22 @@ import ContactForm from '../components/ContactForm.astro';
 import { SITE_CONFIG } from '../config';
 ---
 
-<BaseLayout title="Contact & Enquiries" description={`Contact ${SITE_CONFIG.organization.name} for medical services, senior care, and general enquiries.`}>
+<BaseLayout
+  title="Contact & Enquiries"
+  description={`Contact ${SITE_CONFIG.organization.name} in Manimala, Kottayam for medical services, senior care admission, and general enquiries. Call ${SITE_CONFIG.contact.phoneDisplay} or send a message online.`}
+>
   <div class="page-header section-bg-dark" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
     <div class="container text-center reveal">
       <h1>Contact Us</h1>
-      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto;">
+      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto; margin-bottom: var(--spacing-md);">
         We are here to help. Reach out to schedule a visit, enquire about our care services, or ask any questions you may have.
       </p>
+      <div class="header-contact-actions">
+        <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-light">&#128222; Call {SITE_CONFIG.contact.phoneDisplay}</a>
+        {SITE_CONFIG.features.enableWhatsAppAction && (
+          <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-light" target="_blank" rel="noopener noreferrer">&#128172; WhatsApp Us</a>
+        )}
+      </div>
     </div>
   </div>
 
@@ -83,4 +92,22 @@ import { SITE_CONFIG } from '../config';
       </div>
     </div>
   </section>
+
+  <!-- Emergency Disclaimer -->
+  <section class="section" style="padding-top: 0; padding-bottom: var(--spacing-md);">
+    <div class="container">
+      <div class="emergency-notice" role="note" aria-label="Emergency guidance">
+        <p><strong>Not an emergency service:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .header-contact-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

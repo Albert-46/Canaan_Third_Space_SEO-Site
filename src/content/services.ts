@@ -10,19 +10,19 @@ export const medicalServices: Service[] = [
   {
     id: "opd",
     name: "OPD Consultation",
-    shortDescription: "Professional outpatient consultations in private consultation rooms. Patients are seen by appointment.",
+    shortDescription: "Outpatient consultations in private consultation rooms. Walk-ins are welcome; we recommend calling ahead to confirm doctor availability and reduce your waiting time.",
     enabled: true
   },
   {
     id: "lab",
     name: "Laboratory Services",
-    shortDescription: "In-house diagnostic laboratory for blood tests and routine investigations. Results communicated via doctor.",
+    shortDescription: "In-house diagnostic laboratory for blood tests, routine investigations, and specialist panels. Results are communicated directly to your treating doctor for continuity of care.",
     enabled: true
   },
   {
-    id: "ipd",
+    id: "inpatient",
     name: "Inpatient Admission",
-    shortDescription: "Comfortable inpatient care for patients requiring observation or extended treatment.",
+    shortDescription: "Dedicated inpatient care for patients requiring close observation, post-operative recovery, or extended medical treatment in a calm, professionally supervised ward.",
     enabled: true
   }
 ];
@@ -30,20 +30,20 @@ export const medicalServices: Service[] = [
 export const seniorCareServices: Service[] = [
   {
     id: "residential",
-    name: "Residential Care",
-    shortDescription: "A comfortable, dignified residential environment for senior citizens.",
+    name: "Residential Accommodation",
+    shortDescription: "Furnished private and semi-private rooms with housekeeping, nutritious daily meals, and 24-hour on-site staff. Residents bring personal items and family photographs to make the space their own.",
     enabled: true
   },
   {
     id: "assistance",
-    name: "Daily Assistance",
-    shortDescription: "Respectful support with daily routines including personal hygiene, mobility, and meals.",
+    name: "Daily Living Support",
+    shortDescription: "Respectful, dignified assistance with personal hygiene, dressing, medication reminders, mobility support, and structured daily activities — adapted to each resident's individual routine and preferences.",
     enabled: true
   },
   {
     id: "family-support",
-    name: "Family Support",
-    shortDescription: "Regular family updates, defined visiting arrangements, and clear communication processes.",
+    name: "Family Communication",
+    shortDescription: "Regular health and well-being updates to families, defined visiting arrangements, and an open-door policy for family discussions with our care team. You are always an informed part of your loved one's care.",
     enabled: true
   }
 ];

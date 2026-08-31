@@ -1,39 +1,43 @@
-export interface TeamMember {
+export interface TeamRole {
   id: string;
-  name: string;
   role: string;
-  qualifications: string;
-  bio: string;
-  image: string;
+  responsibility: string;
   enabled: boolean;
 }
 
-export const careTeam: TeamMember[] = [
+/**
+ * Care Team Roles
+ *
+ * We do not publish individual staff names or photographs on this public website
+ * to protect staff privacy. Families are welcome to meet the care team during a
+ * facility visit.
+ *
+ * To add named team members in future, restore the TeamMember interface and
+ * supply verified names, qualifications, and photos with staff consent.
+ */
+export const careTeamRoles: TeamRole[] = [
   {
-    id: "dr-sarah",
-    name: "Dr. Sarah Thomas",
-    role: "Chief Medical Officer",
-    qualifications: "MBBS, MD (Internal Medicine)",
-    bio: "Dr. Thomas brings 15 years of experience in geriatric care and internal medicine, leading our clinical services with profound compassion.",
-    image: "/images/team/placeholder-1.jpg", // Replace with real image
+    id: "medical-officer",
+    role: "Medical Officer",
+    responsibility: "Responsible for clinical assessments, OPD consultations, inpatient care plans, and medical oversight of all residents in the senior care home. The medical officer conducts regular ward rounds and is available for consultation by appointment.",
     enabled: true
   },
   {
-    id: "mathew-joseph",
-    name: "Mathew Joseph",
-    role: "Facility Director",
-    qualifications: "MHA (Hospital Administration)",
-    bio: "Mathew ensures the smooth operation of both the medical centre and the senior care home, prioritising resident safety and comfort.",
-    image: "/images/team/placeholder-2.jpg", // Replace with real image
+    id: "nursing-staff",
+    role: "Nursing Team",
+    responsibility: "Our registered nurses provide 24-hour care across the medical centre and residential wing. They administer medications, monitor vital signs, coordinate with the medical officer on any clinical changes, and are the primary daily point of contact for patients and residents.",
     enabled: true
   },
   {
-    id: "sr-mary",
-    name: "Sister Mary",
-    role: "Head Nurse",
-    qualifications: "BSc Nursing",
-    bio: "With over two decades of nursing experience, Sister Mary leads our nursing staff in delivering exceptional, round-the-clock patient care.",
-    image: "/images/team/placeholder-3.jpg", // Replace with real image
+    id: "care-coordinators",
+    role: "Residential Care Staff",
+    responsibility: "Dedicated caregivers who assist residents with daily living activities — personal hygiene, mobility, meals, and recreational activities. They work alongside the nursing team and report any changes in a resident's condition or well-being promptly.",
+    enabled: true
+  },
+  {
+    id: "facility-admin",
+    role: "Admissions & Administration",
+    responsibility: "Our admissions team handles enquiries from families, coordinates facility visits, explains the admission process, and manages day-to-day administrative needs. They are the first point of contact for new enquiries.",
     enabled: true
   }
 ];

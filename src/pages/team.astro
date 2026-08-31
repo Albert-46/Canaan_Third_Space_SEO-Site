@@ -2,36 +2,140 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { SITE_CONFIG } from '../config';
+import { careTeamRoles } from '../content/team';
+
+const activeRoles = careTeamRoles.filter(r => r.enabled);
 ---
 
-<BaseLayout title="Our Care Team" description={`Meet the dedicated medical and care professionals at ${SITE_CONFIG.organization.name}.`}>
+<BaseLayout
+  title="Our Care Team"
+  description={`Meet the dedicated medical and care professionals at ${SITE_CONFIG.organization.name} in Manimala, Kottayam. Our integrated team supports both medical centre patients and senior care home residents.`}
+>
   <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
     <div class="container text-center reveal">
       <h1>Our Care Team</h1>
-      <p class="editorial-text" style="margin-top: var(--spacing-md);">
-        Experienced, compassionate professionals dedicated to your health and well-being.
+      <p class="editorial-text" style="margin-top: var(--spacing-md); max-width: 600px; margin-inline: auto;">
+        Experienced, compassionate professionals working together to support every patient and resident at {SITE_CONFIG.organization.name}.
       </p>
     </div>
   </div>
 
+  <!-- Team Introduction -->
   <section class="section">
     <div class="container grid-12">
       <div style="grid-column: 2 / span 10;" class="reveal">
-        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-md);">How our team supports residents and families</h2>
-        <p style="font-size: var(--text-lg); line-height: 1.6; margin-bottom: var(--spacing-lg);">
-          At {SITE_CONFIG.organization.name}, our care team brings together clinical expertise and daily caregiving support. Doctors, nurses, caregivers, and support staff work together to coordinate medical care, residential support, and family communication for every resident and patient. We combine clinical expertise with genuine empathy to ensure that every patient and resident receives personalized, dignified support. Our team members undergo rigorous training and adhere strictly to medical best practices while prioritizing the comfort and preferences of those in our care.
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-md);">How our team is structured</h2>
+        <p style="font-size: var(--text-lg); line-height: 1.7; margin-bottom: var(--spacing-md);">
+          Because our senior care home is fully integrated with our medical centre, our clinical and residential care teams work closely together. This means residents never have to leave the facility for routine medical attention — and families only need to deal with one coordinated team for all care needs.
         </p>
-
-        <h3 style="font-size: var(--text-xl); margin-bottom: var(--spacing-sm);">How we coordinate medical and residential support</h3>
-        <p style="font-size: var(--text-base); line-height: 1.6; margin-bottom: var(--spacing-md);">
-          Because our senior care home is fully integrated with our medical services, coordination is seamless. Our nursing staff and residential caregivers work directly alongside our medical officers to monitor health daily. This ensures that any change in a resident's condition is promptly addressed by our clinical team, without the need for stressful external transfers.
+        <p style="font-size: var(--text-base); line-height: 1.7; margin-bottom: var(--spacing-md);">
+          We do not publish individual staff profiles on this website to protect staff privacy. Families are warmly invited to meet our team during a facility visit — we believe that personal introductions are far more meaningful than online profiles.
         </p>
-        <p style="font-size: var(--text-base); line-height: 1.6; margin-bottom: var(--spacing-md);">
-          We maintain transparent, regular communication with families. You will always be informed about your loved one's health status, care plan adjustments, and daily well-being.
+        <p style="font-size: var(--text-base); line-height: 1.7;">
+          Below is an overview of the key roles within our team and what each person is responsible for, so you understand who is caring for your loved one and how they coordinate.
         </p>
       </div>
     </div>
   </section>
 
-  <CTABanner title="Speak with our team." subtitle="Contact us to schedule a consultation with our medical professionals or arrange a facility visit." />
+  <!-- Role Cards -->
+  <section class="section section-bg-dim">
+    <div class="container grid-12">
+      {activeRoles.map(role => (
+        <div style="grid-column: span 6;" class="reveal role-card">
+          <h3 style="font-size: var(--text-xl); margin-bottom: var(--spacing-sm); color: var(--muted-teal);">{role.role}</h3>
+          <p style="font-size: var(--text-base); line-height: 1.7;">{role.responsibility}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- How Coordination Works -->
+  <section class="section">
+    <div class="container grid-12">
+      <div style="grid-column: span 5;" class="reveal">
+        <span class="eyebrow">Seamless Care</span>
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Medical and residential care — coordinated.</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">
+          Our nursing staff and residential caregivers work directly alongside our medical officer. Daily health monitoring happens within the home — there is no need to arrange a separate hospital visit for routine check-ups.
+        </p>
+        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">
+          Any change in a resident's condition is escalated to the clinical team immediately. Families are notified promptly and kept informed throughout any change in care.
+        </p>
+        <p style="line-height: 1.7;">
+          We hold the view that families are partners in care — not just visitors. Our admissions and nursing teams are always available to speak with you about your loved one's progress, routine adjustments, and any concerns.
+        </p>
+      </div>
+      <div style="grid-column: 7 / span 6;" class="reveal">
+        <img src="/images/hospital/consultation-room.svg" alt="Care coordination at Canaan Third Space" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Family Communication -->
+  <section class="section section-bg-dark">
+    <div class="container grid-12">
+      <div style="grid-column: 2 / span 10;" class="reveal">
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-md); color: var(--mineral-white);">Family communication — our commitment.</h2>
+        <div class="grid-12" style="gap: var(--spacing-md);">
+          <div style="grid-column: span 4;" class="commitment-item">
+            <h3>Regular updates</h3>
+            <p>Families receive regular updates on the resident's health, daily well-being, and any changes to the care plan. We do not wait for families to ask.</p>
+          </div>
+          <div style="grid-column: span 4;" class="commitment-item">
+            <h3>Open visiting</h3>
+            <p>Family visits are welcomed and actively encouraged within our defined visiting hours. Exceptions for palliative or critical situations are made in consultation with the nursing team.</p>
+          </div>
+          <div style="grid-column: span 4;" class="commitment-item">
+            <h3>Direct contact</h3>
+            <p>You can reach our team by phone or WhatsApp during operational hours. We will always tell you who to speak with for a specific concern rather than redirecting you repeatedly.</p>
+          </div>
+        </div>
+        <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
+          <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-light">Call {SITE_CONFIG.contact.phoneDisplay}</a>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-light" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Speak with our team."
+    subtitle="Contact us to arrange a facility visit, discuss care options, or ask any questions you have about our team and services."
+    primaryText="Call Now"
+    primaryLink={SITE_CONFIG.contact.phoneHref}
+    secondaryText="Send an Enquiry"
+    secondaryLink="/contact#enquiry"
+  />
 </BaseLayout>
+
+<style>
+  .role-card {
+    background: var(--white);
+    border: 1px solid var(--soft-gray);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+  }
+  .commitment-item h3 {
+    font-size: var(--text-base);
+    color: var(--sand);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .commitment-item p {
+    font-size: var(--text-sm);
+    color: var(--mineral-white);
+    opacity: 0.85;
+    line-height: 1.7;
+  }
+  @media (max-width: 768px) {
+    .role-card {
+      grid-column: span 12 !important;
+    }
+    .commitment-item {
+      grid-column: span 12 !important;
+    }
+  }
+</style>

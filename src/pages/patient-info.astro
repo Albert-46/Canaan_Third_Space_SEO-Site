@@ -4,12 +4,15 @@ import CTABanner from '../components/CTABanner.astro';
 import { SITE_CONFIG } from '../config';
 ---
 
-<BaseLayout title="Patient & Family Information" description={`Information for patients and families regarding admission, visiting hours, and care at ${SITE_CONFIG.organization.name}.`}>
+<BaseLayout
+  title="Patient & Family Information"
+  description={`Guidance for patients and families on admission, visiting hours, what to bring, and how care is managed at ${SITE_CONFIG.organization.name}, Manimala, Kottayam.`}
+>
   <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
     <div class="container text-center reveal">
       <h1>Patient &amp; Family Information</h1>
-      <p class="editorial-text" style="margin-top: var(--spacing-md);">
-        Guidance on inpatient stays, senior care admission, visiting arrangements, and communication.
+      <p class="editorial-text" style="margin-top: var(--spacing-md); max-width: 600px; margin-inline: auto;">
+        Clear, practical guidance on inpatient stays, senior care admission, visiting arrangements, and how to stay informed throughout your loved one's care.
       </p>
     </div>
   </div>
@@ -17,31 +20,201 @@ import { SITE_CONFIG } from '../config';
   <section class="section">
     <div class="container grid-12">
       <div style="grid-column: span 8; grid-column-start: 3;" class="reveal">
-        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Admissions Process</h2>
-        <p>We aim to make the admission process for both our medical centre and senior care home as smooth and stress-free as possible.</p>
-        <ul style="margin: var(--spacing-md) 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
-          <li><strong>Medical Admission:</strong> Usually directed by the treating physician after an OPD consultation. Emergency admissions are handled on a case-by-case basis depending on capacity.</li>
-          <li><strong>Senior Care Admission:</strong> Requires an initial consultation with our facility director and a medical assessment to ensure we can meet the resident's specific needs. We encourage a trial stay where applicable.</li>
-        </ul>
 
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Visiting Hours</h2>
-        <p>Family support is crucial for patient recovery and resident well-being. We have designated visiting hours to balance this need with the requirement for rest and medical rounds.</p>
-        <div style="background: var(--soft-gray); padding: var(--spacing-md); border-radius: var(--radius-sm); margin: var(--spacing-md) 0;">
-          <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
-          <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions can be made in palliative or critical care situations. Please speak with the head nurse.</p>
+        <!-- How to Proceed -->
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">How to begin — step by step</h2>
+        <p style="margin-bottom: var(--spacing-md); line-height: 1.7;">
+          Whether you need a medical consultation, laboratory tests, or are considering senior residential care, here is how to get started.
+        </p>
+
+        <div class="step-grid">
+          <div class="step-block">
+            <span class="step-tag">Medical Services</span>
+            <ol class="step-list">
+              <li><strong>Call or enquire online</strong> — describe your need and confirm doctor availability. Walk-ins are welcome but calling ahead reduces wait times significantly.</li>
+              <li><strong>Visit the OPD</strong> — bring any existing medical records, prescriptions, and investigation reports.</li>
+              <li><strong>Consultation</strong> — the doctor will assess you and arrange any required investigations.</li>
+              <li><strong>Follow-up or admission</strong> — a clear plan will be communicated to you and your family, whether for outpatient follow-up or inpatient admission.</li>
+            </ol>
+          </div>
+          <div class="step-block">
+            <span class="step-tag">Senior Residential Care</span>
+            <ol class="step-list">
+              <li><strong>Initial enquiry</strong> — call or send an online enquiry to describe your loved one's needs and ask about availability.</li>
+              <li><strong>Facility visit</strong> — tour the home, meet the care team, and see the residential rooms and common areas.</li>
+              <li><strong>Medical assessment</strong> — our medical officer reviews existing health records and confirms suitability for admission.</li>
+              <li><strong>Admission &amp; orientation</strong> — we guide families through settling in, daily schedule, and communication arrangements on admission day.</li>
+            </ol>
+          </div>
         </div>
 
-        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to Bring</h2>
-        <p>For inpatient stays or senior care admission, please bring:</p>
-        <ul style="margin: var(--spacing-md) 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px;">
-          <li>Relevant medical records and current prescriptions.</li>
-          <li>Comfortable clothing and non-slip footwear.</li>
-          <li>Personal toiletries (though basic items are provided).</li>
-          <li>Any mobility aids currently used (walking stick, hearing aids, etc.).</li>
+        <div class="info-cta-block">
+          <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-primary">Call {SITE_CONFIG.contact.phoneDisplay}</a>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+          )}
+          <a href="/contact#enquiry" class="thin-rule" style="font-weight: 500;">Send an Enquiry &rarr;</a>
+        </div>
+
+        <!-- Visiting Hours -->
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Visiting Hours</h2>
+        <p style="line-height: 1.7;">Family support is important for patient recovery and resident well-being. We have defined visiting hours to balance this with the need for rest and medical rounds.</p>
+        <div class="info-box">
+          <p style="margin: 0;"><strong>General Visiting Hours:</strong> {SITE_CONFIG.contact.openingHours}</p>
+          <p style="margin-top: 10px; font-size: var(--text-sm); opacity: 0.8;">Exceptions are made for palliative or critical care situations. Please speak with the head nurse or call our team to make special arrangements.</p>
+          <a href={SITE_CONFIG.contact.phoneHref} style="display: inline-block; margin-top: 12px; font-size: var(--text-sm); font-weight: 600; color: var(--muted-teal);">Call to confirm visiting arrangements</a>
+        </div>
+
+        <!-- What to bring — Medical -->
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to bring — Medical Admission</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">If you or a family member is being admitted to our inpatient ward, please bring:</p>
+        <ul class="bring-list">
+          <li>Relevant medical records, discharge summaries, and current prescriptions</li>
+          <li>Recent investigation reports (blood tests, scans, ECG, etc.)</li>
+          <li>Government-issued photo ID (Aadhaar card, passport)</li>
+          <li>Health insurance or Mediclaim documents, if applicable</li>
+          <li>Comfortable clothing and non-slip footwear</li>
+          <li>Personal toiletries (basic items are also provided)</li>
+          <li>Any mobility aids currently in use (walking stick, hearing aids, spectacles)</li>
+          <li>A charged mobile phone and an emergency contact number for a family member</li>
         </ul>
+
+        <!-- What to bring — Senior Care -->
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">What to bring — Senior Care Admission</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">For senior care home admission, in addition to the medical documents above:</p>
+        <ul class="bring-list">
+          <li>Comfortable, loose-fitting clothing for at least one week</li>
+          <li>Preferred personal hygiene and grooming items</li>
+          <li>Any mobility or sensory aids (walker, wheelchair, hearing aid)</li>
+          <li>Familiar personal items — photographs, books, small devotional items — to personalise the room</li>
+          <li>Emergency family contact numbers and preferred communication method</li>
+        </ul>
+
+        <!-- Questions to ask -->
+        <h2 style="font-size: var(--text-2xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Questions to ask during your visit</h2>
+        <p style="line-height: 1.7; margin-bottom: var(--spacing-sm);">We encourage families to ask questions openly. Here are things families commonly ask — and which our team is prepared to answer clearly:</p>
+        <ul class="question-list">
+          <li>What is the process if a resident's health deteriorates during the night?</li>
+          <li>What is the ratio of nursing and care staff to patients or residents?</li>
+          <li>How and how often will families be updated on a resident's condition?</li>
+          <li>What activities and social engagements are available for residents?</li>
+          <li>Can a resident bring their own furniture or personal belongings?</li>
+          <li>Are dietary preferences or restrictions accommodated in meals?</li>
+          <li>Is a respite (short-term) stay available before committing to long-term care?</li>
+          <li>What are the discharge procedures and notice requirements?</li>
+        </ul>
+
+        <!-- Emergency -->
+        <div class="emergency-notice" role="note" aria-label="Emergency guidance" style="margin-top: var(--spacing-lg);">
+          <p><strong>Important:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <CTABanner title="Have specific questions?" subtitle="Our administrative team is happy to clarify any doubts you may have regarding admissions or care." />
+  <CTABanner
+    title="Have specific questions?"
+    subtitle="Our admissions and care team are happy to clarify any doubts about admission, visiting, or the care process."
+    primaryText="Call Now"
+    primaryLink={SITE_CONFIG.contact.phoneHref}
+    secondaryText="Send an Enquiry"
+    secondaryLink="/contact#enquiry"
+  />
 </BaseLayout>
+
+<style>
+  .step-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  .step-block {
+    background: var(--white);
+    border: 1px solid var(--soft-gray);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+  }
+  .step-tag {
+    display: inline-block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--eucalyptus);
+    margin-bottom: var(--spacing-sm);
+  }
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 20px;
+  }
+  .step-list li {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+  .info-cta-block {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+  }
+  .info-box {
+    background: var(--soft-gray);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin: var(--spacing-md) 0;
+  }
+  .bring-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+  }
+  .bring-list li {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+  .bring-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--eucalyptus);
+    font-weight: 600;
+  }
+  .question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+  }
+  .question-list li {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(20, 28, 25, 0.07);
+    padding-bottom: 10px;
+  }
+  .question-list li::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    .step-grid {
+      grid-template-columns: 1fr;
+    }
+    .info-cta-block {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

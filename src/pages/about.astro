@@ -21,9 +21,9 @@ import { SITE_CONFIG } from '../config';
       </div>
       <div style="grid-column: 7 / span 6;" class="reveal">
         <h2 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-md);">Our Story</h2>
-        <p>Founded on the belief that healthcare should be both clinical and compassionate, {SITE_CONFIG.organization.name} was established to serve the community of {SITE_CONFIG.organization.city}.</p>
-        <p>We recognised a significant gap in continuity of care for seniors—where medical needs and daily living support were often disjointed. By uniting a fully equipped medical centre with a residential senior care home, we created a seamless environment where residents have immediate access to healthcare, and patients recover in a warm, home-like setting.</p>
-        <p>Today, our facility stands as a trusted institution for families seeking reliable medical intervention and respectful long-term care.</p>
+        <p style="margin-bottom: var(--spacing-sm); line-height: 1.7;">Founded on the belief that healthcare should be both clinical and compassionate, {SITE_CONFIG.organization.name} was established to serve the community of {SITE_CONFIG.organization.city}, Kottayam.</p>
+        <p style="margin-bottom: var(--spacing-sm); line-height: 1.7;">We recognised a significant gap in continuity of care for seniors—where medical needs and daily living support were often disjointed. By uniting a fully equipped medical centre with a residential senior care home under one roof in Manimala, we created a seamless environment where residents have immediate access to healthcare, and patients recover in a warm, home-like setting.</p>
+        <p style="line-height: 1.7;">Today, our facility serves patients and families across Kottayam district as a trusted, integrated centre for medical care and respectful long-term senior living.</p>
       </div>
     </div>
   </section>
@@ -48,5 +48,44 @@ import { SITE_CONFIG } from '../config';
     </div>
   </section>
 
-  <CTABanner title="Experience our care." subtitle="Arrange a visit to meet our team and tour our facilities." primaryText="Schedule a Visit" align="center" />
+  <!-- Location Callout -->
+  <section class="section">
+    <div class="container">
+      <div class="location-callout reveal">
+        <div class="location-detail">
+          <p style="font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 6px;">Our Location</p>
+          <p style="font-size: var(--text-base); font-weight: 500;">{SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1}</p>
+          <p style="font-size: var(--text-sm); opacity: 0.8;">{SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district}, {SITE_CONFIG.contact.state} &ndash; {SITE_CONFIG.contact.postalCode}</p>
+          <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: 10px; display: inline-block; font-size: var(--text-sm); font-weight: 500;" target="_blank" rel="noopener noreferrer">View on Google Maps &rarr;</a>
+        </div>
+        <div class="location-contact">
+          <p style="font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 6px;">Contact</p>
+          <a href={SITE_CONFIG.contact.phoneHref} style="font-size: var(--text-xl); font-family: var(--font-display); font-weight: 500; display: block; margin-bottom: 4px;">{SITE_CONFIG.contact.phoneDisplay}</a>
+          <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-sm); opacity: 0.75;">{SITE_CONFIG.contact.email}</a>
+          <p style="font-size: var(--text-sm); opacity: 0.7; margin-top: 6px;">Open {SITE_CONFIG.contact.openingHours}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Experience our care." subtitle="Arrange a visit to meet our team and see our facilities in Manimala, Kottayam." primaryText="Call to Schedule" primaryLink={SITE_CONFIG.contact.phoneHref} secondaryText="Send an Enquiry" secondaryLink="/contact#enquiry" align="center" />
 </BaseLayout>
+
+<style>
+  .location-callout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    background: var(--soft-gray);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    .location-callout {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+    }
+  }
+</style>

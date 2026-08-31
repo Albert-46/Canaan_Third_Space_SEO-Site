@@ -22,7 +22,13 @@ import { SITE_CONFIG } from '../config';
         <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
           <div style="padding-right: var(--spacing-md);">
             <h2 style="font-size: var(--text-2xl);">Medical Centre</h2>
-            <p>Our clinical spaces are maintained to rigorous hygienic standards. Consultation rooms are private, and our in-house laboratory ensures quick diagnostic turnaround.</p>
+          <p style="margin-bottom: var(--spacing-sm);">Our clinical spaces are maintained to rigorous hygienic standards. Consultation rooms are private and acoustically separated to ensure patient confidentiality. The in-house laboratory ensures same-day diagnostic turnaround for most routine investigations.</p>
+          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); margin-top: var(--spacing-sm);">
+            <li>&bull; Private OPD consultation rooms</li>
+            <li>&bull; In-house diagnostic laboratory</li>
+            <li>&bull; Clean, well-lit waiting areas</li>
+            <li>&bull; Accessible layout for wheelchair users and elderly patients</li>
+          </ul>
           </div>
         </div>
         <div style="grid-column: span 6;" class="reveal">
@@ -36,15 +42,27 @@ import { SITE_CONFIG } from '../config';
         <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
           <div style="padding-left: var(--spacing-md);">
             <h2 style="font-size: var(--text-2xl);">Residential Rooms</h2>
-            <p>Senior care rooms are designed for comfort and accessibility, featuring anti-slip flooring, grab rails, emergency call bells, and ample natural light.</p>
+          <p style="margin-bottom: var(--spacing-sm);">Senior care rooms are designed for comfort, accessibility, and safety. Each room is furnished and maintained by our housekeeping team.</p>
+          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); margin-top: var(--spacing-sm);">
+            <li>&bull; Anti-slip flooring and grab rails in bathrooms</li>
+            <li>&bull; Emergency call bell accessible from the bed</li>
+            <li>&bull; Ample natural light and ventilation</li>
+            <li>&bull; Space for personal items and family photographs</li>
+          </ul>
           </div>
         </div>
 
         <!-- Feature 3 -->
         <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center;" class="reveal">
           <div style="padding-right: var(--spacing-md);">
-            <h2 style="font-size: var(--text-2xl);">Common Areas & Dining</h2>
-            <p>Social interaction is vital. Our spacious common areas and communal dining spaces encourage residents to connect, participate in activities, and share meals together.</p>
+            <h2 style="font-size: var(--text-2xl);">Common Areas &amp; Dining</h2>
+          <p style="margin-bottom: var(--spacing-sm);">Social interaction is vital to resident well-being. Our common areas are designed to encourage conversation, light activities, and a sense of community.</p>
+          <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm); margin-top: var(--spacing-sm);">
+            <li>&bull; Spacious common lounge for activities and socialising</li>
+            <li>&bull; Communal dining with nutritious daily meals</li>
+            <li>&bull; Outdoor seating and garden area</li>
+            <li>&bull; Designated family visit area</li>
+          </ul>
           </div>
         </div>
         <div style="grid-column: span 6;" class="reveal">
@@ -55,5 +73,12 @@ import { SITE_CONFIG } from '../config';
     </div>
   </section>
 
-  <CTABanner title="See for yourself." subtitle="The best way to understand our environment is to visit in person." primaryText="Schedule a Tour" />
+  <CTABanner
+    title="See for yourself."
+    subtitle="The best way to understand our environment is to visit in person. We welcome families to tour the facility at a convenient time."
+    primaryText="Call to Book a Tour"
+    primaryLink={SITE_CONFIG.contact.phoneHref}
+    secondaryText="Send an Enquiry"
+    secondaryLink="/contact#enquiry"
+  />
 </BaseLayout>
