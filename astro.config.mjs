@@ -8,6 +8,6 @@ export default defineConfig({
   site: 'https://canaan-thirdspace-demo.web.app',
   integrations: [sitemap()],
   redirects: {
-    '/old-age-home.html': '/senior-living'
+    '/old-age-home.html': '/about'
   }
 });

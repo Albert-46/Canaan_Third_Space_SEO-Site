@@ -1,36 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_CONFIG } from '../config';
+
+const title = "Privacy Policy";
+const description = "Privacy policy for Canaan Third Space Senior Care Home.";
+const lastUpdated = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<BaseLayout title="Privacy Policy" description={`Privacy Policy for ${SITE_CONFIG.organization.name}.`}>
-  <section class="section" style="padding-top: var(--spacing-2xl);">
-    <div class="container grid-12">
-      <div style="grid-column: span 8; grid-column-start: 3;" class="reveal">
-        <h1 style="font-size: var(--text-3xl); margin-bottom: var(--spacing-lg);">Privacy Policy</h1>
-        
-        <p class="editorial-text mb-md" style="font-size: var(--text-base);">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+<BaseLayout title={title} description={description}>
+  {/* Hero Section */}
+  <section class="hero-minimal reveal">
+    <div class="container text-block-narrow">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: {lastUpdated}</p>
+    </div>
+  </section>
 
-        <p>{SITE_CONFIG.organization.name} ("we", "us", or "our") respects your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+  {/* Policy Content */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow" style="display: flex; flex-direction: column; gap: var(--space-6);">
+      
+      <div>
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">1. Information We Collect</h2>
+        <p>We collect information you provide directly to us when you fill out an enquiry form or contact us via email, phone, or WhatsApp. This may include your name, phone number, email address, and any specific details you share regarding care needs.</p>
+      </div>
 
-        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Information We Collect</h2>
-        <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
-        <ul style="margin-left: 20px; margin-bottom: var(--spacing-md); display: flex; flex-direction: column; gap: 10px;">
-          <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, email address, and telephone number, that you voluntarily give to us when you submit an enquiry form.</li>
-          <li><strong>Derivative Data:</strong> Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages you have viewed directly before and after accessing the Site.</li>
-        </ul>
+      <div>
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">2. How We Use Your Information</h2>
+        <p>We use the information collected solely to respond to your enquiries, coordinate visits to our facility, and communicate with you about our medical services and senior care options. We do not use your information for unsolicited marketing.</p>
+      </div>
 
-        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Medical Disclaimer</h2>
-        <p><strong>This website is for informational and marketing purposes only.</strong> Any information submitted through our contact forms is treated as a general administrative enquiry. Please do not submit confidential medical records, sensitive patient health information, or emergency requests through this website. Our clinical patient management systems are strictly separate from this public website.</p>
+      <div>
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">3. Data Protection</h2>
+        <p>We are committed to protecting your privacy. We do not sell, rent, or trade your personal data to third parties. Access to your information is limited to authorized personnel who need it to assist you and manage your care requirements securely.</p>
+      </div>
 
-        <h2 style="font-size: var(--text-xl); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm);">Contact Us</h2>
-        <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+      <div>
+        <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">4. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
         <p>
-          {SITE_CONFIG.organization.name}<br>
-          {SITE_CONFIG.contact.addressLine1}, {SITE_CONFIG.contact.addressLine2}<br>
-          Email: <a href={`mailto:${SITE_CONFIG.contact.email}`} class="thin-rule">{SITE_CONFIG.contact.email}</a>
+          <a href={`mailto:${SITE_CONFIG.contact.email}`} style="color: var(--color-primary); font-weight: 500;">{SITE_CONFIG.contact.email}</a>
         </p>
       </div>
+
     </div>
   </section>
 </BaseLayout>

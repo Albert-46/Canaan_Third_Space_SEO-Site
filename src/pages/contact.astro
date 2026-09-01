@@ -2,112 +2,75 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE_CONFIG } from '../config';
+
+const title = "Contact Us";
+const description = "Get in touch with Canaan Third Space. We are here to answer your questions, schedule visits, and support your healthcare and senior living needs.";
 ---
 
-<BaseLayout
-  title="Contact & Enquiries"
-  description={`Contact ${SITE_CONFIG.organization.name} in Manimala, Kottayam for medical services, senior care admission, and general enquiries. Call ${SITE_CONFIG.contact.phoneDisplay} or send a message online.`}
->
-  <div class="page-header section-bg-dark" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
-    <div class="container text-center reveal">
+<BaseLayout title={title} description={description}>
+  {/* Hero Section */}
+  <section class="hero-minimal reveal">
+    <div class="container text-block-narrow">
+      <span class="eyebrow">Get in Touch</span>
       <h1>Contact Us</h1>
-      <p style="font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto; margin-bottom: var(--spacing-md);">
-        We are here to help. Reach out to schedule a visit, enquire about our care services, or ask any questions you may have.
-      </p>
-      <div class="header-contact-actions">
-        <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-light">&#128222; Call {SITE_CONFIG.contact.phoneDisplay}</a>
-        {SITE_CONFIG.features.enableWhatsAppAction && (
-          <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-light" target="_blank" rel="noopener noreferrer">&#128172; WhatsApp Us</a>
-        )}
-      </div>
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="container grid-12">
-      <!-- Contact Information -->
-      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: var(--spacing-lg);" class="reveal">
-        <div>
-          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--spacing-sm);">Get in Touch</h2>
-          <p>Our admissions and care team are available to discuss your needs confidentially.</p>
-        </div>
-
-        {(() => {
-          return (
-            <>
-              {SITE_CONFIG.contact.phoneDisplay && (
-                <div>
-                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Direct Line</h3>
-                  <a href={SITE_CONFIG.contact.phoneHref} style="font-size: var(--text-xl); font-family: var(--font-display); color: var(--deep-ink); font-weight: 500;">
-                    {SITE_CONFIG.contact.phoneDisplay}
-                  </a>
-                </div>
-              )}
-
-              {SITE_CONFIG.contact.whatsappDisplay && SITE_CONFIG.features.enableWhatsAppAction && (
-                <div>
-                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">WhatsApp</h3>
-                  <a href={SITE_CONFIG.contact.whatsappHref} style="font-size: var(--text-lg); color: var(--deep-ink); font-weight: 500;" target="_blank" rel="noopener noreferrer">
-                    Message us on WhatsApp
-                  </a>
-                </div>
-              )}
-
-              {SITE_CONFIG.contact.email && (
-                <div>
-                  <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Email</h3>
-                  <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-base); color: var(--deep-ink);">
-                    {SITE_CONFIG.contact.email}
-                  </a>
-                </div>
-              )}
-
-              <div>
-                <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Location</h3>
-                <p style="font-size: var(--text-base); line-height: 1.6;">
-                  {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1}<br />
-                  {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} &ndash; {SITE_CONFIG.contact.postalCode}<br />
-                  {SITE_CONFIG.contact.state}, {SITE_CONFIG.contact.country}
-                </p>
-                {SITE_CONFIG.contact.mapUrl && (
-                  <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: 10px; display: inline-block; font-weight: 500;" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
-                )}
-              </div>
-
-              <div>
-                <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--eucalyptus); margin-bottom: 5px;">Opening Hours</h3>
-                <p style="font-size: var(--text-base);">{SITE_CONFIG.contact.openingHours}</p>
-              </div>
-            </>
-          );
-        })()}
-      </div>
-
-      <!-- Contact Form Area -->
-      <div style="grid-column: 7 / span 6;" class="reveal" id="enquiry">
-        <div style="background-color: var(--white); padding: var(--spacing-xl); border: 1px solid var(--soft-gray); border-radius: var(--radius-sm); box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
-          <h2 style="font-size: var(--text-xl); margin-bottom: var(--spacing-md);">Send an Enquiry</h2>
-          <ContactForm />
-        </div>
-      </div>
+      <p>We are here to answer your questions, schedule visits, and provide the support you and your family need.</p>
     </div>
   </section>
 
-  <!-- Emergency Disclaimer -->
-  <section class="section" style="padding-top: 0; padding-bottom: var(--spacing-md);">
+  {/* Contact Details & Form */}
+  <section class="section section-compact reveal">
     <div class="container">
-      <div class="emergency-notice" role="note" aria-label="Emergency guidance">
-        <p><strong>Not an emergency service:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
+      <div class="grid-12" style="gap: var(--space-12);">
+        <div style="grid-column: span 5; display: flex; flex-direction: column; gap: var(--space-8);">
+          <div>
+            <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">Contact Details</h2>
+            <ul style="display: flex; flex-direction: column; gap: var(--space-4);">
+              <li>
+                <span class="eyebrow" style="margin-bottom: var(--space-2);">Phone</span>
+                <a href={SITE_CONFIG.contact.phoneHref} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;">{SITE_CONFIG.contact.phoneDisplay}</a>
+              </li>
+              {SITE_CONFIG.features.enableWhatsAppAction && (
+                <li>
+                  <span class="eyebrow" style="margin-bottom: var(--space-2);">WhatsApp</span>
+                  <a href={SITE_CONFIG.contact.whatsappHref} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
+                </li>
+              )}
+              <li>
+                <span class="eyebrow" style="margin-bottom: var(--space-2);">Email</span>
+                <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;">{SITE_CONFIG.contact.email}</a>
+              </li>
+              <li>
+                <span class="eyebrow" style="margin-bottom: var(--space-2);">Address</span>
+                <address style="font-style: normal; font-size: var(--text-lg); color: var(--color-text); line-height: 1.6;">
+                  {SITE_CONFIG.contact.addressLine2}<br />
+                  {SITE_CONFIG.contact.addressLine1}<br />
+                  {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district}<br />
+                  {SITE_CONFIG.contact.state} - {SITE_CONFIG.contact.postalCode}
+                </address>
+                <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: var(--space-4); color: var(--color-primary); border-color: var(--color-primary);" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="grid-column: span 7;">
+          <div class="card" id="enquiry">
+            <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">Send an Enquiry</h2>
+            <ContactForm />
+          </div>
+        </div>
       </div>
     </div>
   </section>
-</BaseLayout>
 
-<style>
-  .header-contact-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-</style>
+  {/* Emergency Notice */}
+  {SITE_CONFIG.features.enableEmergencyNotice && (
+    <section class="section section-compact reveal">
+      <div class="container text-block-narrow">
+        <div class="emergency-notice text-center">
+          <p><strong>Notice:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,351 +1,97 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTABanner from '../components/CTABanner.astro';
-import FAQAccordion from '../components/FAQAccordion.astro';
 import { SITE_CONFIG } from '../config';
-import { faqs } from '../content/faqs';
 
-const activeFaqs = faqs.filter(faq => faq.enabled);
+const title = "Canaan Third Space Senior Care Home";
+const description = "Canaan Third Space Senior Care Home brings together medical services and supportive senior residential living in a calm, professionally managed environment.";
 ---
 
-<BaseLayout>
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-image-wrapper">
-      <img src="/images/hospital/hero.svg" alt={`Exterior of ${SITE_CONFIG.organization.name}`} class="hero-image" />
-    </div>
-    <div class="container hero-container">
-      <div class="hero-content">
-        <span class="eyebrow reveal">{SITE_CONFIG.organization.state}, {SITE_CONFIG.organization.country}</span>
-        <h1 class="reveal">Compassionate care.<br>Dignified living.</h1>
-        <p class="reveal">
-          {SITE_CONFIG.organization.name} brings together medical services and supportive senior residential living in a calm, professionally managed environment.
-        </p>
-        <div class="hero-actions reveal">
-          <a href="/services" class="btn btn-primary">Medical Services</a>
-          <a href="/contact#enquiry" class="thin-rule">Request a Visit &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Introduction -->
-  <section class="section section-intro">
-    <div class="container text-center reveal">
-      <div class="intro-statement">
-        <span class="intro-rule"></span>
-        <p class="editorial-text">We believe that true care requires both medical expertise and profound respect for the individual. {SITE_CONFIG.organization.shortName} unites a medical centre with a dedicated senior care home, ensuring residents and patients receive continuous, dignified support.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Medical Services and Senior Care Introduction -->
-  <section class="section">
-    <div class="container">
-      <!-- Medical Services Area (Image Left, Text Right) -->
-      <div class="services-row reveal">
-        <div class="services-image-col">
-          <img src="/images/hospital/reception.svg" alt="Reception area" class="image-editorial" loading="lazy">
-        </div>
-        <div class="services-text-col">
-          <span class="eyebrow">01 &mdash; Clinical Care</span>
-          <h2>Medical Services</h2>
-          <p>Outpatient consultations, in-house laboratory diagnostics, and inpatient admission in a clean, modern environment designed for patient comfort and family confidence.</p>
-          <ul class="editorial-list">
-            <li>OPD consultations</li>
-            <li>Laboratory services</li>
-            <li>Inpatient care</li>
-          </ul>
-          <a href="/services" class="thin-rule mt-sm">View medical services &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Senior Care Home Area (Text Left, Image Right) -->
-      <div class="services-row reverse reveal" style="margin-top: var(--spacing-xl);">
-        <div class="services-text-col">
-          <span class="eyebrow">02 &mdash; Residential Care</span>
-          <h2>Senior Care Home</h2>
-          <p>A supportive residential community offering comfortable living, daily assistance, and companionship. An environment where seniors live with dignity and personal respect.</p>
-          <ul class="editorial-list">
-            <li>Residential accommodation</li>
-            <li>Daily support &amp; activities</li>
-            <li>Family communication</li>
-          </ul>
-          <a href="/senior-living" class="thin-rule mt-sm">Explore senior care &rarr;</a>
-        </div>
-        <div class="services-image-col">
-          <img src="/images/old-age-home/home-exterior.svg" alt="Exterior of senior care home" class="image-editorial" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Care Philosophy -->
-  <section class="section section-philosophy">
-    <div class="container">
-      <div class="philosophy-header reveal">
-        <span class="eyebrow" style="color: var(--sand);">Our Charter</span>
-        <h2>Philosophy of Care</h2>
-        <p>We focus on the individual, not just the condition. Our approach is grounded in core principles that prioritise the human experience.</p>
-      </div>
+<BaseLayout title={title} description={description}>
+  {/* Hero Section */}
+  <section class="hero-minimal reveal">
+    <div class="container text-block-narrow">
+      <span class="eyebrow">{SITE_CONFIG.organization.city}, {SITE_CONFIG.organization.district}, {SITE_CONFIG.organization.state}</span>
+      <h1>Compassionate care. Dignified living.</h1>
+      <p>{description}</p>
       
-      <div class="philosophy-grid">
-        <div class="philosophy-item reveal">
-          <span class="philosophy-number">01</span>
-          <h3>Dignity in all interactions</h3>
-        </div>
-        <div class="philosophy-item reveal" style="transition-delay: 0.1s;">
-          <span class="philosophy-number">02</span>
-          <h3>Safety and respect</h3>
-        </div>
-        <div class="philosophy-item reveal" style="transition-delay: 0.2s;">
-          <span class="philosophy-number">03</span>
-          <h3>Listening to patients and families</h3>
-        </div>
-        <div class="philosophy-item reveal" style="transition-delay: 0.3s;">
-          <span class="philosophy-number">04</span>
-          <h3>Continuity of care</h3>
-        </div>
-      </div>
-      
-      <div class="philosophy-footer reveal">
-        <a href="/about" class="btn btn-light">Read Our Story</a>
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+        <a href="/contact#enquiry" class="btn btn-primary">Book a Facility Visit</a>
+        <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call Now</a>
+        {SITE_CONFIG.features.enableWhatsAppAction && (
+          <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        )}
       </div>
     </div>
   </section>
 
-  <!-- Emergency Notice -->
+  {/* What We Offer */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow text-center">
+      <h2>Integrated care, under one roof</h2>
+      <p>We provide comprehensive medical services alongside a supportive senior residential living facility, ensuring all your health and lifestyle needs are met seamlessly.</p>
+      
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+        <a href="/services" class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);">View Medical Services &rarr;</a>
+        <a href="/about" class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);">Explore Senior Care &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Why Families Choose Us */}
+  <section class="section section-compact section-bg-dim reveal">
+    <div class="container text-block-narrow">
+      <h2 class="text-center">Why families choose Canaan Third Space</h2>
+      <ul style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4);">
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-lg); color: var(--color-text);">Calm, professionally managed environment</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-lg); color: var(--color-text);">Medical and residential care in one coordinated setting</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-lg); color: var(--color-text);">Clear communication with families before and after admission</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-lg); color: var(--color-text);">Respect for dignity, safety, and individual preferences</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* Contact Strip */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow">
+      <div class="contact-strip">
+        <div>
+          <h3 style="margin-bottom: var(--space-2); font-size: var(--text-2xl);">Speak with our team</h3>
+          <p style="margin: 0; font-size: var(--text-sm); max-width: 300px;">
+            {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1}, {SITE_CONFIG.contact.city}
+          </p>
+        </div>
+        <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap;">
+          <a href={SITE_CONFIG.contact.phoneHref} class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);">Call {SITE_CONFIG.contact.phoneDisplay}</a>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          )}
+          <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          <a href="/contact" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Emergency Notice */}
   {SITE_CONFIG.features.enableEmergencyNotice && (
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <div class="emergency-notice" role="note" aria-label="Emergency guidance">
-          <p><strong>Emergency guidance:</strong> This website is not an emergency service. For urgent medical help, contact your local emergency number or proceed to the nearest emergency department.</p>
+    <section class="section section-compact" style="padding-top: 0; padding-bottom: var(--space-8);">
+      <div class="container text-block-narrow reveal">
+        <div class="emergency-notice" style="margin: 0;">
+          <p><strong>Notice:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
         </div>
       </div>
     </section>
   )}
-
-  <!-- FAQ Section -->
-  <section class="section section-faq" id="faq">
-    <div class="container">
-      <div class="faq-layout">
-        <div class="faq-header reveal">
-          <h2>Frequently Asked Questions</h2>
-          <p>Can't find your answer? <br><a href="/contact#enquiry" class="thin-rule">Send us an enquiry &rarr;</a></p>
-        </div>
-        <div class="faq-list reveal">
-          {activeFaqs.slice(0, 5).map(faq => (
-            <FAQAccordion question={faq.question} answer={faq.answer} />
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA & Location -->
-  <CTABanner align="left" />
-</BaseLayout>
-
-<style>
-  /* Hero Styles */
-  .hero-section {
-    position: relative;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    background-color: var(--mineral-white);
-    padding-top: 80px; /* Account for header */
-  }
-  .hero-image-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 55%;
-    z-index: 1;
-  }
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .hero-container {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-  }
-  .hero-content {
-    width: 50%;
-    background-color: var(--mineral-white);
-    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-xl) 0;
-  }
-  .hero-content p {
-    font-size: var(--text-lg);
-    color: var(--muted-teal);
-    max-width: 450px;
-    margin-bottom: var(--spacing-lg);
-  }
-  .hero-actions {
-    display: flex;
-    gap: var(--spacing-md);
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  /* Intro Styles */
-  .section-intro {
-    background-color: var(--soft-gray);
-    padding: var(--spacing-2xl) 0;
-  }
-  .intro-statement {
-    position: relative;
-    display: inline-block;
-  }
-  .intro-rule {
-    display: block;
-    width: 1px;
-    height: 60px;
-    background-color: var(--brass);
-    margin: 0 auto var(--spacing-md);
-  }
-  .intro-statement .editorial-text {
-    font-size: var(--text-2xl);
-    font-family: var(--font-display);
-    color: var(--deep-ink);
-  }
-
-  /* Services Row Styles */
-  .services-row {
-    display: flex;
-    gap: var(--spacing-xl);
-    align-items: center;
-  }
-  .services-row.reverse {
-    flex-direction: row-reverse;
-  }
-  .services-image-col {
-    flex: 1.2;
-  }
-  .services-image-col img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-  }
-  .services-text-col {
-    flex: 1;
-    padding: var(--spacing-md) 0;
-  }
-  .editorial-list {
-    margin: var(--spacing-md) 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-  .editorial-list li {
-    padding-bottom: var(--spacing-xs);
-    border-bottom: 1px solid rgba(20, 28, 25, 0.1);
-    font-weight: 500;
-  }
-  .mt-sm { margin-top: var(--spacing-sm); }
-
-  /* Philosophy Styles */
-  .section-philosophy {
-    background-color: var(--deep-ink);
-    color: var(--mineral-white);
-    padding: var(--spacing-2xl) 0;
-  }
-  .philosophy-header {
-    max-width: 600px;
-    margin-bottom: var(--spacing-xl);
-  }
-  .philosophy-header h2 {
-    color: var(--mineral-white);
-  }
-  .philosophy-header p {
-    color: var(--sand);
-    font-size: var(--text-lg);
-  }
-  .philosophy-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    border-top: 1px solid rgba(223, 209, 194, 0.2);
-    padding-top: var(--spacing-lg);
-  }
-  .philosophy-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-  .philosophy-number {
-    font-family: var(--font-display);
-    font-size: var(--text-4xl);
-    color: var(--brass);
-    opacity: 0.8;
-    line-height: 1;
-  }
-  .philosophy-item h3 {
-    color: var(--mineral-white);
-    font-size: var(--text-xl);
-    margin: 0;
-  }
-  
-  /* FAQ Styles */
-  .section-faq {
-    background-color: var(--mineral-white);
-    padding: var(--spacing-2xl) 0;
-  }
-  .faq-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: var(--spacing-xl);
-  }
-  .faq-header p {
-    margin-top: var(--spacing-md);
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .hero-image-wrapper { width: 50%; }
-    .hero-content { width: 60%; padding-right: var(--spacing-md); }
-  }
-
-  @media (max-width: 768px) {
-    .hero-section {
-      min-height: auto;
-      flex-direction: column;
-      padding-top: 100px;
-    }
-    .hero-image-wrapper {
-      position: relative;
-      width: 100%;
-      height: 50vh;
-      order: 1;
-    }
-    .hero-container {
-      order: 2;
-    }
-    .hero-content {
-      width: 100%;
-      padding: var(--spacing-xl) 0;
-    }
-    
-    .services-row, .services-row.reverse {
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-    .services-image-col { width: 100%; }
-    
-    .philosophy-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .faq-layout {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
-    }
-  }
-</style>
 </BaseLayout>

@@ -19,12 +19,10 @@ const currentYear = new Date().getFullYear();
       <div class="footer-nav-col">
         <h4 class="footer-heading">Navigation</h4>
         <ul class="footer-links">
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/services">Medical Services</a></li>
-          <li><a href="/senior-living">Senior Care Home</a></li>
-          <li><a href="/facilities">Facilities</a></li>
-          {SITE_CONFIG.features.enableTeamSection && <li><a href="/team">Care Team</a></li>}
-          <li><a href="/patient-info">Patient Information</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy">Privacy</a></li>
         </ul>
       </div>
       
@@ -49,10 +47,10 @@ const currentYear = new Date().getFullYear();
             {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} – {SITE_CONFIG.contact.postalCode}
           </li>
           <li style="margin-top: var(--spacing-sm);">
-            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule" style="color: var(--mineral-white); border-color: var(--mineral-white);">Get Directions &rarr;</a>
+            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule" style="color: var(--white); border-color: var(--white);">Get Directions &rarr;</a>
           </li>
           <li style="margin-top: var(--spacing-sm);">
-            <a href="/contact" class="thin-rule" style="color: var(--mineral-white); border-color: var(--mineral-white);">Enquiry Form &rarr;</a>
+            <a href="/contact" class="thin-rule" style="color: var(--white); border-color: var(--white);">Enquiry Form &rarr;</a>
           </li>
         </ul>
       </div>
@@ -69,7 +67,7 @@ const currentYear = new Date().getFullYear();
 
 <style>
   .site-footer {
-    background-color: var(--deep-ink);
+    background-color: var(--color-text);
     color: rgba(250, 249, 246, 0.7);
     padding: var(--space-20) 0 var(--space-8);
     font-size: var(--text-sm);
@@ -112,7 +110,7 @@ const currentYear = new Date().getFullYear();
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--brass);
+    color: var(--color-secondary);
     margin-bottom: var(--space-6);
     font-weight: 600;
   }

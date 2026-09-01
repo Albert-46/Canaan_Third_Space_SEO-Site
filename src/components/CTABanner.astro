@@ -37,15 +37,15 @@ const {
         )}
 
         <div class="cta-actions">
-          <a href={primaryLink} class="btn btn-primary cta-btn-primary">{primaryText}</a>
-          {SITE_CONFIG.features.enableWhatsAppAction && (
-            <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
-          )}
+          <a href={primaryLink} class="btn btn-primary">{primaryText}</a>
           {secondaryLink && secondaryText && (
             <a href={secondaryLink} class="btn btn-secondary">{secondaryText}</a>
           )}
           {!secondaryLink && (
              <a href="/contact" class="thin-rule cta-secondary-action">View all contact details &rarr;</a>
+          )}
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="thin-rule cta-secondary-action" target="_blank" rel="noopener noreferrer">WhatsApp &rarr;</a>
           )}
         </div>
       </div>
@@ -61,9 +61,11 @@ const {
     padding-bottom: var(--spacing-2xl);
   }
   .cta-inner {
-    background-color: var(--sand);
+    background-color: var(--color-surface-2);
     display: flex;
     overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
   }
   .cta-content {
     flex: 1;
@@ -74,12 +76,12 @@ const {
   }
   .cta-content h2 {
     font-size: var(--text-4xl);
-    color: var(--deep-ink);
+    color: var(--color-text);
     margin-bottom: var(--spacing-md);
   }
   .cta-content p {
     font-size: var(--text-lg);
-    color: var(--deep-ink);
+    color: var(--color-text);
     opacity: 0.85;
     max-width: 500px;
     margin-bottom: var(--spacing-xl);
@@ -88,13 +90,13 @@ const {
     margin-bottom: var(--spacing-lg);
   }
   .cta-contact-detail .eyebrow {
-    color: var(--deep-ink);
+    color: var(--color-text);
     opacity: 0.7;
   }
   .cta-phone {
     font-size: var(--text-2xl);
     font-family: var(--font-display);
-    color: var(--deep-ink);
+    color: var(--color-text);
   }
   .cta-actions {
     display: flex;
@@ -102,16 +104,9 @@ const {
     gap: var(--spacing-md);
     flex-wrap: wrap;
   }
-  .cta-btn-primary {
-    background-color: var(--deep-ink);
-    color: var(--mineral-white);
-  }
-  .cta-btn-primary:hover {
-    background-color: var(--muted-teal);
-  }
   .cta-secondary-action {
-    color: var(--deep-ink);
-    border-bottom-color: rgba(20, 28, 25, 0.3);
+    color: var(--color-text);
+    border-bottom-color: rgba(44, 51, 48, 0.3);
   }
   
   .cta-image-wrapper {

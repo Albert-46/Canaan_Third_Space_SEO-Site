@@ -1,207 +1,94 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTABanner from '../components/CTABanner.astro';
 import { SITE_CONFIG } from '../config';
-import { medicalServices } from '../content/services';
 
-const activeServices = medicalServices.filter(s => s.enabled);
+const title = "Medical Services & Senior Care";
+const description = "Comprehensive medical care and supportive senior residential living, integrated seamlessly at Canaan Third Space.";
 ---
 
-<BaseLayout
-  title="Medical Services — OPD, Laboratory & Inpatient Care"
-  description={`Outpatient consultations, in-house laboratory diagnostics, and inpatient care at ${SITE_CONFIG.organization.name} in Manimala, Kottayam. Walk-ins welcome; appointments reduce wait times.`}
->
-  <div class="page-header section-bg-dim" style="padding: var(--spacing-2xl) 0 var(--spacing-xl);">
-    <div class="container text-center reveal">
-      <span class="eyebrow">Manimala, Kottayam, Kerala</span>
-      <h1>Medical Services</h1>
-      <p class="editorial-text" style="margin-top: var(--spacing-md); max-width: 640px; margin-inline: auto;">
-        Outpatient consultations, in-house laboratory diagnostics, and inpatient care — delivered by experienced professionals in a safe, hygienic environment.
-      </p>
-    </div>
-  </div>
-
-  <!-- Services Detail -->
-  <section class="section">
-    <div class="container grid-12">
-      <div style="grid-column: span 4;" class="reveal">
-        <div style="position: sticky; top: 120px;">
-          <h2 style="font-size: var(--text-2xl);">Clinical care you can rely on.</h2>
-          <p style="margin-top: var(--spacing-sm); line-height: 1.7;">
-            Our medical centre serves patients of all ages, with a particular focus on geriatric medicine and chronic condition management. We prioritise prompt attention, clear communication, and safe clinical environments.
-          </p>
-          <div style="margin-top: var(--spacing-md); padding: var(--spacing-md); background: var(--soft-gray); border-radius: var(--radius-sm);">
-            <p style="font-size: var(--text-sm); font-weight: 600; margin-bottom: 8px; color: var(--deep-ink);">Opening Hours</p>
-            <p style="font-size: var(--text-sm);">{SITE_CONFIG.contact.openingHours}</p>
-            <a
-              href={SITE_CONFIG.contact.phoneHref}
-              style="display: inline-block; margin-top: 10px; font-size: var(--text-sm); font-weight: 600; color: var(--muted-teal);"
-            >
-              {SITE_CONFIG.contact.phoneDisplay}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div style="grid-column: 6 / span 7;">
-        <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
-          {activeServices.map((service, index) => (
-            <div id={service.id} class="reveal" style="scroll-margin-top: 120px; border-bottom: 1px solid var(--soft-gray); padding-bottom: var(--spacing-lg);">
-              <div style="display: flex; align-items: center; gap: 15px; margin-bottom: var(--spacing-md);">
-                <span style="font-family: var(--font-display); font-size: var(--text-2xl); color: var(--brass); opacity: 0.5;">{String(index + 1).padStart(2, '0')}</span>
-                <h3 style="font-size: var(--text-xl); margin: 0;">{service.name}</h3>
-              </div>
-              <p style="font-size: var(--text-base); margin-bottom: var(--spacing-md); line-height: 1.7;">{service.shortDescription}</p>
-
-              {service.id === 'opd' && (
-                <div class="grid-12" style="gap: var(--spacing-sm); margin-top: var(--spacing-md);">
-                  <div style="grid-column: span 6;">
-                    <img src="/images/hospital/consultation-room.svg" alt="Private consultation room at Canaan Third Space" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
-                  </div>
-                  <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
-                    <p style="font-size: var(--text-sm); line-height: 1.7;"><strong>Who can use OPD:</strong> Any patient requiring a consultation — new patients, returning patients, and residents requiring specialist review are all welcome.</p>
-                    <p style="font-size: var(--text-sm); line-height: 1.7;"><strong>Walk-ins vs appointments:</strong> Walk-ins are accepted during opening hours. Calling ahead is strongly recommended to confirm doctor availability and significantly reduce your wait.</p>
-                    <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm);">
-                      <li>&bull; General medicine consultations</li>
-                      <li>&bull; Geriatric care and age-related concerns</li>
-                      <li>&bull; Chronic disease management</li>
-                      <li>&bull; Preventative health reviews</li>
-                    </ul>
-                    <a href={SITE_CONFIG.contact.phoneHref} class="thin-rule" style="font-size: var(--text-sm); font-weight: 600;">Call to confirm availability &rarr;</a>
-                  </div>
-                </div>
-              )}
-
-              {service.id === 'lab' && (
-                <div class="grid-12" style="gap: var(--spacing-sm); margin-top: var(--spacing-md);">
-                  <div style="grid-column: span 6;">
-                    <img src="/images/hospital/laboratory.svg" alt="In-house laboratory at Canaan Third Space" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm);" />
-                  </div>
-                  <div style="grid-column: span 6; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
-                    <p style="font-size: var(--text-sm); line-height: 1.7;"><strong>Lab referrals:</strong> Tests are usually ordered by your treating doctor after an OPD consultation. Lab results are communicated directly to the doctor and not released independently to protect clinical accuracy.</p>
-                    <ul style="display: flex; flex-direction: column; gap: 8px; font-size: var(--text-sm);">
-                      <li>&bull; Complete blood counts and haematology</li>
-                      <li>&bull; Routine biochemistry (blood sugar, liver and kidney function)</li>
-                      <li>&bull; Urine analysis</li>
-                      <li>&bull; Rapid turnaround for inpatient and urgent cases</li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-
-              {service.id === 'inpatient' && (
-                <div style="margin-top: var(--spacing-md);">
-                  <div class="grid-12" style="gap: var(--spacing-sm);">
-                    <div style="grid-column: span 12;">
-                      <p style="font-size: var(--text-sm); line-height: 1.7; margin-bottom: var(--spacing-sm);">
-                        <strong>When inpatient admission is required:</strong> Admission is arranged by the treating doctor following an OPD or emergency assessment. We accept planned admissions (e.g., post-surgical recovery, monitoring of chronic conditions) and acute admissions at the discretion of the clinical team.
-                      </p>
-                      <p style="font-size: var(--text-sm); line-height: 1.7; margin-bottom: var(--spacing-sm);">
-                        <strong>What to bring for admission:</strong> Valid ID, current prescriptions and recent investigation reports, comfortable clothing, personal toiletries, and any mobility aids you regularly use.
-                      </p>
-                      <p style="font-size: var(--text-sm); line-height: 1.7;">
-                        Our nursing team will brief the patient and family on the ward routine, visiting arrangements, and the care plan on admission.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+<BaseLayout title={title} description={description}>
+  {/* Hero Section */}
+  <section class="hero-minimal reveal">
+    <div class="container text-block-narrow">
+      <span class="eyebrow">Our Offerings</span>
+      <h1>Medical Services & Senior Care</h1>
+      <p>{description}</p>
     </div>
   </section>
 
-  <!-- How to Proceed -->
-  <section class="section section-bg-dim" id="how-to-proceed">
-    <div class="container">
-      <div class="text-center reveal" style="margin-bottom: var(--spacing-lg);">
-        <span class="eyebrow">Getting Started</span>
-        <h2 style="font-size: var(--text-3xl);">How to access our medical services</h2>
-        <p style="max-width: 600px; margin-inline: auto; margin-top: var(--spacing-sm);">
-          Whether you are a new patient or enquiring on behalf of a family member, here is what to expect.
-        </p>
-      </div>
-      <div class="grid-12">
-        <div class="process-step reveal" style="grid-column: span 3;">
-          <span class="process-number">01</span>
-          <h3>Call or enquire</h3>
-          <p>Contact us by phone or send an online enquiry to confirm doctor availability and describe your needs. We will guide you on the right next step.</p>
-          <a href={SITE_CONFIG.contact.phoneHref} class="thin-rule" style="font-size: var(--text-sm); font-weight: 600;">Call {SITE_CONFIG.contact.phoneDisplay} &rarr;</a>
-        </div>
-        <div class="process-step reveal" style="grid-column: span 3; transition-delay: 0.1s;">
-          <span class="process-number">02</span>
-          <h3>Visit the OPD</h3>
-          <p>Come to our clinic during opening hours. Bring any existing medical records, prescriptions, or investigation reports to help the doctor assess your condition fully.</p>
-        </div>
-        <div class="process-step reveal" style="grid-column: span 3; transition-delay: 0.2s;">
-          <span class="process-number">03</span>
-          <h3>Consultation & investigations</h3>
-          <p>The doctor will examine you and, if required, arrange laboratory tests or specialist review. Results are acted upon promptly to minimise delays in your care.</p>
-        </div>
-        <div class="process-step reveal" style="grid-column: span 3; transition-delay: 0.3s;">
-          <span class="process-number">04</span>
-          <h3>Follow-up or admission</h3>
-          <p>You will receive a clear care plan — either for outpatient follow-up, or inpatient admission if closer monitoring is needed. The team will keep your family informed at each stage.</p>
-        </div>
-      </div>
+  {/* Medical Services */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow">
+      <h2>Medical Services</h2>
+      <p>Our facility is equipped to handle a wide range of medical needs, ensuring prompt and professional care for all patients and residents.</p>
+      
+      <ul style="margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>OPD Consultations:</strong> Regular access to experienced doctors and specialists.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Laboratory Services:</strong> Comprehensive diagnostic tests available on-site.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Inpatient Care:</strong> Dedicated wards and private rooms with continuous medical monitoring.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Emergency Support:</strong> Immediate assistance and stabilization for urgent health conditions.</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- Emergency Notice -->
-  <section class="section" style="padding-top: 0; padding-bottom: var(--spacing-md);">
-    <div class="container">
-      <div class="emergency-notice" role="note" aria-label="Emergency guidance">
-        <p><strong>Not an emergency service:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
-      </div>
+  {/* Senior Care Home */}
+  <section class="section section-compact section-bg-dim reveal">
+    <div class="container text-block-narrow">
+      <h2>Senior Care Home</h2>
+      <p>We provide a supportive, dignified residential environment designed specifically for the well-being and comfort of older adults.</p>
+      
+      <ul style="margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Residential Accommodation:</strong> Clean, safe, and comfortable living spaces.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Daily Support:</strong> Assistance with daily living activities, personal care, and mobility.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Nutritious Meals:</strong> Dietary-planned meals to support overall health and specific conditions.</span>
+        </li>
+        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
+          <span style="color: var(--color-primary); font-size: 1.5rem; line-height: 1;">&bull;</span>
+          <span style="font-size: var(--text-base); color: var(--color-text);"><strong>Family Communication:</strong> Regular updates to keep loved ones informed and connected.</span>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <CTABanner
-    title="Schedule a consultation."
-    subtitle={`Our reception team in Manimala is available ${SITE_CONFIG.contact.openingHours} to confirm appointments, answer questions, and arrange visits.`}
-    primaryText="Call Now"
-    primaryLink={SITE_CONFIG.contact.phoneHref}
-    secondaryText="Send an Enquiry"
-    secondaryLink="/contact#enquiry"
-  />
+  {/* How It Works Together */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow">
+      <h2>How it works together</h2>
+      <p>Because our medical facilities and senior living accommodations share the same campus, residents benefit from continuous health monitoring. Changes in health are addressed immediately by our on-site medical team, avoiding the stress of external hospital transfers for routine care.</p>
+    </div>
+  </section>
+
+  {/* CTA Strip */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow text-center">
+      <h2 style="margin-bottom: var(--space-6);">Have questions?</h2>
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+        <a href="/contact#enquiry" class="btn btn-primary">Request a visit</a>
+        <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call us</a>
+        {SITE_CONFIG.features.enableWhatsAppAction && (
+          <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        )}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .process-step {
-    padding: var(--spacing-md);
-    background: var(--white);
-    border: 1px solid var(--soft-gray);
-    border-radius: var(--radius-sm);
-  }
-  .process-number {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-4xl);
-    color: var(--brass);
-    opacity: 0.4;
-    line-height: 1;
-    margin-bottom: var(--spacing-sm);
-  }
-  .process-step h3 {
-    font-size: var(--text-base);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .process-step p {
-    font-size: var(--text-sm);
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-  @media (max-width: 768px) {
-    .process-step {
-      grid-column: span 6 !important;
-    }
-  }
-  @media (max-width: 500px) {
-    .process-step {
-      grid-column: span 12 !important;
-    }
-  }
-</style>

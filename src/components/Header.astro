@@ -8,22 +8,30 @@ import { SITE_CONFIG } from '../config';
       <img src="/images/brand/Logo.png" alt={`${SITE_CONFIG.organization.name} logo`} class="site-brand-logo" width="210" height="96" />
     </a>
 
-    <nav class="site-nav" id="mobile-nav" aria-label="Main navigation">
-      <a href="/about" class="nav-link">About</a>
-      <a href="/services" class="nav-link">Medical Services</a>
-      <a href="/senior-living" class="nav-link">Senior Care Home</a>
-      <a href="/facilities" class="nav-link">Facilities</a>
-      {SITE_CONFIG.features.enableTeamSection && <a href="/team" class="nav-link">Care Team</a>}
-      <a href="/patient-info" class="nav-link">Patient Information</a>
-      <a href="/contact" class="nav-link">Contact</a>
-      <a href={SITE_CONFIG.contact.phoneHref} class="nav-link header-call-btn" aria-label={`Call us: ${SITE_CONFIG.contact.phoneDisplay}`}>
-        Call Now
-      </a>
-      <a href="/contact#enquiry" class="btn btn-primary">Enquire Now</a>
-    </nav>
+    <div class="header-actions">
+      <a href="/contact#enquiry" class="btn btn-primary header-primary-cta">Enquire Now</a>
+      
+      <button class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-btn-text">Menu</span>
+        <span class="menu-icon"></span>
+      </button>
+    </div>
 
-    <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-      <span class="mobile-menu-icon"></span>
-    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <div class="site-nav-inner container">
+        <div class="nav-links">
+          <a href="/about" class="nav-link">About</a>
+          <a href="/services" class="nav-link">Services</a>
+          <a href="/contact" class="nav-link">Contact</a>
+        </div>
+        
+        <div class="nav-contact">
+          <p class="nav-contact-title">Contact Us</p>
+          <a href={SITE_CONFIG.contact.phoneHref} class="nav-contact-link">{SITE_CONFIG.contact.phoneDisplay}</a>
+          <a href={`mailto:${SITE_CONFIG.contact.email}`} class="nav-contact-link">{SITE_CONFIG.contact.email}</a>
+          <a href="/contact#enquiry" class="btn btn-primary mt-4 w-full">Enquire Now</a>
+        </div>
+      </div>
+    </nav>
   </div>
 </header>
