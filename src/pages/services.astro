@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { SITE_CONFIG } from '../config';
 
 const title = "Medical Services & Senior Care";
@@ -75,6 +76,10 @@ const description = "Comprehensive medical care and supportive senior residentia
     <div class="container text-block-narrow">
       <h2>How it works together</h2>
       <p>Because our medical facilities and senior living accommodations share the same campus, residents benefit from continuous health monitoring. Changes in health are addressed immediately by our on-site medical team, avoiding the stress of external hospital transfers for routine care.</p>
+      
+      <div style="margin-top: var(--space-8);">
+        <ImagePlaceholder aspectRatio="21:9" label="CANAAN THIRD SPACE\nFACILITY ENVIRONMENT" />
+      </div>
     </div>
   </section>
 

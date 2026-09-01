@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { SITE_CONFIG } from '../config';
 
 const title = "About";
@@ -25,6 +26,10 @@ const description = "Learn more about Canaan Third Space, where medical services
       <p>By bringing together comprehensive medical services and supportive senior living, we ensure our residents are well-cared for at every stage. Our dedicated facility in Manimala is designed to be a calm, welcoming space that feels like home, while providing the safety and reassurance of professional healthcare.</p>
       
       <p>We prioritize clear communication with families, maintaining transparency about care plans, and honoring the individual preferences of every person we support.</p>
+      
+      <div style="margin-top: var(--space-8);">
+        <ImagePlaceholder aspectRatio="21:9" label="CANAAN THIRD SPACE\nOUR ENVIRONMENT" />
+      </div>
     </div>
   </section>
 

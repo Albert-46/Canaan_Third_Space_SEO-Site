@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { SITE_CONFIG } from '../config';
 
 const title = "Canaan Third Space Senior Care Home";
@@ -14,13 +15,15 @@ const description = "Canaan Third Space Senior Care Home brings together medical
       <h1>Compassionate care. Dignified living.</h1>
       <p>{description}</p>
       
-      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); margin-bottom: var(--space-12);">
         <a href="/contact#enquiry" class="btn btn-primary">Book a Facility Visit</a>
         <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call Now</a>
         {SITE_CONFIG.features.enableWhatsAppAction && (
           <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         )}
       </div>
+      
+      <ImagePlaceholder aspectRatio="16:9" label="CANAAN THIRD SPACE\nFACILITY EXTERIOR" />
     </div>
   </section>
 
@@ -34,6 +37,13 @@ const description = "Canaan Third Space Senior Care Home brings together medical
         <a href="/services" class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);">View Medical Services &rarr;</a>
         <a href="/about" class="thin-rule" style="color: var(--color-primary); border-color: var(--color-primary);">Explore Senior Care &rarr;</a>
       </div>
+    </div>
+  </section>
+
+  {/* Secondary Editorial Image */}
+  <section class="section section-compact pt-0 reveal">
+    <div class="container text-block-narrow">
+      <ImagePlaceholder aspectRatio="3:2" label="CANAAN THIRD SPACE\nRESIDENTIAL ENVIRONMENT" />
     </div>
   </section>
 
@@ -59,6 +69,13 @@ const description = "Canaan Third Space Senior Care Home brings together medical
           <span style="font-size: var(--text-lg); color: var(--color-text);">Respect for dignity, safety, and individual preferences</span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  {/* Closing Visual Moment */}
+  <section class="section section-compact reveal">
+    <div class="container text-block-narrow">
+      <ImagePlaceholder aspectRatio="21:9" label="CANAAN THIRD SPACE\nCOMMON AREA" />
     </div>
   </section>
 
