@@ -20,45 +20,47 @@ const description = "Get in touch with Canaan Third Space. We are here to answer
   {/* Contact Details & Form */}
   <section class="section section-compact reveal">
     <div class="container">
-      <div class="grid-12" style="gap: var(--space-12);">
-        <div style="grid-column: span 5; display: flex; flex-direction: column; gap: var(--space-8);">
-          <div>
-            <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">Contact Details</h2>
-            <ul style="display: flex; flex-direction: column; gap: var(--space-4);">
+      <div class="contact-layout">
+        
+        {/* Contact details column */}
+        <div class="contact-details-col">
+          <h2>Contact Details</h2>
+          <ul class="contact-detail-list">
+            <li>
+              <span class="eyebrow">Phone</span>
+              <a href={SITE_CONFIG.contact.phoneHref} class="contact-detail-value">{SITE_CONFIG.contact.phoneDisplay}</a>
+            </li>
+            {SITE_CONFIG.features.enableWhatsAppAction && (
               <li>
-                <span class="eyebrow" style="margin-bottom: var(--space-2);">Phone</span>
-                <a href={SITE_CONFIG.contact.phoneHref} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;">{SITE_CONFIG.contact.phoneDisplay}</a>
+                <span class="eyebrow">WhatsApp</span>
+                <a href={SITE_CONFIG.contact.whatsappHref} class="contact-detail-value" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
               </li>
-              {SITE_CONFIG.features.enableWhatsAppAction && (
-                <li>
-                  <span class="eyebrow" style="margin-bottom: var(--space-2);">WhatsApp</span>
-                  <a href={SITE_CONFIG.contact.whatsappHref} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a>
-                </li>
-              )}
-              <li>
-                <span class="eyebrow" style="margin-bottom: var(--space-2);">Email</span>
-                <a href={`mailto:${SITE_CONFIG.contact.email}`} style="font-size: var(--text-lg); color: var(--color-primary); font-weight: 500;">{SITE_CONFIG.contact.email}</a>
-              </li>
-              <li>
-                <span class="eyebrow" style="margin-bottom: var(--space-2);">Address</span>
-                <address style="font-style: normal; font-size: var(--text-lg); color: var(--color-text); line-height: 1.6;">
-                  {SITE_CONFIG.contact.addressLine2}<br />
-                  {SITE_CONFIG.contact.addressLine1}<br />
-                  {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district}<br />
-                  {SITE_CONFIG.contact.state} - {SITE_CONFIG.contact.postalCode}
-                </address>
-                <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule" style="margin-top: var(--space-4); color: var(--color-primary); border-color: var(--color-primary);" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
-              </li>
-            </ul>
-          </div>
+            )}
+            <li>
+              <span class="eyebrow">Email</span>
+              <a href={`mailto:${SITE_CONFIG.contact.email}`} class="contact-detail-value">{SITE_CONFIG.contact.email}</a>
+            </li>
+            <li>
+              <span class="eyebrow">Address</span>
+              <address class="contact-address">
+                {SITE_CONFIG.contact.addressLine2}<br />
+                {SITE_CONFIG.contact.addressLine1}<br />
+                {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district}<br />
+                {SITE_CONFIG.contact.state} – {SITE_CONFIG.contact.postalCode}
+              </address>
+              <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule contact-map-link" target="_blank" rel="noopener noreferrer">Get Directions &rarr;</a>
+            </li>
+          </ul>
         </div>
 
-        <div style="grid-column: span 7;">
-          <div class="card" id="enquiry">
-            <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">Send an Enquiry</h2>
+        {/* Enquiry form column */}
+        <div class="contact-form-col" id="enquiry">
+          <div class="card">
+            <h2>Send an Enquiry</h2>
             <ContactForm />
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -67,10 +69,72 @@ const description = "Get in touch with Canaan Third Space. We are here to answer
   {SITE_CONFIG.features.enableEmergencyNotice && (
     <section class="section section-compact reveal">
       <div class="container text-block-narrow">
-        <div class="emergency-notice text-center">
+        <div class="emergency-notice">
           <p><strong>Notice:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
         </div>
       </div>
     </section>
   )}
 </BaseLayout>
+
+<style>
+  /* Mobile-first: stacked layout */
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  /* Desktop: side-by-side */
+  @media (min-width: 768px) {
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+  }
+
+  .contact-details-col h2,
+  .contact-form-col h2 {
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .contact-detail-list .eyebrow {
+    margin-bottom: var(--space-1);
+  }
+
+  .contact-detail-value {
+    display: block;
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    font-weight: 500;
+    /* Comfortable tap target */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-address {
+    font-style: normal;
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: var(--space-3);
+  }
+
+  .contact-map-link {
+    display: inline-block;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    min-height: 44px;
+    line-height: 44px;
+  }
+</style>

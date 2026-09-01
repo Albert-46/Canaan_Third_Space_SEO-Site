@@ -51,6 +51,15 @@ const inlineStyles = [
     position: relative;
     /* Subtle inner shadow for depth without harsh borders */
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+    /* Prevent placeholders becoming excessively tall on small screens */
+    max-height: 60vw;
+    min-height: 120px;
+  }
+
+  @media (min-width: 768px) {
+    .image-placeholder {
+      max-height: none;
+    }
   }
 
   .placeholder-label {

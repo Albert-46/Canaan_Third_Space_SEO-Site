@@ -106,41 +106,43 @@ const schema: Record<string, any> = {
       const siteHeader = document.querySelector('.site-header');
 
       if (menuBtn && siteNav && siteHeader) {
-        const toggleMenu = () => {
-          const isActive = siteNav.classList.contains('active');
-          if (isActive) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        };
+        const closeBtn = document.querySelector('.nav-close-btn');
 
         const openMenu = () => {
           siteNav.classList.add('active');
           siteHeader.classList.add('nav-open');
           menuBtn.setAttribute('aria-expanded', 'true');
+          menuBtn.setAttribute('aria-label', 'Close navigation menu');
           document.body.style.overflow = 'hidden';
+          // Move focus into nav for accessibility
+          if (closeBtn instanceof HTMLElement) closeBtn.focus();
         };
 
         const closeMenu = () => {
           siteNav.classList.remove('active');
           siteHeader.classList.remove('nav-open');
           menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.setAttribute('aria-label', 'Open navigation menu');
           document.body.style.overflow = '';
+          if (menuBtn instanceof HTMLElement) menuBtn.focus();
         };
 
-        menuBtn.addEventListener('click', toggleMenu);
+        menuBtn.addEventListener('click', () => {
+          siteNav.classList.contains('active') ? closeMenu() : openMenu();
+        });
 
-        document.querySelectorAll('.nav-link, .nav-contact-link, .nav-contact .btn').forEach(link => {
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeMenu);
+        }
+
+        // Close on any nav link or CTA click
+        document.querySelectorAll('.nav-link, .nav-contact-link, .nav-enquire-btn, .nav-brand').forEach(link => {
           link.addEventListener('click', closeMenu);
         });
 
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && siteNav.classList.contains('active')) {
             closeMenu();
-            if (menuBtn instanceof HTMLElement) {
-              menuBtn.focus();
-            }
           }
         });
       }

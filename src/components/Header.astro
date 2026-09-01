@@ -11,27 +11,251 @@ import { SITE_CONFIG } from '../config';
     <div class="header-actions">
       <a href="/contact#enquiry" class="btn btn-primary header-primary-cta">Enquire Now</a>
       
-      <button class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-nav">
-        <span class="menu-btn-text">Menu</span>
-        <span class="menu-icon"></span>
+      <button class="menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-btn-label">Menu</span>
+        <span class="menu-icon" aria-hidden="true"></span>
       </button>
     </div>
 
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
       <div class="site-nav-inner container">
+
+        <div class="nav-header">
+          <a class="nav-brand" href="/" aria-label={`${SITE_CONFIG.organization.name} home page`}>
+            <img src="/images/brand/Logo.png" alt={`${SITE_CONFIG.organization.name} logo`} class="nav-brand-logo" width="150" height="70" />
+          </a>
+          <button class="nav-close-btn" aria-label="Close navigation menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="nav-divider"></div>
+
         <div class="nav-links">
           <a href="/about" class="nav-link">About</a>
           <a href="/services" class="nav-link">Services</a>
-          <a href="/contact" class="nav-link">Contact</a>
+          <a href="/contact" class="nav-link">Contact Us</a>
         </div>
-        
+
+        <div class="nav-divider"></div>
+
         <div class="nav-contact">
-          <p class="nav-contact-title">Contact Us</p>
-          <a href={SITE_CONFIG.contact.phoneHref} class="nav-contact-link">{SITE_CONFIG.contact.phoneDisplay}</a>
-          <a href={`mailto:${SITE_CONFIG.contact.email}`} class="nav-contact-link">{SITE_CONFIG.contact.email}</a>
-          <a href="/contact#enquiry" class="btn btn-primary mt-4 w-full">Enquire Now</a>
+          <a href={SITE_CONFIG.contact.phoneHref} class="nav-contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.04 3.38 2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            {SITE_CONFIG.contact.phoneDisplay}
+          </a>
+          <a href={`mailto:${SITE_CONFIG.contact.email}`} class="nav-contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,12 2,6"></polyline></svg>
+            {SITE_CONFIG.contact.email}
+          </a>
+          <a href="/contact#enquiry" class="btn btn-primary nav-enquire-btn">Enquire Now</a>
         </div>
+
       </div>
     </nav>
   </div>
 </header>
+
+<style>
+  /* ── Mobile Nav Overlay ────────────────────────────────────── */
+  /* Mobile-first: full-screen nav designed for 360–430px */
+
+  .site-nav {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-surface);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: calc(env(safe-area-inset-bottom) + var(--space-6));
+  }
+
+  /* Nav header row: logo + close button */
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    padding: 0 var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav-brand-logo {
+    width: 110px;
+    height: auto;
+    max-height: 52px;
+    object-fit: contain;
+  }
+
+  .nav-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+  }
+  .nav-close-btn:hover {
+    background-color: var(--color-surface-2);
+  }
+  .nav-close-btn:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background-color: var(--color-surface-3);
+    margin: 0 var(--space-4);
+    flex-shrink: 0;
+  }
+
+  /* Nav links — primary navigation */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6) var(--space-4);
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-link {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    padding: var(--space-3) 0;
+    display: block;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+    /* Minimum 44px tap target */
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: var(--color-primary);
+  }
+  .nav-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  /* Contact section in nav */
+  .nav-contact {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6) var(--space-4);
+    gap: var(--space-4);
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  .nav-contact-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    min-height: 44px;
+    transition: color 0.2s ease;
+  }
+  .nav-contact-link:hover {
+    color: var(--color-primary);
+  }
+  .nav-contact-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  .nav-enquire-btn {
+    width: 100%;
+    justify-content: center;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-base);
+    margin-top: var(--space-2);
+  }
+
+  /* ── Desktop upgrade (768px+) ───────────────────────────── */
+  @media (min-width: 768px) {
+    .site-nav-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: auto auto auto;
+      min-height: 100dvh;
+      align-items: start;
+      padding: 0;
+    }
+
+    .nav-header {
+      grid-column: 1 / -1;
+      height: 88px;
+      padding: 0 var(--space-8);
+      border-bottom: 1px solid var(--color-surface-3);
+    }
+
+    .nav-brand-logo {
+      width: 150px;
+      max-height: 70px;
+    }
+
+    .nav-divider {
+      display: none;
+    }
+
+    .nav-links {
+      grid-column: 1;
+      padding: var(--space-16) var(--space-12);
+      gap: var(--space-4);
+    }
+
+    .nav-link {
+      font-size: var(--text-3xl);
+      min-height: auto;
+      padding: var(--space-2) 0;
+      border-bottom: none;
+    }
+    .nav-link:hover {
+      color: var(--color-secondary);
+      padding-left: var(--space-2);
+    }
+
+    .nav-contact {
+      grid-column: 3;
+      margin-top: 0;
+      padding: var(--space-16) var(--space-12);
+      border-left: 1px solid var(--color-surface-3);
+      justify-content: center;
+      min-width: 280px;
+    }
+  }
+</style>
