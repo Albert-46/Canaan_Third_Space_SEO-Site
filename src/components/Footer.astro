@@ -5,8 +5,9 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container">
+  <div class="footer-container">
     <div class="footer-top">
+
       <div class="footer-brand-col">
         <a class="footer-brand" href="/" aria-label={`${SITE_CONFIG.organization.name} home page`}>
           <img src="/images/brand/Logo.png" alt={`${SITE_CONFIG.organization.name} logo`} class="footer-brand-logo" />
@@ -15,17 +16,16 @@ const currentYear = new Date().getFullYear();
           {SITE_CONFIG.organization.name} — {SITE_CONFIG.organization.descriptor.toLowerCase()}.
         </p>
       </div>
-      
+
       <div class="footer-nav-col">
         <h4 class="footer-heading">Navigation</h4>
         <ul class="footer-links">
           <li><a href="/about">About</a></li>
           <li><a href="/services">Services</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/contact">Contact Us</a></li>
         </ul>
       </div>
-      
+
       <div class="footer-contact-col">
         <h4 class="footer-heading">Contact</h4>
         <ul class="footer-links">
@@ -34,28 +34,27 @@ const currentYear = new Date().getFullYear();
           </li>
           {SITE_CONFIG.features.enableWhatsAppAction && (
             <li>
-              <a href={SITE_CONFIG.contact.whatsappHref} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
+              <a href={SITE_CONFIG.contact.whatsappHref} target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </li>
           )}
           <li>
             <a href={`mailto:${SITE_CONFIG.contact.email}`}>{SITE_CONFIG.contact.email}</a>
           </li>
-          <li style="line-height: 1.5; opacity: 0.7; font-size: var(--text-xs);">
+          <li class="footer-address">
             {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1},<br />
             {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} – {SITE_CONFIG.contact.postalCode}
           </li>
-          <li style="margin-top: var(--spacing-sm);">
-            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule" style="color: var(--white); border-color: var(--white);">Get Directions &rarr;</a>
+          <li class="footer-action-link">
+            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule footer-rule">Get Directions &rarr;</a>
           </li>
-          <li style="margin-top: var(--spacing-sm);">
-            <a href="/contact" class="thin-rule" style="color: var(--white); border-color: var(--white);">Enquiry Form &rarr;</a>
+          <li class="footer-action-link">
+            <a href="/contact" class="thin-rule footer-rule">Enquiry Form &rarr;</a>
           </li>
         </ul>
       </div>
+
     </div>
-    
+
     <div class="footer-bottom">
       <p>&copy; {currentYear} {SITE_CONFIG.organization.name}. All rights reserved.</p>
       <div class="footer-legal-links">
@@ -69,9 +68,23 @@ const currentYear = new Date().getFullYear();
   .site-footer {
     background-color: var(--color-text);
     color: rgba(250, 249, 246, 0.7);
-    padding: var(--space-20) 0 var(--space-8);
+    padding: var(--space-16) 0 var(--space-8);
     font-size: var(--text-sm);
   }
+
+  /* Footer uses its own wider container */
+  .footer-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+  }
+
+  @media (min-width: 1280px) {
+    .footer-container {
+      padding: 0 var(--space-16);
+    }
+  }
+
   .site-footer a {
     color: rgba(250, 249, 246, 0.7);
     transition: color 0.2s ease, opacity 0.2s ease;
@@ -80,14 +93,39 @@ const currentYear = new Date().getFullYear();
     color: var(--white);
     opacity: 1;
   }
-  
+
+  /* Mobile: single column */
   .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--space-12);
-    margin-bottom: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    margin-bottom: var(--space-12);
   }
-  
+
+  /* Tablet: 2 columns */
+  @media (min-width: 640px) {
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10) var(--space-8);
+    }
+    .footer-brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* Desktop: full 3-column with wide brand column */
+  @media (min-width: 1024px) {
+    .footer-top {
+      grid-template-columns: 3fr 2fr 3fr;
+      gap: var(--space-16);
+      margin-bottom: var(--space-16);
+    }
+    .footer-brand-col {
+      grid-column: auto;
+    }
+  }
+
   .footer-brand {
     display: block;
     width: 180px;
@@ -101,26 +139,42 @@ const currentYear = new Date().getFullYear();
     font-family: var(--font-display);
     font-size: var(--text-lg);
     opacity: 0.9;
-    max-width: 320px;
+    max-width: 340px;
     line-height: 1.4;
   }
-  
+
   .footer-heading {
     font-family: var(--font-body);
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-secondary);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-5);
     font-weight: 600;
   }
-  
+
   .footer-links {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
-  
+
+  .footer-address {
+    line-height: 1.6;
+    opacity: 0.6;
+    font-size: var(--text-xs);
+    margin-top: var(--space-2);
+  }
+
+  .footer-action-link {
+    margin-top: var(--space-1);
+  }
+
+  .footer-rule {
+    color: rgba(250, 249, 246, 0.7);
+    border-color: rgba(250, 249, 246, 0.3);
+  }
+
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: var(--space-6);
@@ -128,18 +182,14 @@ const currentYear = new Date().getFullYear();
     justify-content: space-between;
     align-items: center;
     font-size: var(--text-xs);
-    opacity: 0.8;
+    opacity: 0.7;
+    gap: var(--space-4);
   }
-  
-  @media (max-width: 768px) {
-    .footer-top {
-      grid-template-columns: 1fr;
-      gap: var(--space-10);
-    }
+
+  @media (max-width: 480px) {
     .footer-bottom {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--spacing-sm);
     }
   }
 </style>
