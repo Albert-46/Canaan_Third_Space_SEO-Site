@@ -1,0 +1,22 @@
+[debug] [2026-09-01T15:44:16.866Z] ----------------------------------------------------------------------
+[debug] [2026-09-01T15:44:16.876Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alber\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2026-09-01T15:44:16.877Z] CLI Version:   15.28.2
+[debug] [2026-09-01T15:44:16.877Z] Platform:      win32
+[debug] [2026-09-01T15:44:16.877Z] Node Version:  v24.19.0
+[debug] [2026-09-01T15:44:16.877Z] Detected Agent: unknown
+[debug] [2026-09-01T15:44:16.877Z] Time:          Tue Sep 01 2026 21:14:16 GMT+0530 (India Standard Time)
+[debug] [2026-09-01T15:44:16.877Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-01T15:44:18.340Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-01T15:44:18.340Z] > authorizing via signed-in user (albertsabu773@gmail.com)
+[debug] [2026-09-01T15:44:18.340Z] [iam] checking project canaan-third-space for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-09-01T15:44:18.360Z] Checked if tokens are valid: false, expires at: 1788277955200
+[debug] [2026-09-01T15:44:18.360Z] Checked if tokens are valid: false, expires at: 1788277955200
+[debug] [2026-09-01T15:44:18.360Z] > refreshing access token with scopes: []
+[debug] [2026-09-01T15:44:18.363Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-09-01T15:44:18.363Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-09-01T15:44:18.570Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-09-01T15:44:18.570Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-09-01T15:44:18.576Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/canaan-third-space:testIamPermissions [none]
+[debug] [2026-09-01T15:44:18.577Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/canaan-third-space:testIamPermissions  x-goog-user-project=canaan-third-space
+[debug] [2026-09-01T15:44:18.577Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/canaan-third-space:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
