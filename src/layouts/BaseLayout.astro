@@ -68,7 +68,6 @@ const schema: Record<string, any> = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <Header />
 
   <main id="main-content">
@@ -171,19 +170,3 @@ const schema: Record<string, any> = {
   </script>
 </body>
 </html>
-
-<style is:global>
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--deep-ink);
-    color: white;
-    padding: 8px;
-    z-index: 1001;
-    transition: top 0.2s ease;
-  }
-  .skip-link:focus {
-    top: 0;
-  }
-</style>
