@@ -11,14 +11,15 @@ const currentYear = new Date().getFullYear();
         <a class="footer-brand" href="/" aria-label={`${SITE_CONFIG.organization.name} home page`}>
           <img src="/images/brand/Logo.png" alt={`${SITE_CONFIG.organization.name} logo`} class="footer-brand-logo" />
         </a>
-        <p class="footer-descriptor">
-          {SITE_CONFIG.organization.name} — {SITE_CONFIG.organization.descriptor.toLowerCase()}.
-        </p>
+        <div class="footer-brand-text">
+          <p class="footer-brand-name">{SITE_CONFIG.organization.name}</p>
+          <p class="footer-brand-tagline">{SITE_CONFIG.organization.descriptor.toLowerCase()}.</p>
+        </div>
       </div>
       
       <div class="footer-nav-col">
         <h4 class="footer-heading">Navigation</h4>
-        <ul class="footer-links">
+        <ul class="footer-links footer-nav-links">
           <li><a href="/about">About</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -81,8 +82,14 @@ const currentYear = new Date().getFullYear();
 
     background-color: var(--color-text);
     color: var(--footer-secondary);
-    padding: var(--space-16) 0 var(--space-8);
+    padding: var(--space-12) 0 calc(var(--space-8) + var(--mobile-cta-height, 72px));
     font-size: var(--text-sm);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer {
+      padding: var(--space-16) 0 var(--space-8);
+    }
   }
 
   /* Links inherit secondary by default, brighten on hover */
@@ -104,8 +111,8 @@ const currentYear = new Date().getFullYear();
   .footer-top {
     display: flex;
     flex-direction: column;
-    gap: var(--space-10);
-    margin-bottom: var(--space-12);
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
   }
 
   /* Desktop: wide 3-column grid */
@@ -114,29 +121,67 @@ const currentYear = new Date().getFullYear();
       display: grid;
       grid-template-columns: 2fr 1fr 1.5fr;
       gap: var(--space-16);
+      margin-bottom: var(--space-12);
       align-items: start;
     }
   }
 
   /* ── Brand column ────────────────────────────────────────── */
+  .footer-brand-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
   .footer-brand {
     display: block;
-    width: 160px;
-    margin-bottom: var(--space-5);
+    width: 120px;
+    flex-shrink: 0;
+    margin-bottom: 0;
   }
   .footer-brand-logo {
     width: 100%;
     height: auto;
   }
 
-  /* Brand descriptor — primary contrast, clearly readable */
-  .footer-descriptor {
+  .footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .footer-brand-name {
     font-family: var(--font-display);
-    font-size: var(--text-base);
-    color: var(--footer-primary);   /* explicit, not opacity-stacked */
-    max-width: 340px;
-    line-height: 1.55;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--footer-primary);
+    line-height: 1.2;
     margin: 0;
+  }
+
+  /* Brand descriptor — primary contrast, clearly readable */
+  .footer-brand-tagline {
+    font-size: var(--text-xs);
+    color: var(--footer-muted);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-brand-col {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+    .footer-brand {
+      width: 160px;
+    }
+    .footer-brand-name {
+      font-size: var(--text-base);
+      line-height: 1.4;
+      max-width: 340px;
+    }
   }
 
   /* ── Section headings (Navigation, Contact) ─────────────── */
@@ -155,6 +200,37 @@ const currentYear = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
+  }
+
+  /* Mobile enhanced touch targets for main nav */
+  .footer-nav-links {
+    gap: 0;
+  }
+  .footer-nav-links li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .footer-nav-links li:last-child {
+    border-bottom: none;
+  }
+  .footer-nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px; /* comfortable touch target */
+    padding: var(--space-2) 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-nav-links {
+      gap: var(--space-3);
+    }
+    .footer-nav-links li {
+      border-bottom: none;
+    }
+    .footer-nav-links a {
+      min-height: auto;
+      padding: 0;
+      display: inline-block;
+    }
   }
 
   /* Address block — secondary, not muted into invisibility */
