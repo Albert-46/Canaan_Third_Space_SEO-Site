@@ -1,4 +1,4 @@
-﻿# Canaan Third Space — Photography Brief
+# Canaan Third Space — Photography Brief
 
 A reference for commissioning, sourcing, or approving photography for the public website.
 
@@ -49,7 +49,7 @@ A tall portrait-orientation shot of the facility exterior or entrance. The image
 
 | Field | Detail |
 |---|---|
-| **Filename** | `public/images/old-age-home/home-exterior.jpg` |
+| **Filename** | `public/images/third-space/exterior/home-exterior.jpg` |
 | **Page** | Homepage (`/`) |
 | **Section** | "Integrated Care, Under One Roof" — right column |
 | **Aspect Ratio** | `3:2` (landscape) |
@@ -75,7 +75,7 @@ A warm environmental shot showing the residential character of the facility. Sho
 
 | Field | Detail |
 |---|---|
-| **Filename** | `public/images/old-age-home/common-area.jpg` |
+| **Filename** | `public/images/third-space/gallery/common-area.jpg` |
 | **Page** | Homepage (`/`) |
 | **Section** | Closing visual — before the contact strip |
 | **Aspect Ratio** | `21:9` (ultra-wide cinematic) |
@@ -101,7 +101,7 @@ A wide, cinematic shot that creates a sense of peaceful space. Needs to read wel
 
 | Field | Detail |
 |---|---|
-| **Filename** | `public/images/old-age-home/home-exterior.jpg` |
+| **Filename** | `public/images/third-space/exterior/home-exterior.jpg` |
 | **Page** | About (`/about`) |
 | **Section** | "Our Story" — after the introductory paragraphs |
 | **Aspect Ratio** | `21:9` (ultra-wide cinematic) |
@@ -155,9 +155,9 @@ A wide environmental shot representing the integration of care and living. Not c
 | # | Filename | Page | Aspect Ratio | Recommended Size |
 |---|---|---|---|---|
 | 1 | `hospital/hero.jpg` | Homepage hero | 3:4 portrait | 1200 × 1600 px |
-| 2 | `old-age-home/home-exterior.jpg` | Homepage + About | 3:2 / 21:9 | 1800 × 1200 px |
-| 3 | `old-age-home/common-area.jpg` | Homepage closing | 21:9 cinematic | 3000 × 1286 px |
-| 4 | `old-age-home/home-exterior.jpg` | About — Our Story | 21:9 cinematic | shared with #2 |
+| 2 | `third-space/exterior/home-exterior.jpg` | Homepage + About | 3:2 / 21:9 | 1800 × 1200 px |
+| 3 | `third-space/gallery/common-area.jpg` | Homepage closing | 21:9 cinematic | 3000 × 1286 px |
+| 4 | `third-space/exterior/home-exterior.jpg` | About — Our Story | 21:9 cinematic | shared with #2 |
 | 5 | `hospital/facility-environment.jpg` | Services | 21:9 cinematic | 3000 × 1286 px |
 
 **Total unique images required: 4**
@@ -172,7 +172,7 @@ A wide environmental shot representing the integration of care and living. Not c
 - **Quality:** 85–90% JPEG compression
 - **Place all images in:** `public/images/`
   - `public/images/hospital/`
-  - `public/images/old-age-home/`
+  - `public/images/third-space/`
 
 Once images are placed at the correct paths, the placeholders will be replaced with no code changes required.
 
@@ -188,7 +188,7 @@ When a photograph is approved and placed at the correct path, replace the `<Imag
 
 {/* With this: */}
 <img
-  src="/images/old-age-home/common-area.jpg"
+  src="/images/third-space/gallery/common-area.jpg"
   alt="A calm, light-filled common area at Canaan Third Space Senior Care Home"
   class="editorial-photo"
   width="3000"

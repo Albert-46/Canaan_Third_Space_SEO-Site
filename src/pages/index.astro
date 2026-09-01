@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { SITE_CONFIG } from '../config';
 
 const title = "Canaan Third Space Senior Care Home";
@@ -32,7 +31,11 @@ const description = "Canaan Third Space Senior Care Home brings together medical
         </div>
 
         <div class="hero-image">
-          <ImagePlaceholder aspectRatio="3:4" label={"CANAAN THIRD SPACE\nFACILITY EXTERIOR"} />
+          <img 
+            src="/images/third-space/hero/third-space-exterior-main.jpeg" 
+            alt="Third Space Senior Care Home surrounded by greenery"
+            class="content-image"
+          />
         </div>
 
       </div>
@@ -58,7 +61,13 @@ const description = "Canaan Third Space Senior Care Home brings together medical
         </div>
 
         <div class="integrated-image">
-          <ImagePlaceholder aspectRatio="3:2" label={"CANAAN THIRD SPACE\nRESIDENTIAL ENVIRONMENT"} />
+          <img 
+            src="/images/third-space/rooms/shared-room-01.png" 
+            alt="Comfortable shared residential room at Third Space"
+            class="content-image"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
       </div>
@@ -108,7 +117,13 @@ const description = "Canaan Third Space Senior Care Home brings together medical
   */}
   <section class="section section-compact section-closing-visual reveal">
     <div class="container container-wide">
-      <ImagePlaceholder aspectRatio="21:9" label={"CANAAN THIRD SPACE\nCOMMON AREA"} />
+      <img 
+        src="/images/third-space/gallery/main-corridor.png" 
+        alt="Main corridor showing the interior environment at Third Space"
+        class="content-image closing-image"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 
@@ -167,6 +182,18 @@ const description = "Canaan Third Space Senior Care Home brings together medical
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      HERO — mobile-first, desktop asymmetric two-column
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .content-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+  
+  .closing-image {
+    aspect-ratio: 21 / 9;
+  }
+
   .hero-desktop {
     background-color: var(--color-surface-2);
     padding: var(--space-10) 0 var(--space-8);
@@ -241,10 +268,9 @@ const description = "Canaan Third Space Senior Care Home brings together medical
     }
 
     /* On desktop, the hero image should fill the column height */
-    .hero-image :global(.image-placeholder) {
+    .hero-image img {
       height: 100%;
       max-height: none;
-      aspect-ratio: unset;
       min-height: 480px;
     }
   }
@@ -312,8 +338,9 @@ const description = "Canaan Third Space Senior Care Home brings together medical
     }
 
     /* On desktop, the secondary image gets no mobile max-height cap */
-    .integrated-image :global(.image-placeholder) {
+    .integrated-image img {
       max-height: none;
+      height: 100%;
     }
   }
 
@@ -409,7 +436,7 @@ const description = "Canaan Third Space Senior Care Home brings together medical
       padding-block: var(--space-10);
     }
     /* Let the wide image breathe across full container */
-    .section-closing-visual :global(.image-placeholder) {
+    .section-closing-visual img {
       max-height: none;
       border-radius: var(--radius-lg);
     }

@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import { SITE_CONFIG } from '../config';
 
 const title = "About";
@@ -28,7 +27,13 @@ const description = "Learn more about Canaan Third Space, where medical services
       <p>We prioritize clear communication with families, maintaining transparency about care plans, and honoring the individual preferences of every person we support.</p>
       
       <div style="margin-top: var(--space-8);">
-        <ImagePlaceholder aspectRatio="21:9" label="CANAAN THIRD SPACE\nOUR ENVIRONMENT" />
+        <img 
+          src="/images/third-space/exterior/third-space-exterior-sign.jpeg" 
+          alt="Third Space Senior Care Home exterior and entrance"
+          style="width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-md); aspect-ratio: 21 / 9;"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   </section>
