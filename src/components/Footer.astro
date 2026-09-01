@@ -42,15 +42,15 @@ const currentYear = new Date().getFullYear();
           <li>
             <a href={`mailto:${SITE_CONFIG.contact.email}`}>{SITE_CONFIG.contact.email}</a>
           </li>
-          <li style="line-height: 1.5; opacity: 0.7; font-size: var(--text-xs);">
+          <li class="footer-address">
             {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1},<br />
             {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district} – {SITE_CONFIG.contact.postalCode}
           </li>
           <li style="margin-top: var(--spacing-sm);">
-            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule" style="color: var(--white); border-color: var(--white);">Get Directions &rarr;</a>
+            <a href={SITE_CONFIG.contact.mapUrl} target="_blank" rel="noopener noreferrer" class="thin-rule footer-action-link">Get Directions &rarr;</a>
           </li>
           <li style="margin-top: var(--spacing-sm);">
-            <a href="/contact" class="thin-rule" style="color: var(--white); border-color: var(--white);">Enquiry Form &rarr;</a>
+            <a href="/contact" class="thin-rule footer-action-link">Enquiry Form &rarr;</a>
           </li>
         </ul>
       </div>
@@ -66,19 +66,39 @@ const currentYear = new Date().getFullYear();
 </footer>
 
 <style>
+  /* ─────────────────────────────────────────────────────────────
+     Color contract for the dark footer background (#2C3330):
+       --footer-primary   : high-contrast soft white  ~90% luminance
+       --footer-secondary : comfortable warm grey      ~70% luminance
+       --footer-muted     : muted, still readable      ~55% luminance
+     Nothing uses opacity stacking — values are explicit.
+  ───────────────────────────────────────────────────────────── */
+
   .site-footer {
+    --footer-primary:   rgba(250, 249, 246, 0.92); /* soft off-white      */
+    --footer-secondary: rgba(230, 226, 220, 0.78); /* warm readable grey  */
+    --footer-muted:     rgba(210, 205, 198, 0.62); /* muted, not invisible */
+
     background-color: var(--color-text);
-    color: rgba(250, 249, 246, 0.7);
+    color: var(--footer-secondary);
     padding: var(--space-16) 0 var(--space-8);
     font-size: var(--text-sm);
   }
+
+  /* Links inherit secondary by default, brighten on hover */
   .site-footer a {
-    color: rgba(250, 249, 246, 0.7);
+    color: var(--footer-secondary);
     transition: color 0.2s ease;
   }
   .site-footer a:hover {
-    color: rgba(250, 249, 246, 1);
+    color: var(--footer-primary);
   }
+  .site-footer a:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+
+  /* ── Layout ──────────────────────────────────────────────── */
 
   /* Mobile: single column */
   .footer-top {
@@ -88,7 +108,7 @@ const currentYear = new Date().getFullYear();
     margin-bottom: var(--space-12);
   }
 
-  /* Desktop: wide 3-column grid  */
+  /* Desktop: wide 3-column grid */
   @media (min-width: 768px) {
     .footer-top {
       display: grid;
@@ -98,6 +118,7 @@ const currentYear = new Date().getFullYear();
     }
   }
 
+  /* ── Brand column ────────────────────────────────────────── */
   .footer-brand {
     display: block;
     width: 160px;
@@ -107,39 +128,69 @@ const currentYear = new Date().getFullYear();
     width: 100%;
     height: auto;
   }
+
+  /* Brand descriptor — primary contrast, clearly readable */
   .footer-descriptor {
     font-family: var(--font-display);
     font-size: var(--text-base);
-    opacity: 0.85;
+    color: var(--footer-primary);   /* explicit, not opacity-stacked */
     max-width: 340px;
-    line-height: 1.5;
+    line-height: 1.55;
     margin: 0;
   }
 
+  /* ── Section headings (Navigation, Contact) ─────────────── */
   .footer-heading {
     font-family: var(--font-body);
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--color-secondary);
+    color: var(--color-secondary); /* warm peach/gold accent — unchanged */
     margin-bottom: var(--space-5);
     font-weight: 600;
   }
 
+  /* ── Nav and contact link lists ──────────────────────────── */
   .footer-links {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
 
+  /* Address block — secondary, not muted into invisibility */
+  .footer-address {
+    font-size: var(--text-xs);
+    color: var(--footer-secondary);
+    line-height: 1.6;
+  }
+
+  /* Action links (Get Directions, Enquiry Form) — override thin-rule's dark border */
+  .footer-action-link {
+    color: var(--footer-secondary);
+    border-bottom-color: var(--footer-secondary) !important;
+  }
+  .footer-action-link:hover {
+    color: var(--footer-primary);
+    border-bottom-color: var(--footer-primary) !important;
+  }
+
+  /* ── Footer bottom bar ───────────────────────────────────── */
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
     padding-top: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
     font-size: var(--text-xs);
-    opacity: 0.7;
+    /* Explicit muted color — no opacity stacking */
+    color: var(--footer-muted);
+  }
+  /* Copyright link (Privacy Policy) inherits muted but gets secondary on hover */
+  .footer-bottom a {
+    color: var(--footer-muted);
+  }
+  .footer-bottom a:hover {
+    color: var(--footer-primary);
   }
 
   @media (min-width: 768px) {
