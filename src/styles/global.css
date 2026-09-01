@@ -63,7 +63,6 @@
   
   /* Layout */
   --container-width: 1280px;
-  --container-width-wide: 1440px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
@@ -154,23 +153,7 @@ p { margin-block-end: var(--space-6); line-height: 1.7; color: var(--color-text-
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--space-8);
-}
-
-/* Wider container for sections that benefit from more horizontal space */
-.container-wide {
-  max-width: var(--container-width-wide);
-  margin: 0 auto;
-  padding: 0 var(--space-8);
-}
-
-@media (min-width: 1280px) {
-  .container {
-    padding: 0 var(--space-12);
-  }
-  .container-wide {
-    padding: 0 var(--space-16);
-  }
+  padding: 0 var(--spacing-md);
 }
 
 .grid-12 {
@@ -181,12 +164,6 @@ p { margin-block-end: var(--space-6); line-height: 1.7; color: var(--color-text-
 
 .section {
   padding-block: var(--space-12);
-}
-/* Generous padding on large desktop */
-@media (min-width: 1280px) {
-  .section {
-    padding-block: var(--space-16);
-  }
 }
 @media (max-width: 768px) {
   .section {

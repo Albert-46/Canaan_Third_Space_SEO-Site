@@ -9,118 +9,150 @@ const description = "Canaan Third Space Senior Care Home brings together medical
 
 <BaseLayout title={title} description={description}>
 
-  {/* ── Hero ───────────────────────────────────────────────── */}
-  <section class="hero-section reveal">
-    <div class="container hero-layout">
-
-      <div class="hero-text">
-        <span class="eyebrow">
-          {SITE_CONFIG.organization.city}, {SITE_CONFIG.organization.district}, {SITE_CONFIG.organization.state}
-        </span>
-        <h1>Compassionate care.<br />Dignified living.</h1>
-        <p>{description}</p>
-        <div class="hero-actions">
-          <a href="/contact#enquiry" class="btn btn-primary">Book a Facility Visit</a>
-          <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call Now</a>
-          {SITE_CONFIG.features.enableWhatsAppAction && (
-            <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          )}
-        </div>
-      </div>
-
-      <div class="hero-image">
-        <ImagePlaceholder aspectRatio="3:2" label={"CANAAN THIRD SPACE\nFACILITY EXTERIOR"} />
-      </div>
-
-    </div>
-  </section>
-
-  {/* ── Integrated Care ─────────────────────────────────────── */}
-  <section class="section editorial-section reveal">
-    <div class="container editorial-layout">
-
-      <div class="editorial-text">
-        <h2>Integrated care,<br class="desktop-br" /> under one roof</h2>
-        <p>We provide comprehensive medical services alongside a supportive senior residential living facility, ensuring all health and lifestyle needs are met seamlessly in a single coordinated environment.</p>
-        <div class="editorial-links">
-          <a href="/services" class="thin-rule link-primary">View Medical Services &rarr;</a>
-          <a href="/about" class="thin-rule link-primary">Explore Senior Care &rarr;</a>
-        </div>
-      </div>
-
-      <div class="editorial-image">
-        <ImagePlaceholder aspectRatio="3:2" label={"CANAAN THIRD SPACE\nRESIDENTIAL ENVIRONMENT"} />
-      </div>
-
-    </div>
-  </section>
-
-  {/* ── Why Families Choose Us ──────────────────────────────── */}
-  <section class="section section-bg-dim why-section reveal">
-    <div class="container why-layout">
-
-      <div class="why-heading">
-        <h2>Why families choose<br />Canaan Third Space</h2>
-        <p class="why-intro">A calm, professionally managed environment where medical and residential care work together.</p>
-      </div>
-
-      <ul class="why-list">
-        <li class="why-item">
-          <span class="why-bullet" aria-hidden="true">&bull;</span>
-          <span>Calm, professionally managed environment</span>
-        </li>
-        <li class="why-item">
-          <span class="why-bullet" aria-hidden="true">&bull;</span>
-          <span>Medical and residential care in one coordinated setting</span>
-        </li>
-        <li class="why-item">
-          <span class="why-bullet" aria-hidden="true">&bull;</span>
-          <span>Clear communication with families before and after admission</span>
-        </li>
-        <li class="why-item">
-          <span class="why-bullet" aria-hidden="true">&bull;</span>
-          <span>Respect for dignity, safety, and individual preferences</span>
-        </li>
-      </ul>
-
-    </div>
-  </section>
-
-  {/* ── Closing Visual ──────────────────────────────────────── */}
-  <section class="section section-compact visual-closing reveal">
+  {/* ── 1. Hero ─────────────────────────────────────────────── */}
+  {/*
+      Mobile:  Single column, text → image stacked
+      Desktop: Asymmetric two-column. Text left ~55%, Image right ~45%
+  */}
+  <section class="hero-desktop reveal">
     <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-text">
+          <span class="eyebrow">{SITE_CONFIG.organization.city}, {SITE_CONFIG.organization.district}, {SITE_CONFIG.organization.state}</span>
+          <h1>Compassionate care.<br />Dignified living.</h1>
+          <p class="hero-body">{description}</p>
+          <div class="hero-actions">
+            <a href="/contact#enquiry" class="btn btn-primary">Book a Facility Visit</a>
+            <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call Now</a>
+            {SITE_CONFIG.features.enableWhatsAppAction && (
+              <a href={SITE_CONFIG.contact.whatsappHref} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            )}
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <ImagePlaceholder aspectRatio="3:4" label={"CANAAN THIRD SPACE\nFACILITY EXTERIOR"} />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── 2. Integrated Care ──────────────────────────────────── */}
+  {/*
+      Mobile:  Text → Image stacked
+      Desktop: Text left ~45%, Image right ~55% (asymmetric, image-weighted)
+  */}
+  <section class="section section-integrated reveal">
+    <div class="container">
+      <div class="integrated-inner">
+
+        <div class="integrated-text">
+          <h2>Integrated care, under one roof</h2>
+          <p>We provide comprehensive medical services alongside a supportive senior residential living facility, ensuring all your health and lifestyle needs are met seamlessly.</p>
+          <div class="integrated-links">
+            <a href="/services" class="thin-rule integrated-link">View Medical Services &rarr;</a>
+            <a href="/about" class="thin-rule integrated-link">Explore Senior Care &rarr;</a>
+          </div>
+        </div>
+
+        <div class="integrated-image">
+          <ImagePlaceholder aspectRatio="3:2" label={"CANAAN THIRD SPACE\nRESIDENTIAL ENVIRONMENT"} />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── 3. Why Families Choose Us ───────────────────────────── */}
+  {/*
+      Mobile:  Heading → stacked list items
+      Desktop: Sticky/anchored heading left column, items in right column with dividers
+  */}
+  <section class="section section-why reveal section-bg-dim">
+    <div class="container">
+      <div class="why-inner">
+
+        <div class="why-heading-col">
+          <div class="why-heading-sticky">
+            <h2>Why families choose<br />Canaan Third Space</h2>
+          </div>
+        </div>
+
+        <div class="why-list-col">
+          <ul class="why-list">
+            <li class="why-item">
+              <p class="why-item-text">Calm, professionally managed environment</p>
+            </li>
+            <li class="why-item">
+              <p class="why-item-text">Medical and residential care in one coordinated setting</p>
+            </li>
+            <li class="why-item">
+              <p class="why-item-text">Clear communication with families before and after admission</p>
+            </li>
+            <li class="why-item">
+              <p class="why-item-text">Respect for dignity, safety, and individual preferences</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── 4. Closing Visual ───────────────────────────────────── */}
+  {/*
+      Full-bleed wide image — breaks the text rhythm, grounds the page.
+      On desktop, allowed to breathe beyond the narrow text column.
+  */}
+  <section class="section section-compact section-closing-visual reveal">
+    <div class="container container-wide">
       <ImagePlaceholder aspectRatio="21:9" label={"CANAAN THIRD SPACE\nCOMMON AREA"} />
     </div>
   </section>
 
-  {/* ── Contact Strip ───────────────────────────────────────── */}
-  <section class="section section-compact contact-section reveal">
-    <div class="container contact-split">
+  {/* ── 5. Contact Strip ────────────────────────────────────── */}
+  {/*
+      Mobile:  Stacked
+      Desktop: Two-column — left: location + identity, right: contact actions
+  */}
+  <section class="section section-compact reveal">
+    <div class="container">
+      <div class="contact-cta-strip">
 
-      <div class="contact-split-info">
-        <h3>Speak with our team</h3>
-        <p class="contact-address-line">
-          {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1}, {SITE_CONFIG.contact.city}
-        </p>
+        <div class="cta-left">
+          <h3 class="cta-heading">Speak with our team</h3>
+          <p class="cta-address">
+            {SITE_CONFIG.contact.addressLine2}, {SITE_CONFIG.contact.addressLine1},<br />
+            {SITE_CONFIG.contact.city}, {SITE_CONFIG.contact.district}
+          </p>
+        </div>
+
+        <div class="cta-divider" aria-hidden="true"></div>
+
+        <div class="cta-right">
+          <a href={SITE_CONFIG.contact.phoneHref} class="cta-action-link">
+            Call {SITE_CONFIG.contact.phoneDisplay}
+          </a>
+          {SITE_CONFIG.features.enableWhatsAppAction && (
+            <a href={SITE_CONFIG.contact.whatsappHref} class="cta-action-link" target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          )}
+          <a href={SITE_CONFIG.contact.mapUrl} class="cta-action-link" target="_blank" rel="noopener noreferrer">
+            Get Directions
+          </a>
+          <a href="/contact" class="btn btn-primary cta-btn">Contact Us</a>
+        </div>
+
       </div>
-
-      <div class="contact-split-actions">
-        <a href={SITE_CONFIG.contact.phoneHref} class="thin-rule link-primary">
-          Call {SITE_CONFIG.contact.phoneDisplay}
-        </a>
-        {SITE_CONFIG.features.enableWhatsAppAction && (
-          <a href={SITE_CONFIG.contact.whatsappHref} class="thin-rule link-primary" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        )}
-        <a href={SITE_CONFIG.contact.mapUrl} class="thin-rule link-primary" target="_blank" rel="noopener noreferrer">Get Directions</a>
-        <a href="/contact" class="btn btn-primary">Contact Us</a>
-      </div>
-
     </div>
   </section>
 
-  {/* ── Emergency Notice ────────────────────────────────────── */}
+  {/* Emergency Notice */}
   {SITE_CONFIG.features.enableEmergencyNotice && (
-    <section class="section section-compact emergency-wrapper">
+    <section class="section section-compact" style="padding-top: 0; padding-bottom: var(--space-8);">
       <div class="container text-block-narrow reveal">
         <div class="emergency-notice" style="margin: 0;">
           <p><strong>Notice:</strong> {SITE_CONFIG.emergency.disclaimer}</p>
@@ -132,20 +164,16 @@ const description = "Canaan Third Space Senior Care Home brings together medical
 </BaseLayout>
 
 <style>
-  /* ── Design tokens ────────────────────────────────────────── */
-  /* Shared link colour helper */
-  .link-primary {
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-  }
-
-  /* ── Hero ───────────────────────────────────────────────── */
-  .hero-section {
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     HERO — mobile-first, desktop asymmetric two-column
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .hero-desktop {
     background-color: var(--color-surface-2);
-    padding-block: var(--space-10) var(--space-8);
+    padding: var(--space-10) 0 var(--space-8);
   }
 
-  .hero-layout {
+  /* Mobile: text → image stacked, centered */
+  .hero-inner {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
@@ -154,225 +182,328 @@ const description = "Canaan Third Space Senior Care Home brings together medical
   .hero-text {
     text-align: center;
   }
+
   .hero-text h1 {
+    font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
     margin-bottom: var(--space-4);
   }
-  .hero-text p {
-    max-width: 600px;
-    margin-inline: auto;
-    margin-bottom: var(--space-6);
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+
+  .hero-body {
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.2rem);
+    max-width: 560px;
+    margin: 0 auto var(--space-6);
   }
+
   .hero-actions {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: var(--space-2);
   }
 
   .hero-image {
     width: 100%;
   }
 
-  /* Desktop hero: two-column, text left / image right */
+  /* Desktop: asymmetric two-column */
   @media (min-width: 1024px) {
-    .hero-section {
-      padding-block: var(--space-20);
+    .hero-desktop {
+      padding: var(--space-16) 0;
     }
-    .hero-layout {
+
+    .hero-inner {
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
       gap: var(--space-16);
+      min-height: 560px;
     }
+
     .hero-text {
-      flex: 0 0 44%;
+      flex: 0 0 52%;
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: var(--space-8);
     }
-    .hero-text p {
-      margin-inline: 0;
+
+    .hero-body {
+      margin: 0 0 var(--space-8);
     }
+
     .hero-actions {
       justify-content: flex-start;
     }
+
     .hero-image {
-      flex: 1;
+      flex: 0 0 48%;
+      /* Tall portrait-ish image beside text */
+    }
+
+    /* On desktop, the hero image should fill the column height */
+    .hero-image :global(.image-placeholder) {
+      height: 100%;
+      max-height: none;
+      aspect-ratio: unset;
+      min-height: 480px;
     }
   }
 
-  /* ── Editorial (text + image) sections ─────────────────── */
-  .editorial-layout {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-10);
-  }
-
-  .editorial-text h2 {
-    margin-bottom: var(--space-4);
-  }
-  .editorial-text p {
-    max-width: 52ch;
-    margin-bottom: var(--space-6);
-  }
-  .editorial-links {
-    display: flex;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .editorial-image {
-    width: 100%;
-  }
-
-  /* Desktop: side-by-side */
-  @media (min-width: 1024px) {
-    .editorial-section {
-      padding-block: var(--space-20);
+  @media (min-width: 1280px) {
+    .hero-text {
+      flex: 0 0 55%;
     }
-    .editorial-layout {
-      flex-direction: row;
-      align-items: center;
-      gap: var(--space-16);
-    }
-    .editorial-text {
-      flex: 0 0 42%;
-    }
-    .editorial-image {
-      flex: 1;
-    }
-    /* Remove mobile BR on desktop — natural line breaks handle it */
-    .desktop-br {
-      display: none;
+    .hero-image {
+      flex: 0 0 45%;
     }
   }
 
-  /* ── Why Section ────────────────────────────────────────── */
-  .why-section {
-    padding-block: var(--space-12);
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     INTEGRATED CARE — text left, image right
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .section-integrated {
+    padding-block: var(--space-10);
   }
 
-  .why-layout {
+  .integrated-inner {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
   }
 
-  .why-heading h2 {
+  .integrated-text h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
     margin-bottom: var(--space-4);
   }
-  .why-intro {
-    max-width: 48ch;
-    margin: 0;
-    font-size: var(--text-base);
+
+  .integrated-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
   }
 
+  .integrated-link {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    align-self: flex-start;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .section-integrated {
+      padding-block: var(--space-16);
+    }
+
+    .integrated-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .integrated-text {
+      flex: 0 0 40%;
+    }
+
+    .integrated-image {
+      flex: 0 0 58%;
+    }
+
+    /* On desktop, the secondary image gets no mobile max-height cap */
+    .integrated-image :global(.image-placeholder) {
+      max-height: none;
+    }
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     WHY FAMILIES — anchored heading left, ruled list right
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .section-why {
+    padding-block: var(--space-10);
+  }
+
+  .why-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .why-heading-col h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 2.75rem);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Mobile list */
   .why-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
   }
 
   .why-item {
-    display: flex;
-    gap: var(--space-4);
-    align-items: flex-start;
-    font-size: var(--text-lg);
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid rgba(44, 51, 48, 0.12);
+  }
+  .why-item:first-child {
+    border-top: 1px solid rgba(44, 51, 48, 0.12);
+  }
+
+  .why-item-text {
+    font-size: clamp(1rem, 1.5vw + 0.25rem, 1.2rem);
     color: var(--color-text);
+    margin: 0;
+    line-height: 1.5;
   }
 
-  .why-bullet {
-    color: var(--color-secondary);
-    font-size: 1.4rem;
-    line-height: 1.3;
-    flex-shrink: 0;
-  }
-
-  /* Desktop: editorial two-column */
+  /* Desktop: sticky heading left, list right */
   @media (min-width: 1024px) {
-    .why-section {
+    .section-why {
       padding-block: var(--space-20);
     }
-    .why-layout {
+
+    .why-inner {
       flex-direction: row;
       align-items: flex-start;
       gap: var(--space-20);
     }
-    .why-heading {
-      flex: 0 0 36%;
-      /* Keep heading pinned while list scrolls naturally */
+
+    .why-heading-col {
+      flex: 0 0 38%;
+    }
+
+    .why-heading-sticky {
       position: sticky;
-      top: var(--space-12);
+      top: calc(88px + var(--space-8)); /* below fixed header */
     }
-    .why-intro {
-      max-width: 100%;
+
+    .why-list-col {
+      flex: 0 0 58%;
     }
-    .why-list {
-      flex: 1;
-      gap: var(--space-6);
-      padding-top: var(--space-2);
-    }
+
     .why-item {
+      padding: var(--space-6) 0;
+    }
+
+    .why-item-text {
       font-size: var(--text-xl);
-      padding-bottom: var(--space-4);
-      border-bottom: 1px solid var(--color-surface-3);
-    }
-    .why-item:last-child {
-      border-bottom: none;
     }
   }
 
-  /* ── Closing visual — full container width on desktop ──── */
-  .visual-closing {
-    padding-block: 0 var(--space-8);
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CLOSING VISUAL — wide, bleeds beyond text column on desktop
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .section-closing-visual {
+    padding-block: var(--space-8);
   }
+
+  .container-wide {
+    max-width: min(var(--container-width), 100%);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
   @media (min-width: 1024px) {
-    .visual-closing {
-      padding-block: 0 var(--space-16);
+    .section-closing-visual {
+      padding-block: var(--space-10);
+    }
+    /* Let the wide image breathe across full container */
+    .section-closing-visual :global(.image-placeholder) {
+      max-height: none;
+      border-radius: var(--radius-lg);
     }
   }
 
-  /* ── Contact Strip ──────────────────────────────────────── */
-  .contact-split {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CONTACT CTA STRIP — stacked mobile, two-column desktop
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .contact-cta-strip {
     background-color: var(--color-surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
   }
 
-  .contact-split-info h3 {
-    margin-bottom: var(--space-2);
+  .cta-heading {
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+    margin-bottom: var(--space-3);
   }
-  .contact-address-line {
+
+  .cta-address {
     font-size: var(--text-sm);
+    color: var(--color-text-muted);
     margin: 0;
-    opacity: 0.7;
+    line-height: 1.6;
   }
 
-  .contact-split-actions {
+  .cta-divider {
+    display: none; /* only shown on desktop */
+  }
+
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .cta-action-link {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+    padding-bottom: 2px;
+    min-height: 44px;
     display: flex;
     align-items: center;
-    gap: var(--space-4);
-    flex-wrap: wrap;
+    transition: color 0.2s ease;
+  }
+  .cta-action-link:hover {
+    color: var(--color-primary-hover);
   }
 
-  /* Desktop: side-by-side strip */
+  .cta-btn {
+    margin-top: var(--space-2);
+    align-self: flex-start;
+  }
+
   @media (min-width: 1024px) {
-    .contact-split {
+    .contact-cta-strip {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      padding: var(--space-10) var(--space-12);
+      gap: 0;
+      padding: var(--space-12) var(--space-12);
     }
-    .contact-split-info {
-      flex: 0 0 auto;
+
+    .cta-left {
+      flex: 0 0 42%;
+      padding-right: var(--space-12);
     }
-    .contact-split-actions {
-      flex-wrap: nowrap;
-      justify-content: flex-end;
+
+    .cta-divider {
+      display: block;
+      width: 1px;
+      align-self: stretch;
+      background-color: var(--color-surface-3);
+      flex-shrink: 0;
+    }
+
+    .cta-right {
+      flex: 1;
+      padding-left: var(--space-12);
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .cta-btn {
+      margin-top: 0;
+      margin-left: auto;
     }
   }
 </style>
