@@ -7,70 +7,170 @@ const description = "Learn more about Canaan Third Space, where medical services
 ---
 
 <BaseLayout title={title} description={description}>
-  {/* Hero Section */}
-  <section class="hero-minimal reveal">
-    <div class="container text-block-narrow">
+  {/* ── Hero — left-aligned, reflective ──────────────────────── */}
+  <section class="hero-minimal hero-minimal--left reveal">
+    <div class="container">
       <span class="eyebrow">{SITE_CONFIG.organization.name}</span>
       <h1>About Canaan Third Space</h1>
       <p>{description}</p>
     </div>
   </section>
 
-  {/* Our Story */}
+  {/* ── Our Story — editorial split ──────────────────────────── */}
+  {/*
+      Mobile:  heading → paragraphs → image (stacked, left-aligned)
+      Desktop: text left ~55%, portrait exterior sign image right ~45%
+      Image focal point: centre of sign, avoids thin letterbox crop
+  */}
   <section class="section section-compact reveal">
-    <div class="container text-block-narrow">
-      <h2>Our story</h2>
-      <p>Canaan Third Space was founded on the belief that aging and medical care should be handled with utmost dignity and respect. We recognized a growing need for an environment where seniors could receive continuous medical attention without losing the comfort and warmth of a residential home.</p>
-      
-      <p>By bringing together comprehensive medical services and supportive senior living, we ensure our residents are well-cared for at every stage. Our dedicated facility in Manimala is designed to be a calm, welcoming space that feels like home, while providing the safety and reassurance of professional healthcare.</p>
-      
-      <p>We prioritize clear communication with families, maintaining transparency about care plans, and honoring the individual preferences of every person we support.</p>
-      
-      <div style="margin-top: var(--space-8);">
-        <img 
-          src="/images/third-space/exterior/third-space-exterior-sign.jpeg" 
-          alt="Third Space Senior Care Home exterior and entrance"
-          style="width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-md); aspect-ratio: 21 / 9;"
-          loading="lazy"
-          decoding="async"
-        />
+    <div class="container">
+      <div class="story-split">
+
+        <div class="story-text">
+          <h2>Our story</h2>
+          <p>Canaan Third Space was founded on the belief that aging and medical care should be handled with utmost dignity and respect. We recognized a growing need for an environment where seniors could receive continuous medical attention without losing the comfort and warmth of a residential home.</p>
+          <p>By bringing together comprehensive medical services and supportive senior living, we ensure our residents are well-cared for at every stage. Our dedicated facility in Manimala is designed to be a calm, welcoming space that feels like home, while providing the safety and reassurance of professional healthcare.</p>
+          <p>We prioritize clear communication with families, maintaining transparency about care plans, and honoring the individual preferences of every person we support.</p>
+        </div>
+
+        <div class="story-image">
+          <img
+            src="/images/third-space/exterior/third-space-exterior-sign.jpeg"
+            alt="Third Space Senior Care Home entrance and signage at the facility in Manimala"
+            class="editorial-img editorial-img--rounded"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
       </div>
     </div>
   </section>
 
-  {/* What Makes Us Different */}
+  {/* ── What Makes Us Different ──────────────────────────────── */}
   <section class="section section-compact section-bg-dim reveal">
     <div class="container text-block-narrow">
       <h2>What makes us different</h2>
-      <ul style="margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);">
-        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
-          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
-          <span style="font-size: var(--text-lg); color: var(--color-text);"><strong>Calm Environment:</strong> A thoughtfully designed space that promotes peace of mind and well-being.</span>
+      <ul class="differentiators-list">
+        <li>
+          <span class="diff-marker" aria-hidden="true">&bull;</span>
+          <span><strong>Calm Environment:</strong> A thoughtfully designed space that promotes peace of mind and well-being.</span>
         </li>
-        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
-          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
-          <span style="font-size: var(--text-lg); color: var(--color-text);"><strong>Coordinated Care:</strong> Seamless integration between daily living support and specialized medical attention.</span>
+        <li>
+          <span class="diff-marker" aria-hidden="true">&bull;</span>
+          <span><strong>Coordinated Care:</strong> Seamless integration between daily living support and specialized medical attention.</span>
         </li>
-        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
-          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
-          <span style="font-size: var(--text-lg); color: var(--color-text);"><strong>Transparent Communication:</strong> Keeping families informed and involved in every step of the care journey.</span>
+        <li>
+          <span class="diff-marker" aria-hidden="true">&bull;</span>
+          <span><strong>Transparent Communication:</strong> Keeping families informed and involved in every step of the care journey.</span>
         </li>
-        <li style="display: flex; gap: var(--space-4); align-items: flex-start;">
-          <span style="color: var(--color-secondary); font-size: 1.5rem; line-height: 1;">&bull;</span>
-          <span style="font-size: var(--text-lg); color: var(--color-text);"><strong>Individualized Support:</strong> Personalized care plans that respect each resident's unique needs and dignity.</span>
+        <li>
+          <span class="diff-marker" aria-hidden="true">&bull;</span>
+          <span><strong>Individualized Support:</strong> Personalized care plans that respect each resident's unique needs and dignity.</span>
         </li>
       </ul>
     </div>
   </section>
 
-  {/* CTA Strip */}
+  {/* ── CTA Strip ────────────────────────────────────────────── */}
   <section class="section section-compact reveal">
-    <div class="container text-block-narrow text-center">
+    <div class="container text-block-narrow">
       <h2 style="margin-bottom: var(--space-6);">Take the next step</h2>
-      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
         <a href="/contact" class="btn btn-primary">Speak with our team</a>
         <a href="/services" class="btn btn-secondary">Explore our services</a>
       </div>
     </div>
   </section>
+
 </BaseLayout>
+
+<style>
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     OUR STORY EDITORIAL SPLIT
+     Mobile:  stacked — natural reading order
+     Desktop: text 55% left, portrait image 45% right
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .story-split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .story-text h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Mobile: 4:3 shows entrance with context.
+     Focal point biased toward the sign (top ~30% of image). */
+  .story-image img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-position: center 30%;
+  }
+
+  /* Tablet+: image fills its column — portrait character preserved */
+  @media (min-width: 768px) {
+    .story-split {
+      flex-direction: row;
+      align-items: stretch;
+      gap: var(--space-12);
+    }
+
+    .story-text {
+      flex: 0 0 55%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-image {
+      flex: 1;
+    }
+
+    /* Remove fixed crop — let the image fill the full column */
+    .story-image img {
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 420px;
+      object-position: center 30%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .story-split {
+      gap: var(--space-16);
+    }
+
+    .story-image img {
+      min-height: 520px;
+    }
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     DIFFERENTIATORS LIST
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .differentiators-list {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .differentiators-list li {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .diff-marker {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+</style>

@@ -7,11 +7,11 @@ const description = "Comprehensive medical care and supportive senior residentia
 ---
 
 <BaseLayout title={title} description={description}>
-  {/* Hero Section */}
-  <section class="hero-minimal reveal">
-    <div class="container text-block-narrow">
+  {/* Hero Section — left-aligned, clear and structured */}
+  <section class="hero-minimal hero-minimal--left reveal">
+    <div class="container">
       <span class="eyebrow">Our Offerings</span>
-      <h1>Medical Services & Senior Care</h1>
+      <h1>Medical Services &amp; Senior Care</h1>
       <p>{description}</p>
     </div>
   </section>
@@ -70,29 +70,40 @@ const description = "Comprehensive medical care and supportive senior residentia
     </div>
   </section>
 
-  {/* How It Works Together */}
+  {/* How It Works Together — editorial split */}
+  {/*
+      Mobile:  text → image (stacked)
+      Desktop: text left ~42%, care room image right ~58%
+      Image: environmental, not clinical. Shows room character.
+  */}
   <section class="section section-compact reveal">
-    <div class="container text-block-narrow">
-      <h2>How it works together</h2>
-      <p>Because our medical facilities and senior living accommodations share the same campus, residents benefit from continuous health monitoring. Changes in health are addressed immediately by our on-site medical team, avoiding the stress of external hospital transfers for routine care.</p>
-      
-      <div style="margin-top: var(--space-8);">
-        <img 
-          src="/images/third-space/care/care-room.png" 
-          alt="Care room equipped for resident support at Third Space"
-          style="width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-md); aspect-ratio: 21 / 9;"
-          loading="lazy"
-          decoding="async"
-        />
+    <div class="container">
+      <div class="care-split">
+
+        <div class="care-text">
+          <h2>How it works together</h2>
+          <p>Because our medical facilities and senior living accommodations share the same campus, residents benefit from continuous health monitoring. Changes in health are addressed immediately by our on-site medical team, avoiding the stress of external hospital transfers for routine care.</p>
+        </div>
+
+        <div class="care-image">
+          <img
+            src="/images/third-space/care/care-room.png"
+            alt="Care room at Third Space, equipped for resident comfort and support"
+            class="editorial-img editorial-img--rounded"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
       </div>
     </div>
   </section>
 
   {/* CTA Strip */}
   <section class="section section-compact reveal">
-    <div class="container text-block-narrow text-center">
+    <div class="container text-block-narrow">
       <h2 style="margin-bottom: var(--space-6);">Have questions?</h2>
-      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
         <a href="/contact#enquiry" class="btn btn-primary">Request a visit</a>
         <a href={SITE_CONFIG.contact.phoneHref} class="btn btn-secondary">Call us</a>
         {SITE_CONFIG.features.enableWhatsAppAction && (
@@ -101,4 +112,62 @@ const description = "Comprehensive medical care and supportive senior residentia
       </div>
     </div>
   </section>
+
 </BaseLayout>
+
+<style>
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CARE SPLIT — text left, room image right (desktop)
+     Environmental image: shows room character, not clinical UI
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .care-split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  /* Mobile: 4:3 shows the room with spatial context.
+     Centred position preserves the bed/room composition. */
+  .care-image img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-position: center;
+  }
+
+  @media (min-width: 768px) {
+    .care-split {
+      flex-direction: row;
+      align-items: stretch;
+      gap: var(--space-12);
+    }
+
+    .care-text {
+      flex: 0 0 42%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .care-image {
+      flex: 1;
+    }
+
+    /* Desktop: image fills full column — room reads as environment, not a card */
+    .care-image img {
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 360px;
+      object-position: center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .care-split {
+      gap: var(--space-16);
+    }
+
+    .care-image img {
+      min-height: 440px;
+    }
+  }
+</style>
