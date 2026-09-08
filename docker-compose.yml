@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: canaan_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: canaan_user
+      POSTGRES_PASSWORD: canaan_dev_pass
+      POSTGRES_DB: canaan_enquiries
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    name: canaan_pgdata

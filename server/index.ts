@@ -5,12 +5,12 @@
  *
  * PURPOSE
  *   Receives contact form submissions from the Astro frontend,
- *   saves each enquiry to SQLite, then sends an SMTP email
+ *   saves each enquiry to PostgreSQL, then sends an SMTP email
  *   notification to the configured inbox.
  *
  * ARCHITECTURE
  *   - Express HTTP server listening on PORT (default 3001)
- *   - better-sqlite3 database at ../data/enquiries.db
+ *   - PostgreSQL via pg connection pool (DATABASE_URL)
  *   - Nodemailer SMTP transport for email notifications
  *   - Email failures are logged but never block the API response
  *
@@ -18,7 +18,9 @@
  *   Copy .env.example → .env and fill in the values below.
  *
  *   PORT                 Port this server listens on (default: 3001)
- *   ALLOWED_ORIGIN       Astro dev URL for CORS (default: http://localhost:4321)
+ *   DATABASE_URL         PostgreSQL connection string
+ *                        e.g. postgresql://user:pass@localhost:5432/canaan_enquiries
+ *   ALLOWED_ORIGIN       Extra/staging origin for CORS (optional)
  *   SMTP_HOST            SMTP server hostname (e.g. smtp.gmail.com)
  *   SMTP_PORT            SMTP port (587 for STARTTLS, 465 for SSL)
  *   SMTP_SECURE          "true" for port 465, "false" for 587
@@ -38,54 +40,78 @@
  *   cd server
  *   npm install
  *   npm run dev       ← ts-node hot-reload
- *   (or) npm run build && npm start
+ *   (or) npm start    ← builds then runs compiled output
  * ============================================================
  */
 
 import path from 'path';
 import dotenv from 'dotenv';
-// Load .env from the project root.
-// __dirname is server/ in ts-node (dev) and server/dist/ in compiled build,
-// so we navigate two levels up to reliably reach the project root in both cases.
-dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') });
+
+// ── Load .env ─────────────────────────────────────────────────────────────────
+// Supports an explicit DOTENV_PATH override for maximum deployment flexibility.
+// Without the override we navigate two levels up from __dirname so the path is
+// correct whether running via ts-node (server/) or compiled build (server/dist/).
+const dotenvPath = process.env.DOTENV_PATH
+  ?? path.resolve(__dirname, '..', '..', '.env');
+dotenv.config({ path: dotenvPath });
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import { insertEnquiry, InsertEnquiryInput } from './db';
+import rateLimit from 'express-rate-limit';
+import { insertEnquiry, InsertEnquiryInput, runMigrations, checkDbHealth } from './db';
 import { sendEnquiryEmail } from './mailer';
 
 const app = express();
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
 
-// ALLOWED_ORIGIN is an additional configurable origin (e.g. a staging URL).
-// The two production frontend domains and the local dev server are always allowed.
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? '';
+// ── CORS ──────────────────────────────────────────────────────────────────────
+// Production origins are hardcoded — they are not secrets.
+// ALLOWED_ORIGIN (from .env) adds one extra slot for staging / overrides.
+const extraOrigin = process.env.ALLOWED_ORIGIN ?? '';
+const isProd = process.env.NODE_ENV === 'production';
+const allowedOrigins: string[] = [
+  'https://canaanthirdspace.com',
+  'https://www.canaanthirdspace.com',
+  'https://canaan-third-space.web.app',
+];
+if (!isProd) {
+  allowedOrigins.push('http://localhost:4321', 'http://127.0.0.1:4321');
+}
+if (extraOrigin) allowedOrigins.push(extraOrigin);
 
 // ── Middleware ────────────────────────────────────────────────────────────────
 
-// Production origins are hardcoded — they are not secrets.
-// ALLOWED_ORIGIN (from .env) adds one extra slot for staging / overrides.
-const allowedOrigins: string[] = [
-  'https://canaanthirdspace.com',
-  'https://canaan-third-space.web.app',
-  'http://localhost:4321',
-  'http://127.0.0.1:4321',
-];
-if (ALLOWED_ORIGIN) allowedOrigins.push(ALLOWED_ORIGIN);
-
 app.use(cors({
   origin: allowedOrigins,
-  methods: ['POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Accept'],
 }));
 
 app.use(express.json({ limit: '64kb' }));
 app.use(express.urlencoded({ extended: true, limit: '64kb' }));
 
-// ── Health check ─────────────────────────────────────────────────────────────
+// ── Health checks ─────────────────────────────────────────────────────────────
+// Both /health (plain) and /api/health are supported so deployment platforms
+// can use the simpler path, while the API-prefixed route remains for clients.
 
-app.get('/api/health', (_req: Request, res: Response) => {
-  res.json({ ok: true, ts: new Date().toISOString() });
+app.get('/health', async (_req: Request, res: Response): Promise<void> => {
+  const dbOk = await checkDbHealth();
+  const status = dbOk ? 200 : 503;
+  res.status(status).json({
+    ok: dbOk,
+    service: 'canaan-third-space-api',
+    db: dbOk ? 'ok' : 'unavailable',
+  });
+});
+
+app.get('/api/health', async (_req: Request, res: Response): Promise<void> => {
+  const dbOk = await checkDbHealth();
+  const status = dbOk ? 200 : 503;
+  res.status(status).json({
+    ok: dbOk,
+    service: 'canaan-third-space-api',
+    db: dbOk ? 'ok' : 'unavailable',
+  });
 });
 
 // ── POST /api/enquiries ───────────────────────────────────────────────────────
@@ -100,19 +126,36 @@ interface EnquiryBody {
   consent?: string | boolean | number;
 }
 
-app.post('/api/enquiries', async (req: Request<{}, {}, EnquiryBody>, res: Response) => {
+const enquiryRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { ok: false, error: 'Too many requests' },
+});
+
+app.post('/api/enquiries', enquiryRateLimiter, async (req: Request<{}, {}, EnquiryBody>, res: Response) => {
   const { name, email, phone, enquiryType, preferredContact, message, consent } = req.body;
 
   // ── Input validation ────────────────────────────────────────────────────
   const errors: string[] = [];
-  if (!name || typeof name !== 'string' || name.trim().length < 2) {
-    errors.push('name: required, minimum 2 characters');
+  if (!name || typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 100) {
+    errors.push('name: required, between 2 and 100 characters');
   }
-  if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-    errors.push('email: must be a valid email address');
+  if (!email || typeof email !== 'string' || email.trim().length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    errors.push('email: must be a valid email address under 255 characters');
   }
-  if (!message || typeof message !== 'string' || message.trim().length < 5) {
-    errors.push('message: required, minimum 5 characters');
+  if (phone && (typeof phone !== 'string' || phone.trim().length > 50)) {
+    errors.push('phone: must be under 50 characters');
+  }
+  if (enquiryType && (typeof enquiryType !== 'string' || enquiryType.trim().length > 50)) {
+    errors.push('enquiryType: must be under 50 characters');
+  }
+  if (preferredContact && (typeof preferredContact !== 'string' || preferredContact.trim().length > 50)) {
+    errors.push('preferredContact: must be under 50 characters');
+  }
+  if (!message || typeof message !== 'string' || message.trim().length < 5 || message.trim().length > 5000) {
+    errors.push('message: required, between 5 and 5000 characters');
   }
   const consentValue = String(consent ?? '').toLowerCase();
   if (!consent || consentValue === 'false' || consentValue === '0') {
@@ -136,9 +179,10 @@ app.post('/api/enquiries', async (req: Request<{}, {}, EnquiryBody>, res: Respon
       message:          message!.trim(),
       consent:          true,
     };
-    row = insertEnquiry(input);
+    row = await insertEnquiry(input);
     console.log(`[db] Enquiry #${row.id} saved — from ${row.email} at ${row.created_at}`);
   } catch (err) {
+    // Log the technical detail server-side; never send it to the client
     console.error('[db] Failed to insert enquiry:', err);
     res.status(500).json({ ok: false, error: 'Could not save your enquiry. Please try again or call us directly.' });
     return;
@@ -157,17 +201,45 @@ app.post('/api/enquiries', async (req: Request<{}, {}, EnquiryBody>, res: Respon
 
 // ── Global error handler ──────────────────────────────────────────────────────
 
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.error('[server] Unhandled error:', err);
-  res.status(500).json({ ok: false, error: 'Internal server error' });
+  const status = err.status || err.statusCode || 500;
+  const message = status === 400 ? 'Invalid request' : 'Internal server error';
+  res.status(status).json({ ok: false, error: message });
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 
-app.listen(PORT, () => {
-  console.log(`\n✅  Canaan enquiry server running on http://localhost:${PORT}`);
-  console.log(`   POST http://localhost:${PORT}/api/enquiries`);
-  console.log(`   GET  http://localhost:${PORT}/api/health\n`);
-});
+async function start(): Promise<void> {
+  // Run migrations before accepting traffic
+  try {
+    await runMigrations();
+    console.log('[db] Migrations complete.');
+  } catch (err) {
+    console.error('[db] Migration failed — server will not start:', err);
+    process.exit(1);
+  }
+
+  app.listen(PORT, () => {
+    const env = process.env.NODE_ENV ?? 'development';
+    console.log(`\n✅  Canaan enquiry server running [${env}] on port ${PORT}`);
+    console.log(`   GET  http://localhost:${PORT}/health`);
+    console.log(`   GET  http://localhost:${PORT}/api/health`);
+    console.log(`   POST http://localhost:${PORT}/api/enquiries`);
+
+    // SMTP availability check — confirm config is present without printing secrets
+    const smtpReady =
+      !!process.env.SMTP_HOST &&
+      !!process.env.SMTP_USER &&
+      !!process.env.SMTP_PASS &&
+      process.env.SMTP_PASS !== 'REPLACE_WITH_YOUR_APP_PASSWORD';
+    console.log(`\n   SMTP ready : ${smtpReady ? '✅ yes' : '⚠️  no — set SMTP_HOST/SMTP_USER/SMTP_PASS in .env'}`);
+    console.log(`   SMTP host  : ${process.env.SMTP_HOST ?? '(not set)'}`);
+    console.log(`   SMTP user  : ${process.env.SMTP_USER ?? '(not set)'}`);
+    console.log(`   Notify to  : ${process.env.ENQUIRY_TO_EMAIL ?? '(not set)'}\n`);
+  });
+}
+
+start();
 
 export default app;

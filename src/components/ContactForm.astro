@@ -103,8 +103,8 @@ const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YO
           messageEl.className = 'form-message info';
           messageEl.innerHTML =
             '<strong>Demo mode:</strong> Enquiries are not delivered yet. ' +
-            'To enable real email delivery, paste your Formspree endpoint into ' +
-            '<code>src/config.ts → form.endpoint</code>.';
+            'To enable real delivery, set <code>PUBLIC_API_BASE_URL</code> ' +
+            'in your environment and rebuild.';
 
           setTimeout(() => { messageEl.style.display = 'none'; }, 10000);
         }, 800);
@@ -137,7 +137,9 @@ const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YO
         } else {
           throw new Error('Server error');
         }
-      } catch {
+      } catch (err) {
+        // Log the real error for developer diagnostics — not exposed to the user.
+        console.error('[ContactForm] Submission error:', err);
         messageEl.style.display = 'block';
         messageEl.className = 'form-message error';
         messageEl.innerHTML =

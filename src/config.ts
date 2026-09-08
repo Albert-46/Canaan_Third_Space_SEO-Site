@@ -55,17 +55,23 @@ export const SITE_CONFIG = {
   },
 
   // Form Provider (For the Contact Form)
-  // 'local'     — POST to the local Express API in server/ (SQLite + SMTP email)
-  // 'formspree' — POST to Formspree endpoint (no server required)
-  // 'demo'      — Simulates submission without sending anything
+  // 'local'  — POST to the Express API in server/ (PostgreSQL + SMTP email)
+  // 'demo'   — Simulates submission without sending anything
   //
-  // To activate the local server:
-  //   cd server && npm install && npm run dev
-  //   The server listens on http://localhost:3001
-  //   SMTP credentials go in .env (see .env.example)
+  // The API base URL is driven by the PUBLIC_API_BASE_URL build-time environment
+  // variable (Astro PUBLIC_ prefix makes it safe to embed in the browser bundle).
+  //
+  // Local development (no PUBLIC_API_BASE_URL set):
+  //   Falls back to http://localhost:3001  — run: cd server && npm run dev
+  //
+  // Production (set PUBLIC_API_BASE_URL before running astro build):
+  //   e.g. PUBLIC_API_BASE_URL=https://api.canaanthirdspace.com
+  //   The built frontend will call https://api.canaanthirdspace.com/api/enquiries
+  //
+  // NEVER put SMTP_PASS or any backend secret into a PUBLIC_ variable.
   form: {
     provider: 'local',
-    endpoint: 'http://localhost:3001/api/enquiries',
+    endpoint: `${import.meta.env.PUBLIC_API_BASE_URL ?? 'http://localhost:3001'}/api/enquiries`,
   },
 
   // Social Links

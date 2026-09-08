@@ -121,14 +121,14 @@ This repository includes a `firebase.json` pre-configured to serve the `dist/` f
 - [ ] Tested all links, mobile navigation, and forms.
 - [ ] Run `npm run build` and verified the output.
 - [ ] Set up the enquiry server (`server/`) with Gmail App Password in `.env`.
-- [ ] Verified a test enquiry is saved to `data/enquiries.db` and emailed to the inbox.
+- [ ] Verified a test enquiry is saved to the PostgreSQL database and emailed to the inbox.
 
 ---
 
 ## 📬 Backend API Server (Enquiry Form)
 
 The `server/` directory contains a standalone Node.js/Express API that:
-1. **Saves** every form submission to a SQLite database at `data/enquiries.db`.
+1. **Saves** every form submission to a PostgreSQL database.
 2. **Emails** an SMTP notification to the configured inbox for every new enquiry.
 3. **Never loses data** — email failures are logged but do not block the API response.
 
@@ -181,8 +181,7 @@ Using Gmail SMTP requires an **App Password** (not your regular login password):
 
 ### Database
 
-The SQLite database is created automatically at `data/enquiries.db` on first run.  
-It is excluded from git via `.gitignore` — **back it up regularly**.
+The backend requires a running PostgreSQL database. Provide the connection string via the `DATABASE_URL` environment variable.
 
 ### Production Deployment
 
