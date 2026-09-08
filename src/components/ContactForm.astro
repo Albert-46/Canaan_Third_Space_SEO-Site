@@ -1,39 +1,66 @@
 ---
-import { SITE_CONFIG } from '../config';
+import { SITE_CONFIG } from "../config";
 
 const { provider, endpoint } = SITE_CONFIG.form;
 // demo mode: provider is explicitly 'demo', OR endpoint is missing / still a placeholder
-const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YOUR');
+const isDemo =
+  provider === "demo" || !endpoint || endpoint.startsWith("PASTE_YOUR");
 ---
 
-<form 
-  id="contactForm" 
-  class="contact-form" 
-  action={isDemo ? undefined : endpoint} 
+<form
+  id="contactForm"
+  class="contact-form"
+  action={isDemo ? undefined : endpoint}
   method={isDemo ? undefined : "POST"}
   data-demo={isDemo.toString()}
   data-provider={provider}
 >
   <div class="form-group">
-    <label for="name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
-    <input type="text" id="name" name="name" class="form-input" required aria-required="true">
+    <label for="name" class="form-label"
+      >Full Name <span aria-hidden="true">*</span></label
+    >
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-input"
+      required
+      aria-required="true"
+    />
   </div>
 
   <div class="grid-12" style="gap: var(--spacing-sm);">
     <div class="form-group" style="grid-column: span 6;">
       <label for="phone" class="form-label">Phone Number</label>
-      <input type="tel" id="phone" name="phone" class="form-input">
+      <input type="tel" id="phone" name="phone" class="form-input" />
     </div>
     <div class="form-group" style="grid-column: span 6;">
-      <label for="email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
-      <input type="email" id="email" name="email" class="form-input" required aria-required="true">
+      <label for="email" class="form-label"
+        >Email Address <span aria-hidden="true">*</span></label
+      >
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-input"
+        required
+        aria-required="true"
+      />
     </div>
   </div>
 
   <div class="grid-12" style="gap: var(--spacing-sm);">
     <div class="form-group" style="grid-column: span 6;">
-      <label for="enquiry-type" class="form-label">Enquiry Type <span aria-hidden="true">*</span></label>
-      <select id="enquiry-type" name="enquiryType" class="form-input" required aria-required="true">
+      <label for="enquiry-type" class="form-label"
+        >Enquiry Type <span aria-hidden="true">*</span></label
+      >
+      <select
+        id="enquiry-type"
+        name="enquiryType"
+        class="form-input"
+        required
+        aria-required="true"
+      >
         <option value="" disabled selected>Select an option</option>
         <option value="medical">Medical Services &amp; OPD</option>
         <option value="senior-care">Senior Residential Care</option>
@@ -42,7 +69,9 @@ const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YO
       </select>
     </div>
     <div class="form-group" style="grid-column: span 6;">
-      <label for="preferred-contact" class="form-label">Preferred Contact Method</label>
+      <label for="preferred-contact" class="form-label"
+        >Preferred Contact Method</label
+      >
       <select id="preferred-contact" name="preferredContact" class="form-input">
         <option value="phone">Phone Call</option>
         <option value="email">Email</option>
@@ -52,34 +81,62 @@ const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YO
   </div>
 
   <div class="form-group">
-    <label for="message" class="form-label">How can we help you? <span aria-hidden="true">*</span></label>
-    <textarea id="message" name="message" class="form-input" rows="5" required aria-required="true"></textarea>
+    <label for="message" class="form-label"
+      >How can we help you? <span aria-hidden="true">*</span></label
+    >
+    <textarea
+      id="message"
+      name="message"
+      class="form-input"
+      rows="5"
+      required
+      aria-required="true"></textarea>
   </div>
 
   <div class="form-consent">
-    <input type="checkbox" id="consent" name="consent" required aria-required="true">
+    <input
+      type="checkbox"
+      id="consent"
+      name="consent"
+      required
+      aria-required="true"
+    />
     <label for="consent">
-      I consent to having this website store my submitted information so they can respond to my enquiry. 
-      See our <a href="/privacy">Privacy Policy</a> to learn more about how we use data.
+      I consent to having this website store my submitted information so they
+      can respond to my enquiry. See our <a href="/privacy">Privacy Policy</a> to
+      learn more about how we use data.
     </label>
   </div>
 
-  <button type="submit" id="submit-btn" class="btn btn-primary" style="margin-top: var(--spacing-sm); width: 100%;">
+  <button
+    type="submit"
+    id="submit-btn"
+    class="btn btn-primary"
+    style="margin-top: var(--spacing-sm); width: 100%;"
+  >
     Send Enquiry
   </button>
 
-  <p class="response-time-note">We typically respond within 1–2 working days.</p>
+  <p class="response-time-note">
+    We typically respond within 1–2 working days.
+  </p>
 
-  <div id="form-message" class="form-message" aria-live="polite" style="display: none;"></div>
+  <div
+    id="form-message"
+    class="form-message"
+    aria-live="polite"
+    style="display: none;"
+  >
+  </div>
 </form>
 
 <script>
-  const form = document.getElementById('contactForm') as HTMLFormElement;
-  const messageEl = document.getElementById('form-message') as HTMLElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const messageEl = document.getElementById("form-message") as HTMLElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
   if (form && messageEl && submitBtn) {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       if (!form.checkValidity()) {
@@ -87,66 +144,84 @@ const isDemo = provider === 'demo' || !endpoint || endpoint.startsWith('PASTE_YO
         return;
       }
 
-      const isDemo = form.getAttribute('data-demo') === 'true';
+      const isDemo = form.getAttribute("data-demo") === "true";
 
       // ── DEMO MODE ──────────────────────────────────────────────────────────
       if (isDemo) {
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = "Sending...";
         submitBtn.disabled = true;
 
         setTimeout(() => {
           form.reset();
-          submitBtn.textContent = 'Send Enquiry';
+          submitBtn.textContent = "Send Enquiry";
           submitBtn.disabled = false;
 
-          messageEl.style.display = 'block';
-          messageEl.className = 'form-message info';
+          messageEl.style.display = "block";
+          messageEl.className = "form-message info";
           messageEl.innerHTML =
-            '<strong>Demo mode:</strong> Enquiries are not delivered yet. ' +
-            'To enable real delivery, set <code>PUBLIC_API_BASE_URL</code> ' +
-            'in your environment and rebuild.';
+            "<strong>Demo mode:</strong> Enquiries are not delivered yet. " +
+            "To enable real delivery, set <code>PUBLIC_API_BASE_URL</code> " +
+            "in your environment and rebuild.";
 
-          setTimeout(() => { messageEl.style.display = 'none'; }, 10000);
+          setTimeout(() => {
+            messageEl.style.display = "none";
+          }, 10000);
         }, 800);
         return;
       }
 
-      // ── LIVE MODE (Formspree / custom endpoint) ─────────────────────────
-      submitBtn.textContent = 'Sending…';
+      // ── LIVE MODE ────────────────────────────────────────────────────────
+      submitBtn.textContent = "Sending…";
       submitBtn.disabled = true;
 
       try {
         const data = new FormData(form);
-        const action = form.getAttribute('action') || '';
+        const action = form.getAttribute("action") || "";
+
+        const payload = {
+          name: data.get("name")?.toString() || "",
+          email: data.get("email")?.toString() || "",
+          phone: data.get("phone")?.toString() || "",
+          enquiryType: data.get("enquiryType")?.toString() || "",
+          preferredContact: data.get("preferredContact")?.toString() || "",
+          message: data.get("message")?.toString() || "",
+          consent: data.get("consent") === "on",
+        };
 
         const res = await fetch(action, {
-          method: 'POST',
-          body: data,
-          headers: { Accept: 'application/json' },
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
         });
 
         if (res.ok) {
           form.reset();
-          messageEl.style.display = 'block';
-          messageEl.className = 'form-message success';
+          messageEl.style.display = "block";
+          messageEl.className = "form-message success";
           messageEl.textContent =
-            'Thank you — your enquiry has been received. We will be in touch within 1–2 working days.';
-          submitBtn.textContent = 'Send Enquiry';
+            "Thank you — your enquiry has been received. We will be in touch within 1–2 working days.";
+          submitBtn.textContent = "Send Enquiry";
           submitBtn.disabled = false;
-          setTimeout(() => { messageEl.style.display = 'none'; }, 12000);
+          setTimeout(() => {
+            messageEl.style.display = "none";
+          }, 12000);
         } else {
-          throw new Error('Server error');
+          const errorBody = await res.text();
+          throw new Error(`Server error (${res.status}): ${errorBody}`);
         }
       } catch (err) {
         // Log the real error for developer diagnostics — not exposed to the user.
-        console.error('[ContactForm] Submission error:', err);
-        messageEl.style.display = 'block';
-        messageEl.className = 'form-message error';
+        console.error("[ContactForm] Submission error:", err);
+        messageEl.style.display = "block";
+        messageEl.className = "form-message error";
         messageEl.innerHTML =
-          'Sorry, something went wrong. Please call us directly at ' +
+          "Sorry, something went wrong. Please call us directly at " +
           '<a href="tel:+918075053345">+91 80750 53345</a> or email ' +
           '<a href="mailto:thirdspacecarehome@gmail.com">thirdspacecarehome@gmail.com</a>.';
-        submitBtn.textContent = 'Send Enquiry';
+        submitBtn.textContent = "Send Enquiry";
         submitBtn.disabled = false;
       }
     });
