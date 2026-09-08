@@ -44,8 +44,10 @@
 
 import path from 'path';
 import dotenv from 'dotenv';
-// Load .env from the project root (one level above server/)
-dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
+// Load .env from the project root.
+// __dirname is server/ in ts-node (dev) and server/dist/ in compiled build,
+// so we navigate two levels up to reliably reach the project root in both cases.
+dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -54,12 +56,25 @@ import { sendEnquiryEmail } from './mailer';
 
 const app = express();
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? 'http://localhost:4321';
+
+// ALLOWED_ORIGIN is an additional configurable origin (e.g. a staging URL).
+// The two production frontend domains and the local dev server are always allowed.
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? '';
 
 // ── Middleware ────────────────────────────────────────────────────────────────
 
+// Production origins are hardcoded — they are not secrets.
+// ALLOWED_ORIGIN (from .env) adds one extra slot for staging / overrides.
+const allowedOrigins: string[] = [
+  'https://canaanthirdspace.com',
+  'https://canaan-third-space.web.app',
+  'http://localhost:4321',
+  'http://127.0.0.1:4321',
+];
+if (ALLOWED_ORIGIN) allowedOrigins.push(ALLOWED_ORIGIN);
+
 app.use(cors({
-  origin: [ALLOWED_ORIGIN, 'http://localhost:4321', 'http://127.0.0.1:4321'],
+  origin: allowedOrigins,
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
 }));

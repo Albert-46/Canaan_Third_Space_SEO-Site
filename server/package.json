@@ -4,10 +4,14 @@
   "description": "Enquiry API for Canaan Third Space Senior Care Home — saves to SQLite and sends SMTP email notifications.",
   "type": "commonjs",
   "main": "dist/index.js",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "ts-node --project tsconfig.json index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -20,6 +24,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^22.0.0",
     "@types/nodemailer": "^6.4.15",
+    "cross-env": "^10.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
   }

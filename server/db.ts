@@ -12,8 +12,10 @@ import { DatabaseSync } from 'node:sqlite';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Resolve the data directory relative to server/
-const DATA_DIR = path.resolve(__dirname, '..', 'data');
+// Resolve the data directory to project-root/data/.
+// __dirname is server/ under ts-node (dev) and server/dist/ in the compiled build.
+// Two levels up from either location correctly reaches the project root.
+const DATA_DIR = path.resolve(__dirname, '..', '..', 'data');
 const DB_PATH  = path.join(DATA_DIR, 'enquiries.db');
 
 let _db: DatabaseSync | null = null;
