@@ -2,7 +2,9 @@
 import { SITE_CONFIG } from "../config";
 
 const { provider, endpoint } = SITE_CONFIG.form;
-// demo mode: provider is explicitly 'demo', OR endpoint is missing / still a placeholder
+
+// Demo mode is used only when the form provider/endpoint
+// has not been configured for live submission.
 const isDemo =
   provider === "demo" || !endpoint || endpoint.startsWith("PASTE_YOUR");
 ---
@@ -16,9 +18,10 @@ const isDemo =
   data-provider={provider}
 >
   <div class="form-group">
-    <label for="name" class="form-label"
-      >Full Name <span aria-hidden="true">*</span></label
-    >
+    <label for="name" class="form-label">
+      Full Name <span aria-hidden="true">*</span>
+    </label>
+
     <input
       type="text"
       id="name"
@@ -26,18 +29,28 @@ const isDemo =
       class="form-input"
       required
       aria-required="true"
+      autocomplete="name"
     />
   </div>
 
   <div class="grid-12" style="gap: var(--spacing-sm);">
     <div class="form-group" style="grid-column: span 6;">
       <label for="phone" class="form-label">Phone Number</label>
-      <input type="tel" id="phone" name="phone" class="form-input" />
+
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="form-input"
+        autocomplete="tel"
+      />
     </div>
+
     <div class="form-group" style="grid-column: span 6;">
-      <label for="email" class="form-label"
-        >Email Address <span aria-hidden="true">*</span></label
-      >
+      <label for="email" class="form-label">
+        Email Address <span aria-hidden="true">*</span>
+      </label>
+
       <input
         type="email"
         id="email"
@@ -45,15 +58,17 @@ const isDemo =
         class="form-input"
         required
         aria-required="true"
+        autocomplete="email"
       />
     </div>
   </div>
 
   <div class="grid-12" style="gap: var(--spacing-sm);">
     <div class="form-group" style="grid-column: span 6;">
-      <label for="enquiry-type" class="form-label"
-        >Enquiry Type <span aria-hidden="true">*</span></label
-      >
+      <label for="enquiry-type" class="form-label">
+        Enquiry Type <span aria-hidden="true">*</span>
+      </label>
+
       <select
         id="enquiry-type"
         name="enquiryType"
@@ -68,10 +83,12 @@ const isDemo =
         <option value="general">General Enquiry</option>
       </select>
     </div>
+
     <div class="form-group" style="grid-column: span 6;">
-      <label for="preferred-contact" class="form-label"
-        >Preferred Contact Method</label
-      >
+      <label for="preferred-contact" class="form-label">
+        Preferred Contact Method
+      </label>
+
       <select id="preferred-contact" name="preferredContact" class="form-input">
         <option value="phone">Phone Call</option>
         <option value="email">Email</option>
@@ -81,9 +98,10 @@ const isDemo =
   </div>
 
   <div class="form-group">
-    <label for="message" class="form-label"
-      >How can we help you? <span aria-hidden="true">*</span></label
-    >
+    <label for="message" class="form-label">
+      How can we help you? <span aria-hidden="true">*</span>
+    </label>
+
     <textarea
       id="message"
       name="message"
@@ -101,10 +119,12 @@ const isDemo =
       required
       aria-required="true"
     />
+
     <label for="consent">
       I consent to having this website store my submitted information so they
-      can respond to my enquiry. See our <a href="/privacy">Privacy Policy</a> to
-      learn more about how we use data.
+      can respond to my enquiry. See our
+      <a href="/privacy">Privacy Policy</a>
+      to learn more about how we use data.
     </label>
   </div>
 
@@ -139,6 +159,7 @@ const isDemo =
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      // Use the browser's built-in validation first.
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -146,31 +167,31 @@ const isDemo =
 
       const isDemo = form.getAttribute("data-demo") === "true";
 
-      // ── DEMO MODE ──────────────────────────────────────────────────────────
+      // ── DEMO MODE ────────────────────────────────────────────────────────
       if (isDemo) {
         submitBtn.textContent = "Sending...";
         submitBtn.disabled = true;
 
         setTimeout(() => {
           form.reset();
+
           submitBtn.textContent = "Send Enquiry";
           submitBtn.disabled = false;
 
           messageEl.style.display = "block";
           messageEl.className = "form-message info";
-          messageEl.innerHTML =
-            "<strong>Demo mode:</strong> Enquiries are not delivered yet. " +
-            "To enable real delivery, set <code>PUBLIC_API_BASE_URL</code> " +
-            "in your environment and rebuild.";
+          messageEl.textContent =
+            "The enquiry form is currently unavailable. Please call or email us directly.";
 
           setTimeout(() => {
             messageEl.style.display = "none";
           }, 10000);
         }, 800);
+
         return;
       }
 
-      // ── LIVE MODE ────────────────────────────────────────────────────────
+      // ── LIVE MODE / FORMSPREE ────────────────────────────────────────────
       submitBtn.textContent = "Sending…";
       submitBtn.disabled = true;
 
@@ -178,14 +199,20 @@ const isDemo =
         const data = new FormData(form);
         const action = form.getAttribute("action") || "";
 
+        const email = data.get("email")?.toString().trim() || "";
+
         const payload = {
-          name: data.get("name")?.toString() || "",
-          email: data.get("email")?.toString() || "",
-          phone: data.get("phone")?.toString() || "",
+          name: data.get("name")?.toString().trim() || "",
+          email,
+          phone: data.get("phone")?.toString().trim() || "",
           enquiryType: data.get("enquiryType")?.toString() || "",
           preferredContact: data.get("preferredContact")?.toString() || "",
-          message: data.get("message")?.toString() || "",
+          message: data.get("message")?.toString().trim() || "",
           consent: data.get("consent") === "on",
+
+          // Formspree email handling.
+          _replyto: email,
+          _subject: "New Enquiry — Canaan Third Space",
         };
 
         const res = await fetch(action, {
@@ -197,30 +224,38 @@ const isDemo =
           body: JSON.stringify(payload),
         });
 
-        if (res.ok) {
-          form.reset();
-          messageEl.style.display = "block";
-          messageEl.className = "form-message success";
-          messageEl.textContent =
-            "Thank you — your enquiry has been received. We will be in touch within 1–2 working days.";
-          submitBtn.textContent = "Send Enquiry";
-          submitBtn.disabled = false;
-          setTimeout(() => {
-            messageEl.style.display = "none";
-          }, 12000);
-        } else {
+        if (!res.ok) {
           const errorBody = await res.text();
-          throw new Error(`Server error (${res.status}): ${errorBody}`);
+          throw new Error(
+            `Form submission failed (${res.status}): ${errorBody}`,
+          );
         }
+
+        // ── SUCCESS ────────────────────────────────────────────────────────
+        form.reset();
+
+        messageEl.style.display = "block";
+        messageEl.className = "form-message success";
+        messageEl.textContent =
+          "Thank you — your enquiry has been received. We will be in touch within 1–2 working days.";
+
+        submitBtn.textContent = "Send Enquiry";
+        submitBtn.disabled = false;
+
+        setTimeout(() => {
+          messageEl.style.display = "none";
+        }, 12000);
       } catch (err) {
-        // Log the real error for developer diagnostics — not exposed to the user.
+        // Keep technical details in the browser console only.
         console.error("[ContactForm] Submission error:", err);
+
         messageEl.style.display = "block";
         messageEl.className = "form-message error";
         messageEl.innerHTML =
           "Sorry, something went wrong. Please call us directly at " +
           '<a href="tel:+918075053345">+91 80750 53345</a> or email ' +
           '<a href="mailto:thirdspacecarehome@gmail.com">thirdspacecarehome@gmail.com</a>.';
+
         submitBtn.textContent = "Send Enquiry";
         submitBtn.disabled = false;
       }
@@ -236,6 +271,7 @@ const isDemo =
     text-align: center;
     opacity: 0.9;
   }
+
   .form-message {
     margin-top: var(--spacing-md);
     padding: var(--spacing-sm);
@@ -243,21 +279,25 @@ const isDemo =
     font-size: var(--text-sm);
     line-height: 1.6;
   }
+
   .form-message.success {
     background-color: #e8f5e9;
     border: 1px solid #c8e6c9;
     color: #2e7d32;
   }
+
   .form-message.error {
     background-color: #ffebee;
     border: 1px solid #ffcdd2;
     color: #c62828;
   }
+
   .form-message.info {
     background-color: #e3f2fd;
     border: 1px solid #bbdefb;
     color: #1565c0;
   }
+
   @media (max-width: 640px) {
     .grid-12 {
       display: flex;
