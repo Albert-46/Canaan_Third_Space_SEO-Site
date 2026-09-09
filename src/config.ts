@@ -90,7 +90,7 @@ export const SITE_CONFIG = {
 
   form: {
     provider: "formspree",
-    endpoint: "https://formspree.io/f/mzekbakb",
+    endpoint: "https://formspree.io/f/mqpkgvby",
   },
 
   // ─────────────────────────────────────────────
