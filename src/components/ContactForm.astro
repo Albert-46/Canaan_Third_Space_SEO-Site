@@ -6,7 +6,9 @@ const { provider, endpoint } = SITE_CONFIG.form;
 // Demo mode is used only when the form provider/endpoint
 // has not been configured for live submission.
 const isDemo =
-  provider === "demo" || !endpoint || endpoint.startsWith("PASTE_YOUR");
+  (provider as string) === "demo" ||
+  !endpoint ||
+  endpoint.startsWith("PASTE_YOUR");
 ---
 
 <form
@@ -35,7 +37,7 @@ const isDemo =
 
   <div class="grid-12" style="gap: var(--spacing-sm);">
     <div class="form-group" style="grid-column: span 6;">
-      <label for="phone" class="form-label">Phone Number</label>
+      <label for="phone" class="form-label"> Phone Number </label>
 
       <input
         type="tel"
@@ -156,18 +158,21 @@ const isDemo =
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
 
   if (form && messageEl && submitBtn) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-      // Use the browser's built-in validation first.
+      // Use the browser's native validation.
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
       const isDemo = form.getAttribute("data-demo") === "true";
+      const provider = form.getAttribute("data-provider");
 
-      // ── DEMO MODE ────────────────────────────────────────────────────────
+      // ─────────────────────────────────────────────
+      // DEMO MODE
+      // ─────────────────────────────────────────────
       if (isDemo) {
         submitBtn.textContent = "Sending...";
         submitBtn.disabled = true;
@@ -191,47 +196,65 @@ const isDemo =
         return;
       }
 
-      // ── LIVE MODE / FORMSPREE ────────────────────────────────────────────
+      // ─────────────────────────────────────────────
+      // LIVE FORM SUBMISSION
+      // ─────────────────────────────────────────────
       submitBtn.textContent = "Sending…";
       submitBtn.disabled = true;
 
       try {
-        const data = new FormData(form);
         const action = form.getAttribute("action") || "";
 
-        const email = data.get("email")?.toString().trim() || "";
-
-        const payload = {
-          name: data.get("name")?.toString().trim() || "",
-          email,
-          phone: data.get("phone")?.toString().trim() || "",
-          enquiryType: data.get("enquiryType")?.toString() || "",
-          preferredContact: data.get("preferredContact")?.toString() || "",
-          message: data.get("message")?.toString().trim() || "",
-          consent: data.get("consent") === "on",
-
-          // Formspree email handling.
-          _replyto: email,
-          _subject: "New Enquiry — Canaan Third Space",
-        };
-
-        const res = await fetch(action, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) {
-          const errorBody = await res.text();
-          throw new Error(
-            `Form submission failed (${res.status}): ${errorBody}`,
-          );
+        if (!action) {
+          throw new Error("Contact form endpoint is missing.");
         }
 
-        // ── SUCCESS ────────────────────────────────────────────────────────
+        /*
+         * Send the actual HTML form as FormData.
+         *
+         * We intentionally do NOT set Content-Type manually.
+         * The browser automatically creates the correct
+         * multipart/form-data boundary.
+         */
+        const formData = new FormData(form);
+
+        // Formspree uses the "email" field as the reply-to address.
+        // "subject" controls the notification email subject.
+        if (provider === "formspree") {
+          formData.set("subject", "New Enquiry — Canaan Third Space");
+        }
+
+        const response = await fetch(action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formData,
+        });
+
+        const responseText = await response.text();
+
+        let responseData: unknown = null;
+
+        try {
+          responseData = responseText ? JSON.parse(responseText) : null;
+        } catch {
+          responseData = responseText;
+        }
+
+        if (!response.ok) {
+          console.error("[ContactForm] Form provider response:", {
+            status: response.status,
+            statusText: response.statusText,
+            response: responseData,
+          });
+
+          throw new Error(`Form submission failed (${response.status}).`);
+        }
+
+        // ─────────────────────────────────────────────
+        // SUCCESS
+        // ─────────────────────────────────────────────
         form.reset();
 
         messageEl.style.display = "block";
@@ -245,9 +268,9 @@ const isDemo =
         setTimeout(() => {
           messageEl.style.display = "none";
         }, 12000);
-      } catch (err) {
+      } catch (error) {
         // Keep technical details in the browser console only.
-        console.error("[ContactForm] Submission error:", err);
+        console.error("[ContactForm] Submission error:", error);
 
         messageEl.style.display = "block";
         messageEl.className = "form-message error";
