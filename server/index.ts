@@ -72,7 +72,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const allowedOrigins: string[] = [
   'https://canaanthirdspace.com',
   'https://www.canaanthirdspace.com',
-  'https://canaan-third-space.web.app',
 ];
 if (!isProd) {
   allowedOrigins.push('http://localhost:4321', 'http://127.0.0.1:4321');
